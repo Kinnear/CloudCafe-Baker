@@ -15,10 +15,14 @@
 - likes (int)
 */
 
+var firebaseURL = 'https://burning-heat-7015.firebaseio.com/';
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', "firebase"]);
+
+// app.constant('firebaseURL', 'https://burning-heat-7015.firebaseio.com/');
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,11 +42,10 @@ app.run(function($ionicPlatform) {
   });
 });
 
-app.factory("Database", ["$firebaseArray", function($firebaseArray){
-    
-    var reference = new Firebase("https://burning-heat-7015.firebaseio.com/");
+app.service("Database", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL);
     return $firebaseArray(reference);
-}]);
+}]);;
 
 app.controller("SendToFireBase", function($scope, Database){
    

@@ -1,0 +1,80 @@
+{
+    "food":
+    {
+        // Food ID
+        "food1":
+        {
+            "stallID":"stall1",
+            "foodName":"Muffins",
+            "description":"They're always happy.(Description of food here)",
+            "price":99.0,
+            "halal":true,
+            "likes":10,
+            "img1":"bear.jpg",
+            "img2":"happy.jpg"    
+        }
+    },
+    
+    "stalls":
+    {
+        // each store has the following details
+        "stall1":
+        {
+            "stallName":"TheHappyTeddyBears",
+            "URL":"www.google.com",
+            "description":"Description of the store here.",
+            
+            // products that the store owns
+            "products":
+            {
+                "foodID": "food1"
+            }
+        }
+    },
+    
+    // categories that we have
+    "category":
+    {
+        "desserts":
+        {
+            // foodID : food1 belongs to the category desserts
+            "food1":true
+        },
+        "pastries":
+        {
+        },
+        "cookies":
+        {
+        }                      
+    },
+    
+    // reviews for food
+    "reviews":
+    {
+        "transactionID":"transaction1",
+        "foodID":"food1",
+        "reviewRating":3,
+        "comments":"Great taste!"        
+    },
+
+    // all transactions    
+    "transactions":
+    {
+        "transactionID":
+        {
+            "timestamp":"14th Feburary 2016",
+            "foodID":"food1",
+            "quantity":10
+        }
+    },
+    
+    // transactions that are yet to be delivered
+    "active":
+    {
+        "userID1":
+        {
+            // transaction ID from stripe
+            "transactionID": "transaction1"
+        }        
+    }
+}
