@@ -20,7 +20,7 @@ var firebaseURL = 'https://burning-heat-7015.firebaseio.com/';
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', "firebase", "ui.router"]);
+var app = angular.module('starter', ['ionic', "firebase", "ui.router, ngCordova"]);
 
 // app.constant('firebaseURL', 'https://burning-heat-7015.firebaseio.com/');
 
@@ -148,6 +148,8 @@ app.controller("AddToFood", function($scope, GetAllFood, GetAllCategory){
    
    $scope.AddFood = function()
    {
+       console.log($scope.form.categoryID.$id);
+       
         $scope.allFood.$add({  "categoryID" : $scope.form.categoryID.$id,
                                 "description" : $scope.form.description,
                                 "foodName": $scope.form.foodName,
@@ -160,3 +162,5 @@ app.controller("AddToFood", function($scope, GetAllFood, GetAllCategory){
                             });
    }
 });
+
+
