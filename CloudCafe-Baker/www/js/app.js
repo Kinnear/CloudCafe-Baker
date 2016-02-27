@@ -1,26 +1,11 @@
 // Ionic Starter App
 
-/*
-- ID (int)
-- Name (string)
-- stallname (string)
-- stallID (string)
-- desc (string)
-- price (float)
-- quantity (int)
-- URL (string)
-- time (timestamp)
-- halal (bool)
-- rating (int)
-- likes (int)
-*/
-
 var firebaseURL = 'https://burning-heat-7015.firebaseio.com/';
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', "firebase", "ui.router, ngCordova"]);
+var app = angular.module('starter', ['ionic', "firebase", "ui.router", "ngCordova"]);
 
 // app.constant('firebaseURL', 'https://burning-heat-7015.firebaseio.com/');
 
@@ -164,3 +149,32 @@ app.controller("AddToFood", function($scope, GetAllFood, GetAllCategory){
 });
 
 
+app.controller("ExampleController", function($scope, $cordovaCamera) {
+ 
+    $scope.takePicture = function() {
+        
+            console.log("Couldn't take a picture, there was an error");
+        
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, 
+            sourceType : Camera.PictureSourceType.CAMERA, 
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+            
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            console.log("Taken a picture");
+        }, function(err) {
+            // An error occured. Show a message to the user
+            console.log("Couldn't take a picture, there was an error");
+        });
+    }
+ 
+});
