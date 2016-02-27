@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>CloudCafe-Baker Backend Application</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -14,6 +14,7 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -29,15 +30,13 @@
   </head>
   <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">CloudCafe-Baker Backend Application</h1>
-      </ion-header-bar>
-      
-      <ion-content class="padding" ng-controller="SendToFireBase">
-          
-        <form name="submitForm" ng-submit="AddItem()">
+        <ion-header-bar class="bar-stable">
+            <h1 class="title">CloudCafe-Baker Backend Application</h1>
+        </ion-header-bar>
+        
+        <ion-content class="padding">
             
+<<<<<<< HEAD
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">Name</span>
@@ -93,13 +92,35 @@
                     <input type="number" ng-model="form.likes" required>
                 </label>
                 
+=======
+            <a ui-sref="add-food"> Add Food </a>
+            <br>
+            <a ui-sref="add-stall"> Add Stall </a>
+
+            <div class="container"> 
+                <div ui-view> </div>
+>>>>>>> 8a0a8481e1d3610c39e83099edd17e88390f073c
             </div>
+
             
-            <button class="button button-block button-positive" type="submit">
+        </ion-content>
+      <!--<ion-content class="padding" ng-controller="AddToCategory">
+          
+            <form name="submitForm" ng-submit="AddCategory()">    
+                
+                <div class="list">
+                    
+                    <label class="item item-input">
+                        <span class="input-label">Category Name: </span>
+                        <input type="text" ng-model="form.categoryName" required>
+                    </label>
+                </div>
+                
+                <button class="button button-block button-positive" type="submit">
                 Submit
-            </button>
-        </form>
-      </ion-content>
-    </ion-pane>
+                </button>
+                
+            </form>
+        </ion-content>-->
   </body>
 </html>

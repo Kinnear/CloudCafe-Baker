@@ -20,9 +20,26 @@ var firebaseURL = 'https://burning-heat-7015.firebaseio.com/';
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', "firebase"]);
+var app = angular.module('starter', ['ionic', "firebase", "ui.router"]);
 
 // app.constant('firebaseURL', 'https://burning-heat-7015.firebaseio.com/');
+
+app.config(function($stateProvider, $urlRouterProvider){
+    
+    $urlRouterProvider.otherwise('add-food');
+    
+    $stateProvider
+        .state('add-food', {
+            url:'/add-food',
+            templateUrl: 'add-food.html',
+            controller:"AddToFood"
+        })
+        .state('add-stall', {
+            url:'/add-stall',
+            templateUrl: 'add-stall.html',
+            controller:"AddStall"
+        });
+});
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,43 +59,104 @@ app.run(function($ionicPlatform) {
   });
 });
 
-app.service("Database", ["$firebaseArray", function($firebaseArray, $firebaseObject){
-    var reference = new Firebase(firebaseURL);
+// Gets All categories
+app.service("GetAllCategory", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "category");
     return $firebaseArray(reference);
-}]);;
+}]);
 
-app.controller("SendToFireBase", function($scope, Database){
+app.service("GetAllFood", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "food");
+    return $firebaseArray(reference);
+}]);
+
+app.service("GetAllReviews", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "reviews");
+    return $firebaseArray(reference);
+}]);
+
+app.service("GetAllStalls", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "stalls");
+    return $firebaseArray(reference);
+}]);
+
+app.service("GetAllTransactions", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "transactions");
+    return $firebaseArray(reference);
+}]);
+
+
+// will rarely be used, as categories will usually already predefined by us!
+app.controller("AddToCategory", function($scope, GetAllCategory){
+    
+   $scope.allCategories = GetAllCategory;
    
-   $scope.data = Database;
-   
-   $scope.AddItem = function()
+   $scope.AddCategory = function()
    {
-    //    console.log($scope.form.halal);
-       
-       // if this is the very first entry in the database
-       if($scope.data.length == 0)
-       {
-           console.log($scope.data);
-           $scope.form.id = 1;
-       }
-       // else we just auto increment the entry in the database
-       else
-       {
-            $scope.form.id = $scope.data[$scope.data.length - 1].id + 1;    
-       }
-       
-       $scope.data.$add({"id" : $scope.form.id,
-                        "name" : $scope.form.name,
-                        "stallName" : $scope.form.stallName,
-                        "stallID" : $scope.form.stallID,
-                        "desc" : $scope.form.desc,
-                        "price" : $scope.form.price,
-                        "quantity" : $scope.form.quantity,
-                        "url" : $scope.form.url,
-                        "time" : new Date().toString(),
-                        "halal" : $scope.form.halal,
-                        "rating" : $scope.form.rating,
-                        "likes" : $scope.form.likes});
+    $scope.allCategories.$add({  "categoryName" : $scope.form.categoryName,
+                        "products" : null
+                        });
    }
+});
+
+app.controller("AddStall", function($scope, GetAllStalls){
+    
+   $scope.allStalls = GetAllStalls;
    
+   $scope.AddStall = function()
+   {
+    $scope.allStalls.$add({  "URL" : $scope.form.URL,
+                             "description" : $scope.form.description,
+                             "products" : $scope.form.products,
+                             "stallName":$scope.form.stallName
+                        });
+   }
+});
+
+app.controller("AddTransaction", function($scope, GetAllTransactions){
+    
+   $scope.allTransactions = GetAllTransactions;
+   
+   $scope.AddTransactions = function()
+   {
+    $scope.allTransactions.$add({  "foodID" : $scope.form.foodID,
+                             "quantity" : $scope.form.quantity,
+                             "timestamp": new Date().toString()
+                        });
+   }
+});
+
+app.controller("AddReview", function($scope, GetAllReviews){
+    
+   $scope.allReviews = GetAllReviews;
+   
+   $scope.AddReview = function()
+   {
+    $scope.allReviews.$add({  "comment" : $scope.form.comment,
+                             "foodID" : $scope.form.foodID,
+                             "reviewRating": new Date().toString(),
+                             "transactionID": $scope.form.foodID,
+                        });
+   }
+});
+
+app.controller("AddToFood", function($scope, GetAllFood, GetAllCategory){
+    
+   $scope.allFood = GetAllFood;
+   
+   $scope.allFoodCategories = GetAllCategory;
+   
+   $scope.AddFood = function()
+   {
+        $scope.allFood.$add({  "categoryID" : $scope.form.categoryID.$id,
+                                "description" : $scope.form.description,
+                                "foodName": $scope.form.foodName,
+                                "halal": $scope.form.halal,
+                                "img1": "bear.jpg",
+                                "img2": "happy.jpg",
+                                "likes": $scope.form.likes,
+                                "price": $scope.form.price,
+                                "stallID": $scope.form.stallID
+                            });
+   }
 });
