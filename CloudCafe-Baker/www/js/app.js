@@ -70,6 +70,11 @@ app.service("GetAllTransactions", ["$firebaseArray", function($firebaseArray, $f
     return $firebaseArray(reference);
 }]);
 
+app.controller("TestController", ['$scope', 'angularFire', function testing($scope, angularfire){
+    
+    console.log("hello");
+}]);
+
 
 // will rarely be used, as categories will usually already predefined by us!
 app.controller("AddToCategory", function($scope, GetAllCategory){
