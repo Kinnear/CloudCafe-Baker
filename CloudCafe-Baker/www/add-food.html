@@ -2,6 +2,27 @@
          
          Adding Food
          
+         <!--File Upload-->
+         <!--<input class="hidden" type="file" accept="image/*" capture="camera" id="file-upload">-->
+         
+        <div>
+            <img ng-show="img1URI !== undefined" ng-src="{{img1URI}}">
+            <img ng-show="img1URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img1URI')">Image 1</button>
+            
+            <img ng-show="img2URI !== undefined" ng-src="{{img2URI}}">
+            <img ng-show="img2URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img2URI')">Image 2</button>
+            
+            <img ng-show="img3URI !== undefined" ng-src="{{img3URI}}">
+            <img ng-show="img3URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img3URI')">Image 3</button>
+            
+            <img ng-show="img4URI !== undefined" ng-src="{{img4URI}}">
+            <img ng-show="img4URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img4URI')">Image 4</button>
+        </div>
+         
         <div class="list">
             
                  <!--Get the list of categories-->
@@ -28,21 +49,6 @@
                     <option value="true">Yes</option>
                     <option value="false" selected>No</option>
                 </select>
-            </label>
-            
-            <label class="item item-input">
-                <span class="input-label">Image1: </span>
-                <input type="text" ng-model="form.img1" required>
-            </label>
-            
-            <label class="item item-input">
-                <span class="input-label">Image2: </span>
-                <input type="text" ng-model="form.img2" required>
-            </label>
-            
-            <label class="item item-input">
-                <span class="input-label">Likes: </span>
-                <input type="text" ng-model="form.likes" required>
             </label>
             
             <label class="item item-input">
