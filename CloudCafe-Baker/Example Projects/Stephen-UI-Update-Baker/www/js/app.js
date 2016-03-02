@@ -70,11 +70,11 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'HomeCtrl'
   })
 
-  // Category detail
-  .state('category', {
-    url: '/category/:id',
-    templateUrl: 'templates/category.html',
-    controller: 'CategoryCtrl'
+  // Community detail
+  .state('community', {
+    url: '/community',
+    templateUrl: 'templates/community.html',
+    controller: 'CommunityCtrl'
   })
 
   // Item detail
@@ -91,23 +91,19 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'FavoriteCtrl as first'
   })
 
-  // View cart
-  .state('cart', {
-    url: '/cart',
-    templateUrl: 'templates/cart.html',
-    controller: 'CartCtrl as second',
-      resolve: {
-          // checkout.js isn't fetched until this is resolved.
-          stripe: StripeCheckoutProvider.load
-      }
+  // View post
+  .state('post', {
+    url: '/post',
+    templateUrl: 'templates/post.html',
+    controller: 'PostCtrl',
   })
 
 
   // View ordered items
-  .state('last_orders', {
-    url: '/last-orders/',
-    templateUrl: 'templates/last-orders.html',
-    controller: 'CartCtrl'
+  .state('payment', {
+    url: '/payment',
+    templateUrl: 'templates/payment.html',
+    controller: 'PaymentCtrl'
   })
 
   .state('active', {
@@ -134,25 +130,6 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'UserCtrl'
   })
 
-  .state('history', {
-    url: '/history',
-    templateUrl: 'templates/history.html',
-    controller: 'HistoryCtrl'
-  })
-
-  // Chat list
-  .state('chats', {
-    url: '/chats',
-    templateUrl: 'templates/chats.html',
-    controller: 'ChatCtrl'
-  })
-
-  .state('chat-detail', {
-    url: '/chats/:chatId',
-    templateUrl: 'templates/chat-detail.html',
-    controller: 'ChatDetailCtrl'
-  })
-
   .state('reviews', {
                url: '/reviews',
                templateUrl: 'templates/reviews.html',
@@ -168,19 +145,6 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'SettingsCtrl'
   })
   
-//state for allreviews
-.state('allreviews', {
-    url: '/allreviews',
-    templateUrl: 'templates/allreviews.html',
-    controller: 'AllreviewsCtrl'
-  })
-
-//state for change
-.state('change', {
-    url: '/change',
-    templateUrl: 'templates/change.html',
-    controller: 'ChangeCtrl'
-  })
   
 //state for support
 .state('support', {
@@ -204,7 +168,7 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
   })
     
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/category');
 
 
 });
