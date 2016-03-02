@@ -1,115 +1,321 @@
-var app = angular.module('starter.controllers', ['ionic', "firebase", "ui.router", "ngCordova"]);
+var app = angular.module('starter.controllers', ["ionic", "firebase"]);
 
-// will rarely be used, as categories will usually already predefined by us!
-app.controller("AddToCategory", function($scope, GetAllCategory){
-    
-   $scope.allCategories = GetAllCategory;
-   
-   $scope.AddCategory = function()
-   {
-    $scope.allCategories.$add({  "categoryName" : $scope.form.categoryName,
-                        "products" : null
-                        });
-   }
+
+//app.service('productService', function() {
+//  var productList = [];
+//
+//  var addProduct = function(newObj) {
+//    productList.push(newObj);
+//  };
+//
+//  var getProducts = function(){
+//    return productList;
+//  };
+//
+//  return {
+//    addProduct: addProduct,
+//    getProducts: getProducts
+//  };
+//
+//});
+
+app.controller("FavouriteController", function($scope, FavouriteData) {
+  $scope.favouriteFata = FavouriteData;
+//   $scope.addItem = function() {
+//     var name = prompt("What do you need to buy?");
+//     if (name) {
+//       $scope.items.$add({
+//         "name": name
+//       });
+//     }
+//   };
+//
+//  $scope.callToAddToProductList = function(currObj){
+//    console.log("Here!!");
+//    console.log(currObj);
+//    productService.addProduct(currObj);
+//  };
 });
 
-app.controller("AddStall", function($scope, GetAllStalls){
-    
-   $scope.allStalls = GetAllStalls;
-   
-   $scope.AddStall = function()
-   {
-    $scope.allStalls.$add({  "URL" : $scope.form.URL,
-                             "description" : $scope.form.description,
-                             "products" : $scope.form.products,
-                             "stallName":$scope.form.stallName
-                        });
-   }
+
+// Authentication controller
+// Put your login, register functions here
+app.controller('AuthCtrl', function($scope, $ionicHistory) {
+  // hide back button in next view
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
 });
 
-app.controller("AddTransaction", function($scope, GetAllTransactions){
-    
-   $scope.allTransactions = GetAllTransactions;
-   
-   $scope.AddTransactions = function()
-   {
-    $scope.allTransactions.$add({  "foodID" : $scope.form.foodID,
-                             "quantity" : $scope.form.quantity,
-                             "timestamp": new Date().toString()
-                        });
-   }
+// Home controller
+app.controller('HomeCtrl', function($scope, $state, Categories) {
+    // get all categories from service
+    $scope.categories = Categories.all();
 });
 
-app.controller("AddReview", function($scope, GetAllReviews){
-    
-   $scope.allReviews = GetAllReviews;
-   
-   $scope.AddReview = function()
-   {
-    $scope.allReviews.$add({  "comment" : $scope.form.comment,
-                             "foodID" : $scope.form.foodID,
-                             "reviewRating": new Date().toString(),
-                             "transactionID": $scope.form.foodID,
-                        });
-   }
+// Category controller
+app.controller('CategoryCtrl', function($scope, $state, Categories, $stateParams, FavouriteData) {
+  var id = $stateParams.id;
+
+  // get all items from service by category id
+  // for now hardcode the category id to "1"
+  $scope.category = Categories.get(1);
+  
+  // testing only
+  $scope.firebaseTest = FavouriteData;
 });
 
-app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera){
-    
-   $scope.allFood = GetAllFood;
-   
-   $scope.allFoodCategories = GetAllCategory;
-   
-   $scope.takePicture = function(scopeValue) 
-   {   
-        var options = { 
-            quality : 75, 
-            destinationType : Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
-            sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
- 
-        $cordovaCamera.getPicture(options).then(function(imageData) {
-                
-                // Get the model
-                var model = $parse(scopeValue);
-                // Assigns a value to it
-                model.assign($scope, "data:image/jpeg;base64," + imageData);
+// Item controller
+app.controller('ItemCtrl', function($scope, $state, Items, $stateParams) {
+    var id = $stateParams.id;
 
-                // Apply it to the scope
-                $scope.$apply();
-                // console.log("Testing" + $scope.img1URI);
-                console.log("Picture taken.");                
-            }, function(err) {
-                // An error occured. Show a message to the user
-                console.log("Couldn't take a picture, there was an error");
-            });
-   }
-   
-   $scope.AddFood = function()
-   {
-    //  console.log($scope.form.categoryID.$id);
-        console.log("$scope.img4URI" + $scope.img4URI);
-       
-        $scope.allFood.$add({   "categoryID" : $scope.form.categoryID.$id,
-                                "description" : $scope.form.description,
-                                "foodName": $scope.form.foodName,
-                                "halal": $scope.form.halal,
-                                "img1": $scope.img1URI,
-                                "img2": $scope.img2URI,
-                                "img3": $scope.img3URI,
-                                "img4": $scope.img4URI,
-                                "likes": 0,
-                                "price": $scope.form.price,
-                                "stallID": $scope.form.stallID
-                            });
-   }
+    // get item from service by item id
+    $scope.item = Items.get(1);
+
+    // toggle favorite
+    $scope.toggleFav = function() {
+      $scope.item.faved = !$scope.item.faved;
+    }
 });
 
-//controller for new.html
-app.controller('NewCtrl', function($scope, $state) {})
+// Favorite controller
+app.controller('FavoriteCtrl', function($scope, $state, Items, CartItemData) {
+
+  // get all favorite items
+  $scope.items = Items.all()
+
+  // remove item from favorite
+  $scope.remove = function(index) {
+    $scope.items.splice(index, 1);
+  }
+
+  var first = this;
+  first.item = CartItemData.getItemData();
+
+  $scope.addtocart = function(index){
+    console.log(index);
+    CartItemData.setItemData(index);
+    first.item = CartItemData.getItemData();
+  }
+
+
+});
+
+// Cart controller
+app.controller('CartCtrl', function($scope, Cart, CartItemData, StripeCharge) {
+  // set cart items
+  $scope.cart = Cart.get();
+
+  // plus quantity
+  $scope.plusQty = function(item) {
+    item.quantity++;
+  }
+
+  // minus quantity
+  $scope.minusQty = function(item) {
+    if(item.quantity > 1)
+      item.quantity--;
+  }
+
+  // remove item from cart
+  $scope.remove = function(index) {
+    $scope.cart.items.splice(index, 1);
+  }
+
+  // Router Thingy
+  var second = this;
+  second.item = CartItemData.getItemData();
+
+  // Stripe JS
+  $scope.ProductMeta = {
+    title: "Awesome product",
+    description: "Yes it really is",
+    priceUSD: 1,
+  };
+
+  $scope.status = {
+    loading: false,
+    message: "",
+  };
+
+  $scope.charge = function() {
+
+    $scope.status['loading'] = true;
+    $scope.status['message'] = "Retrieving your Stripe Token...";
+
+    // first get the Stripe token
+    StripeCharge.getStripeToken($scope.ProductMeta).then(
+        function(stripeToken){
+          // -->
+          proceedCharge(stripeToken);
+        },
+        function(error){
+          console.log(error)
+
+          $scope.status['loading'] = false;
+          if(error != "ERROR_CANCEL") {
+            $scope.status['message'] = "Oops... something went wrong";
+          } else {
+            $scope.status['message'] = "";
+          }
+        }
+    ); // ./ getStripeToken
+
+    function proceedCharge(stripeToken) {
+
+      $scope.status['message'] = "Processing your payment...";
+
+      // then chare the user through your custom node.js server (server-side)
+      StripeCharge.chargeUser(stripeToken, $scope.ProductMeta).then(
+          function(StripeInvoiceData){
+            $scope.status['loading'] = false;
+            $scope.status['message'] = "Success! Check your Stripe Account";
+            console.log(StripeInvoiceData)
+          },
+          function(error){
+            console.log(error);
+
+            $scope.status['loading'] = false;
+            $scope.status['message'] = "Oops... something went wrong";
+          }
+      );
+
+    }; // ./ proceedCharge
+
+  };
+});
+
+// Active controller
+app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDelegate) {
+  // get all items form Items model
+  $scope.items = Items.all();
+
+  // toggle favorite
+  $scope.toggleFav = function() {
+    $scope.item.faved = !$scope.item.faved;
+  }
+
+  // disabled swipe menu
+  $ionicSideMenuDelegate.canDragContent(false);
+});
+
+// Checkout controller
+app.controller('CheckoutCtrl', function($scope, $state) {});
+
+app.controller('ReviewsCtrl', function($scope, $state) {});
+
+// Address controller
+app.controller('AddressCtrl', function($scope, $state) {
+  function initialize() {
+    // set up begining position
+    var myLatlng = new google.maps.LatLng(21.0227358,105.8194541);
+
+    // set option for map
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    // init map
+    var map = new google.maps.Map(document.getElementById("map"),
+      mapOptions);
+
+    // assign to stop
+    $scope.map = map;
+  }
+  // load map when the ui is loaded
+  $scope.init = function() {
+    initialize();
+  }
+});
+
+// User controller
+app.controller('UserCtrl', function($scope, $state) {})
+
+// History Controller
+.controller('HistoryCtrl', function($scope, $state) {})
+
+// Chat controller, view list chats and chat detail
+.controller('ChatCtrl', function($scope, Chats) {
+  $scope.chats = Chats.all();
+
+  // remove a conversation
+  $scope.remove = function(chat) {
+    Chats.remove(chat);
+  };
+
+  // mute a conversation
+  $scope.mute = function(chat) {
+    // write your code here
+  }
+});
+
+app.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout) {
+  //$scope.chat = Chats.get($stateParams.chatId);
+  $scope.chat = Chats.get(0);
+
+  $scope.sendMessage = function() {
+    var message = {
+      type: 'sent',
+      time: 'Just now',
+      text: $scope.input.message
+    };
+
+    $scope.input.message = '';
+
+    // push to massages list
+    $scope.chat.messages.push(message);
+
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+  };
+
+  // hover menu
+  $scope.onMessageHold = function(e, itemIndex, message) {
+    // show hover menu
+    $ionicActionSheet.show({
+      buttons: [
+        {
+          text: 'Copy Text'
+        }, {
+          text: 'Delete Message'
+        }
+      ],
+      buttonClicked: function(index) {
+        switch (index) {
+          case 0: // Copy Text
+            //cordova.plugins.clipboard.copy(message.text);
+
+            break;
+          case 1: // Delete
+            // no server side secrets here :~)
+            $scope.chat.messages.splice(itemIndex, 1);
+            break;
+        }
+
+        return true;
+      }
+    });
+  };
+
+});
+
+
+//empty controllers for new pages here
+
+//controller for settings.html
+app.controller('SettingsCtrl', function($scope, $state) {})
+
+//controller for allreviews.html
+app.controller('AllreviewsCtrl', function($scope, $state) {})
+
+//controller for Change Delivery Preferences change.html
+app.controller('ChangeCtrl', function($scope, $state) {})
+
+//controller for Support support.html
+app.controller('SupportCtrl', function($scope, $state) {})
+
+//controller for Shop shop.html
+app.controller('ShopCtrl', function($scope, $state) {})
+
+//controller for location.html
+app.controller('LocationCtrl', function($scope, $state) {})
