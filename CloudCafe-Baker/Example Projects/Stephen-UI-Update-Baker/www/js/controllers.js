@@ -154,3 +154,6 @@ app.controller('CommunityCtrl', function($scope, $state) {})
 
 //controller for post.html
 app.controller('PostCtrl', function($scope, $state) {})
+
+//controller for firstpayment.html
+app.controller('FirstpaymentCtrl', function($scope, $state) {})

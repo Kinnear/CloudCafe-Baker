@@ -139,6 +139,13 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
  //states for new pages
 
 //state for settings.html
+.state('firstpayment', {
+    url: '/firstpayment',
+    templateUrl: 'templates/firstpayment.html',
+    controller: 'FirstpaymentCtrl'
+  })
+  
+//state for firstpayment.html
 .state('settings', {
     url: '/settings',
     templateUrl: 'templates/settings.html',

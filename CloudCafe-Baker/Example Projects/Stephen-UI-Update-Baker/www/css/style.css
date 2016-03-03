@@ -193,3 +193,17 @@ progress[value]::-webkit-progress-value {
     .button.button-balanced:hover {
       color: #CC6B98;
       text-decoration: none; }
+
+  .item.item-divider.item-assertive {
+    border-color: #f10200;
+    background-color: #FF2725;
+    color: #fff; }
+  .item.item-divider.item-balanced {
+    border-color: #519d24;
+    background-color: #66C62E;
+    color: #fff; }
+  .item.item-divider.item-energized {
+    border-color: #e6b500;
+    background-color: #ffc900;
+    color: #fff; }
+    
