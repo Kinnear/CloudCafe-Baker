@@ -46,8 +46,8 @@
                 {{userData.facebook.displayName}}
                 <br>            
                 
-                <button class="button" ng-hide="loggedIn" ng-click="LoginFacebook()">Login</button>
-                <button class="button" ng-show="loggedIn" ng-click="LogoutFacebook()">Logout</button>
+                <button class="button" ng-hide="loggedIn" ng-click="LoginFacebook('facebook')">Facebook Login</button>
+                <button class="button" ng-show="loggedIn" ng-click="LogoutAuthentication()">Logout</button>
             </div>
             
             <a ui-sref="add-food"> Add Food </a>
