@@ -22,6 +22,7 @@
             "stallName":"TheHappyTeddyBears",
             "URL":"www.google.com",
             "description":"Description of the store here.",
+            "userID":"userID1",
             
             "products":
             {
@@ -70,5 +71,15 @@
         {
             "transactionID": "transaction1"
         }        
+    },
+    
+    "users":
+    {
+        "userID1":
+        {
+            "username": "Kinnear",
+            "baker": true,
+            "stallID": 18821912
+        }
     }
 }

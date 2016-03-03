@@ -23,6 +23,11 @@ app.config(function($stateProvider, $urlRouterProvider){
             url:'/add-stall',
             templateUrl: 'add-stall.html',
             controller:"AddStall"
+        })
+        .state('login', {
+            url:'/login',
+            templateUrl: 'login.html',
+            controller:"Login"
         });
 });
 
