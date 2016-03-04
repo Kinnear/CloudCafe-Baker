@@ -145,6 +145,27 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'FirstpaymentCtrl'
   })
   
+//state for editshop.html
+.state('editshop', {
+    url: '/editshop',
+    templateUrl: 'templates/editshop.html',
+    controller: 'EditshopCtrl'
+  })
+  
+//state for bio.html
+.state('bio', {
+    url: '/bio',
+    templateUrl: 'templates/bio.html',
+    controller: 'BioCtrl'
+  })
+  
+//state for invitation.html
+.state('invitation', {
+    url: '/invitation',
+    templateUrl: 'templates/invitation.html',
+    controller: 'InvitationCtrl'
+  })
+  
 //state for firstpayment.html
 .state('settings', {
     url: '/settings',

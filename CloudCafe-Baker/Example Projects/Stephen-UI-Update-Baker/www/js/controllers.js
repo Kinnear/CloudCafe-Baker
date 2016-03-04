@@ -157,3 +157,12 @@ app.controller('PostCtrl', function($scope, $state) {})
 
 //controller for firstpayment.html
 app.controller('FirstpaymentCtrl', function($scope, $state) {})
+
+//controller for editshop.html
+app.controller('EditshopCtrl', function($scope, $state) {})
+
+//controller for bio.html
+app.controller('BioCtrl', function($scope, $state) {})
+
+//controller for invitation.html
+app.controller('InvitationCtrl', function($scope, $state) {})
