@@ -1,4 +1,4 @@
-<ion-view view-title="Login" class="light-bg">
+<ion-view view-title="Invitation" class="light-bg">
   <ion-content class="light-bg">
 
     <div class="login-content">
@@ -16,42 +16,48 @@
 
       <!-- Login form -->
       <div class="list">
+          
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Invitation Code</span>
+          <input type="text">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name</span>
+          <input type="text">
+        </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email</span>
           <input type="email">
         </label>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
           <input type="password">
         </label>
-        
+
+
       </div>
 
-      <p class="text-right balanced">Forgot Password?</p>
-
-      <div>
-          
-        <button class="button button-block button button-balanced" ui-sref="register">
-            SIGN IN
-        </button>
-
-        <p class="text-center dark">Or</p>
-
-        <button class="button button-block button-positive" ui-sref="home">
-          Sign in with Facebook
-        </button>
-        <button class="button button-block button-positive" ui-sref="home">
-          Sign in with Twitter
+      <div class="padding-top">
+        <button class="button button-block button-balanced" ui-sref="location">
+          SIGN UP
         </button>
       </div>
 
 
       <!-- Other links -->
       <div class="text-center">
-          <a ui-sref="register" class="dark">New here? <span class="balanced">Sign up</span></a>
+        <a ui-sref="login" class="dark">I have <span class="balanced">an account</span></a>
+      </div>
+      
+      <div class="text-center">
+        <a ui-sref="login" class="dark" ui-sref="invitation">Request an <span class="balanced">invitation</span></a>
       </div>
 
     </div>
 
   </ion-content>
 </ion-view>
+

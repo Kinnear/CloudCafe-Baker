@@ -1,4 +1,4 @@
-<ion-view view-title="FirstPayment" class="light-bg">
+<ion-view view-title="Bio" class="light-bg">
   <ion-content class="light-bg">
 
     <div class="login-content">
@@ -16,23 +16,28 @@
 
         <div class="">
         <div class="item item-text-wrap">
-             One more thing... we will transfer on monthly basis.
-             Please ensure you have keyed in the correct bank account number
-             You will not be able to change this in future.
+             Tell us more of yourself and your bakery! e.g. Is baking your hobby?
+             How long have you been baking? What are your qualifications?
         </div>
         </div>
       <!-- Location form -->
       <div class="list">
+          
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Bakery Name</span>
+          <input type="text" placeholder="e.g. le Patisserie">
+        </label>
 
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Bank account number</span>
-          <input type="tel" placeholder="e.g. 120-45674-7">
+          <span class="input-label">Bio (can be edited later)</span>
+          <input type="text" placeholder="Am now in culinary school, want to set up own artisanal
+          bakery eventually/charity work">
         </label>
 
       </div>
 
       <div class="padding-top">
-        <button class="button button-block button-balanced" ui-sref="bio">
+        <button class="button button-block button-balanced" ui-sref="community">
           Start Baking!
         </button>
       </div>
