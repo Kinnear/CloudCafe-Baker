@@ -147,40 +147,6 @@
 .padding-right > .list .item {
   margin-right: 0; }
     
-/* progress bar styling*/
-
-progress[value] {
-  width: 250px;
-  height: 5px;
-}
-
-progress[value] {
-  /* Reset the default appearance */
-  -webkit-appearance: none;
-   appearance: none;  
-  
-  width: 320px;
-  height: 8px;
-}
-
-progress[value]::-webkit-progress-bar {
-  background-color: #F6E5ED;
-  border-radius: 200px;
-}
-
-progress[value]::-webkit-progress-value {
-  background-image:
-	   -webkit-linear-gradient(-45deg, 
-	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
-	                           rgba(0,0, 0, .1) 66%, transparent 66%),
-	   -webkit-linear-gradient(top, 
-	                           rgba(255, 255, 255, .25), 
-	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #B72C6C, #B72C6C);
-
-    border-radius: 200px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-}
 
 .button.button-block, .button.button-full {
     margin-top: 10px;
@@ -207,4 +173,10 @@ progress[value]::-webkit-progress-value {
     background-color: #ffc900;
     color: #fff; }
     
-    
+.item-stacked-label input,
+.item-stacked-label textarea {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 4px 8px 3px 0;
+  border: none;
+  background-color: transparent; }

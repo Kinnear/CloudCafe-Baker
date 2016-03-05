@@ -2,35 +2,86 @@
 
 
   <ion-content>
-      <div>*insert camera uploading facility here*</div>
+      
+          <div>
+            <img ng-show="img1URI !== undefined" ng-src="{{img1URI}}">
+            <img ng-show="img1URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img1URI')">Image 1</button>
+            
+            <img ng-show="img2URI !== undefined" ng-src="{{img2URI}}">
+            <img ng-show="img2URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img2URI')">Image 2</button>
+            
+            <img ng-show="img3URI !== undefined" ng-src="{{img3URI}}">
+            <img ng-show="img3URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img3URI')">Image 3</button>
+            
+            <img ng-show="img4URI !== undefined" ng-src="{{img4URI}}">
+            <img ng-show="img4URI === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('img4URI')">Image 4</button>
+        </div>
+          
       <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Food Name</span>
-                <input type="text" placeholder="e.g. Matcha Strawberries">
+                <input type="text" placeholder="e.g. Matcha Strawberries" required>
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Description</span>
-                <input type="text" placeholder="e.g. are they organic? matcha from kyoto?">
+                <input type="text" placeholder="e.g. are they organic? matcha from kyoto?" required>
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Closing Date</span>
-                <input type="datetime" placeholder="date orders finalised. input DD/MM/YYYY">
+                <input type="datetime" placeholder="date orders finalised. input DD/MM/YYYY" required>
             </label>
             
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Delivery Date</span>
-                <input type="datetime" placeholder="date delivery team collects. input DD/MM/YYYY">
+                <span class="input-label">Collection Date</span>
+                <input type="datetime" placeholder="date delivery team collects" required>
+            </label>
+            
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Collection Time</span>
+                <input type="datetime" placeholder="time delivery team collects" required>
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Price</span>
-                <input type="tel" placeholder="e.g. $16.00">
+                <input type="tel" placeholder="e.g. $16.00" required>
             </label>
       </div>
       
       <div class="list">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                Collecion Time
+                </div>
+                <select>
+                <option>9am</option>
+                <option selected>8am</option>
+                </select>
+            </label>
+            
+            <label class="item item-input item-select">
+                <div class="input-label">
+                Number of slots
+                </div>
+                <select>
+                    <option>10</option>
+                    <option>9</option>
+                    <option>8</option>
+                    <option>7</option>
+                    <option>6</option>
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                <option>2</option>
+                <option selected>1</option>
+                </select>
+            </label>
+            
             <label class="item item-input item-select">
                 <div class="input-label">
                 Category

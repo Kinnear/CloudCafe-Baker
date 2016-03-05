@@ -1,4 +1,4 @@
-var app = angular.module('starter.controllers', ["ionic", "firebase"]);
+var app = angular.module('starter.controllers', ["ionic", "firebase", "ngCordova"]);
 
 
 //app.service('productService', function() {
@@ -172,3 +172,66 @@ app.controller('SignupthanksCtrl', function($scope, $state) {})
 
 //controller for whyrubaking.html
 app.controller('WhyrubakingCtrl', function($scope, $state) {})
+
+//controller for editpayment.html
+app.controller('EditpaymentCtrl', function($scope, $state) {})
+
+//controller for change.html
+app.controller('ChangeCtrl', function($scope, $state) {})
+
+app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera){
+    
+   $scope.allFood = GetAllFood;
+   
+   $scope.allFoodCategories = GetAllCategory;
+   
+   $scope.takePicture = function(scopeValue) 
+   {   
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
+            sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+                
+                // Get the model
+                var model = $parse(scopeValue);
+                // Assigns a value to it
+                model.assign($scope, "data:image/jpeg;base64," + imageData);
+
+                // Apply it to the scope
+                $scope.$apply();
+                // console.log("Testing" + $scope.img1URI);
+                console.log("Picture taken.");                
+            }, function(err) {
+                // An error occured. Show a message to the user
+                console.log("Couldn't take a picture, there was an error");
+            });
+   }
+   
+   $scope.AddFood = function()
+   {
+    //  console.log($scope.form.categoryID.$id);
+        console.log("$scope.img4URI" + $scope.img4URI);
+       
+        $scope.allFood.$add({   "categoryID" : $scope.form.categoryID.$id,
+                                "description" : $scope.form.description,
+                                "foodName": $scope.form.foodName,
+                                "halal": $scope.form.halal,
+                                "img1": $scope.img1URI,
+                                "img2": $scope.img2URI,
+                                "img3": $scope.img3URI,
+                                "img4": $scope.img4URI,
+                                "likes": 0,
+                                "price": $scope.form.price,
+                                "stallID": $scope.form.stallID
+                            });
+   }
+});
