@@ -166,3 +166,9 @@ app.controller('BioCtrl', function($scope, $state) {})
 
 //controller for invitation.html
 app.controller('InvitationCtrl', function($scope, $state) {})
+
+//controller for signupthanks.html
+app.controller('SignupthanksCtrl', function($scope, $state) {})
+
+//controller for whyrubaking.html
+app.controller('WhyrubakingCtrl', function($scope, $state) {})

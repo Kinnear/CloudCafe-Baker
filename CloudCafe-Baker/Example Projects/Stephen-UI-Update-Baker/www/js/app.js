@@ -165,6 +165,20 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     templateUrl: 'templates/invitation.html',
     controller: 'InvitationCtrl'
   })
+
+//state for signupthanks.html
+.state('signupthanks', {
+    url: '/signupthanks',
+    templateUrl: 'templates/signupthanks.html',
+    controller: 'SignupthanksCtrl'
+  })  
+  
+//state for ignupthanks.html
+.state('whyrubaking', {
+    url: '/whyrubaking',
+    templateUrl: 'templates/whyrubaking.html',
+    controller: 'WhyrubakingCtrl'
+  })  
   
 //state for firstpayment.html
 .state('settings', {
