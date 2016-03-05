@@ -48,3 +48,8 @@ app.service("GetAllTransactions", ["$firebaseArray", function($firebaseArray, $f
     var reference = new Firebase(firebaseURL + "transactions");
     return $firebaseArray(reference);
 }]);
+
+app.service("GetAllUsers", ["$firebaseArray", function($firebaseArray, $firebaseObject){
+    var reference = new Firebase(firebaseURL + "users");
+    return $firebaseArray(reference);
+}]);

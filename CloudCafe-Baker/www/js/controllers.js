@@ -32,19 +32,48 @@ app.controller("FacebookAuthentication", function($scope, CurrentUserData){
         $scope.loggedIn = false;
     };
     
-    function authDataCallback(authData) 
+    function authDataCallback(authData)
     {
         if (authData) 
         {
-            console.log("User " + authData.uid + " is logged in with " + authData.provider);
+            // console.log("User " + authData.uid + " is logged in with " + authData.provider);
             
             CurrentUserData.setAuthenticationData(authData);
             
             $scope.userData = CurrentUserData.getAuthenticationData();
             $scope.loggedIn = true;
-            console.log("logged in code executed");
             console.log("Logged in is: " + $scope.loggedIn);
-            // $scope.currentUsername = authData.facebook.displayName;
+            
+            // 1. check if the loggined user is already registered. if its not create a new user based on the login ID
+            // 2. 
+            
+            // Flow: login page has a 
+            
+            
+            // checks to see if this facebook user has registered with us before
+            var allUsers = new Firebase(firebaseURL).child("users");
+            
+            allUsers.orderByChild(CurrentUserData.getAuthenticationData().provider).equalTo(CurrentUserData.getAuthenticationData().uid).once('value', function(snapshot) {
+                
+                console.log(snapshot.val());
+                
+                if(!snapshot.exists())
+                {
+                    allUsers.push({                            
+                            "username": CurrentUserData.getAuthenticationData().facebook.displayName,
+                            [CurrentUserData.getAuthenticationData().provider] : CurrentUserData.getAuthenticationData().uid,
+                            "baker": true,
+                            "stallID": 18821912
+                    });
+                    console.log("The user doesn't exist! Therefore we have a new user to add.");
+                }
+                else 
+                {
+                    
+                    
+                    console.log("That user already exists");
+                }
+            });
         }
         else 
         {
@@ -106,17 +135,11 @@ app.controller("AddUser", function($scope, GetAll){
    {
         // console.log($scope.form.categoryID.$id);
         // console.log("$scope.img4URI" + $scope.img4URI);
-        // temp.set({  
-        //             "users":{
-        //                 "userID":
-        //                 {
-        //                     "username": "Kinnear",
-        //                     "baker": true,
-        //                     "stallID": 18821912
-        //                 }
-        //             }
-    
-        //          });
+        temp.child("users").push({  
+                            "username": "keith",
+                            "baker": true,
+                            "stallID": 18821912
+                 });
    }
 });
 
