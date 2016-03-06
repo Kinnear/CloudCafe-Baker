@@ -7,7 +7,7 @@ var STRIPE_API_PUBLISHABLE_KEY  = "pk_test_h57hQy5dRjVjlM7SoNVYG8Mn";
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic'])
+angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -165,6 +165,34 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     templateUrl: 'templates/invitation.html',
     controller: 'InvitationCtrl'
   })
+
+//state for signupthanks.html
+.state('signupthanks', {
+    url: '/signupthanks',
+    templateUrl: 'templates/signupthanks.html',
+    controller: 'SignupthanksCtrl'
+  })  
+  
+//state for whyrubaking.html
+.state('whyrubaking', {
+    url: '/whyrubaking',
+    templateUrl: 'templates/whyrubaking.html',
+    controller: 'WhyrubakingCtrl'
+  })  
+  
+//state for editpayment.html
+.state('editpayment', {
+    url: '/editpayment',
+    templateUrl: 'templates/editpayment.html',
+    controller: 'EditpaymentCtrl'
+  })  
+
+//state for change.html
+.state('change', {
+    url: '/change',
+    templateUrl: 'templates/change.html',
+    controller: 'ChangeCtrl'
+  })  
   
 //state for firstpayment.html
 .state('settings', {

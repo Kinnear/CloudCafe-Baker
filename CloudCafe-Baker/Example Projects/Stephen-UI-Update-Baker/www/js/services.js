@@ -1,4 +1,4 @@
-var app = angular.module('starter.services', ["ionic", "firebase"]);
+var app = angular.module('starter.services', ["ionic", "firebase", "ngCordova"]);
 
 // Our Firebase Data Factory retriever
 app.factory("FavouriteData", function($firebaseArray) {
