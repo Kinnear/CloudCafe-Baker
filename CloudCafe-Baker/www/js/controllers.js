@@ -30,6 +30,7 @@ app.controller("FacebookAuthentication", function($scope, CurrentUserData){
         CurrentUserData.clearAuthenticationData();
         $scope.userData = null;
         $scope.loggedIn = false;
+        console.log("Logged out");
     };
     
     function authDataCallback(authData)
@@ -44,12 +45,6 @@ app.controller("FacebookAuthentication", function($scope, CurrentUserData){
             $scope.loggedIn = true;
             console.log("Logged in is: " + $scope.loggedIn);
             
-            // 1. check if the loggined user is already registered. if its not create a new user based on the login ID
-            // 2. 
-            
-            // Flow: login page has a 
-            
-            
             // checks to see if this facebook user has registered with us before
             var allUsers = new Firebase(firebaseURL).child("users");
             
@@ -61,9 +56,9 @@ app.controller("FacebookAuthentication", function($scope, CurrentUserData){
                 {
                     allUsers.push({                            
                             "username": CurrentUserData.getAuthenticationData().facebook.displayName,
-                            [CurrentUserData.getAuthenticationData().provider] : CurrentUserData.getAuthenticationData().uid,
-                            "baker": true,
-                            "stallID": 18821912
+                            [CurrentUserData.getAuthenticationData().provider] : CurrentUserData.getAuthenticationData().uid
+                            // "baker": true,
+                            // "stallID": 18821912
                     });
                     console.log("The user doesn't exist! Therefore we have a new user to add.");
                 }
