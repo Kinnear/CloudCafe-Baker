@@ -32,7 +32,7 @@
                 <input type="text" placeholder="e.g. are they organic? matcha from kyoto?" required>
             </label>
             
-            <label class="item item-input item-stacked-label">
+            <!--<label class="item item-input item-stacked-label">
                 <span class="input-label">Closing Date</span>
                 <input type="datetime" placeholder="date orders finalised. input DD/MM/YYYY" required>
             </label>
@@ -45,15 +45,47 @@
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Collection Time</span>
                 <input type="datetime" placeholder="time delivery team collects" required>
+            </label>-->
+            
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Price per serving</span>
+                <input type="tel" placeholder="e.g. $16.00" required>
             </label>
             
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Price</span>
+                <span class="input-label">Price whole item</span>
+                <input type="tel" placeholder="e.g. $16.00" required>
+            </label>
+            
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Delivery Surcharge</span>
                 <input type="tel" placeholder="e.g. $16.00" required>
             </label>
       </div>
       
-      <div class="list">
+      <ul class="list">
+
+  <li class="item item-toggle">
+     Island-wide Delivery
+     <label class="toggle toggle-assertive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+</ul>
+      
+      <ion-list>
+
+        <ion-checkbox ng-model="filter.blue">North</ion-checkbox>
+        <ion-checkbox ng-model="filter.yellow">West</ion-checkbox>
+        <ion-checkbox ng-model="filter.pink">East</ion-checkbox>
+        <ion-checkbox ng-model="filter.red">North-East</ion-checkbox>
+        <ion-checkbox ng-model="filter.purple">CBD-South</ion-checkbox>
+        </ion-list>
+      
+      <!--<div class="list">
             <label class="item item-input item-select">
                 <div class="input-label">
                 Collecion Time
@@ -62,11 +94,11 @@
                 <option>9am</option>
                 <option selected>8am</option>
                 </select>
-            </label>
+            </label>-->
             
             <label class="item item-input item-select">
                 <div class="input-label">
-                Number of slots
+                Add slots
                 </div>
                 <select>
                     <option>10</option>
@@ -82,7 +114,7 @@
                 </select>
             </label>
             
-            <label class="item item-input item-select">
+            <!--<label class="item item-input item-select">
                 <div class="input-label">
                 Category
                 </div>
@@ -101,7 +133,7 @@
                 <option selected>No</option>
                 </select>
             </label>
-        </div>
+        </div>-->
         
         <button class="button button-block button-balanced">
         Submit

@@ -179,6 +179,9 @@ app.controller('EditpaymentCtrl', function($scope, $state) {})
 //controller for change.html
 app.controller('ChangeCtrl', function($scope, $state) {})
 
+//controller for photographer.html
+app.controller('PhotographerCtrl', function($scope, $state) {})
+
 app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera){
     
    $scope.allFood = GetAllFood;

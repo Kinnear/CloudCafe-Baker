@@ -138,7 +138,7 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
                
  //states for new pages
 
-//state for settings.html
+//state for firstpayment.html
 .state('firstpayment', {
     url: '/firstpayment',
     templateUrl: 'templates/firstpayment.html',
@@ -194,13 +194,20 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'ChangeCtrl'
   })  
   
-//state for firstpayment.html
+//state for settings.html
 .state('settings', {
     url: '/settings',
     templateUrl: 'templates/settings.html',
     controller: 'SettingsCtrl'
   })
-  
+
+//state for photographer.html
+.state('photographer', {
+    url: '/photographer',
+    templateUrl: 'templates/photographer.html',
+    controller: 'PhotographerCtrl'
+  })
+    
   
 //state for support
 .state('support', {
@@ -224,7 +231,7 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
   })
     
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/category');
+  $urlRouterProvider.otherwise('/post');
 
 
 });
