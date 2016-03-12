@@ -182,6 +182,18 @@ app.controller('ChangeCtrl', function($scope, $state) {})
 //controller for photographer.html
 app.controller('PhotographerCtrl', function($scope, $state) {})
 
+
+//controller for post2.html
+app.controller('Post2Ctrl', function($scope, $state) {})
+
+
+//controller for post3.html
+app.controller('Post3Ctrl', function($scope, $state) {})
+
+
+//controller for listingconfirmation.html
+app.controller('ListingCtrl', function($scope, $state) {})
+
 app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera){
     
    $scope.allFood = GetAllFood;

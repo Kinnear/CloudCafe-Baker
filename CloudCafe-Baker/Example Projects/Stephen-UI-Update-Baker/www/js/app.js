@@ -229,6 +229,27 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     templateUrl: 'templates/location.html',
     controller: 'LocationCtrl'
   })
+  
+  //state for post2
+.state('post2', {
+    url: '/post2',
+    templateUrl: 'templates/post2.html',
+    controller: 'Post2Ctrl'
+  })
+  
+   //state for post3
+.state('post3', {
+    url: '/post3',
+    templateUrl: 'templates/post3.html',
+    controller: 'Post3Ctrl'
+  })
+  
+  //state for listing
+.state('listing', {
+    url: '/listing',
+    templateUrl: 'templates/listing.html',
+    controller: 'ListingCtrl'
+  })
     
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/post');
