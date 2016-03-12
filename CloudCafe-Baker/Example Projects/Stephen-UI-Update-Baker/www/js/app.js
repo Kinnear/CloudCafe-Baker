@@ -244,6 +244,13 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     controller: 'Post3Ctrl'
   })
   
+   //state for post4
+.state('post4', {
+    url: '/post4',
+    templateUrl: 'templates/post4.html',
+    controller: 'Post4Ctrl'
+  })
+  
   //state for listing
 .state('listing', {
     url: '/listing',

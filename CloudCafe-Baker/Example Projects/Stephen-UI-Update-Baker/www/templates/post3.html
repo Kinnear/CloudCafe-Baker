@@ -1,65 +1,35 @@
-<ion-view view-title="Post">
+<ion-view view-title="Delivery">
 
 
   <ion-content>
+      <div class="list">
+            
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Price per serving</span>
-                <input type="tel" placeholder="e.g. $16.00" required>
+                <span class="input-label">Delivery Surcharge (In your postal district)</span>
+                <input type="tel" placeholder="e.g. $3.00" required>
             </label>
             
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Price whole item</span>
-                <input type="tel" placeholder="e.g. $16.00" required>
-            </label>
-            
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Delivery Surcharge</span>
-                <input type="tel" placeholder="e.g. $16.00" required>
+                <span class="input-label">Delivery Surcharge (outside your postal district)</span>
+                <input type="tel" placeholder="e.g. $4.00" required>
             </label>
       </div>
       
-      <ul class="list">
-
-  <li class="item item-toggle">
-     Island-wide Delivery
-     <label class="toggle toggle-assertive">
-       <input type="checkbox">
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-  </li>
-</ul>
+      <div>Click the postal districts below to bake and deliver to customers living in those districts</div>
       
       <ion-list>
 
         <ion-checkbox ng-model="filter.blue">North</ion-checkbox>
-        <ion-checkbox ng-model="filter.yellow">West</ion-checkbox>
+        <ion-checkbox ng-model="filter.yellow">South</ion-checkbox>
         <ion-checkbox ng-model="filter.pink">East</ion-checkbox>
-        <ion-checkbox ng-model="filter.red">North-East</ion-checkbox>
-        <ion-checkbox ng-model="filter.purple">CBD-South</ion-checkbox>
+        <ion-checkbox ng-model="filter.red">West</ion-checkbox>
+        <ion-checkbox ng-model="filter.purple">Central</ion-checkbox>
         </ion-list>
             
-            <label class="item item-input item-select">
-                <div class="input-label">
-                Add slots
-                </div>
-                <select>
-                    <option>10</option>
-                    <option>9</option>
-                    <option>8</option>
-                    <option>7</option>
-                    <option>6</option>
-                    <option>5</option>
-                    <option>4</option>
-                    <option>3</option>
-                <option>2</option>
-                <option selected>1</option>
-                </select>
-            </label>
+            
         
-        <button class="button button-block button-balanced" ui-sref="listingconfirmation">
-        Submit
+        <button class="button button-block button-balanced" ui-sref="post4">
+        Next
         </button>
   </ion-content>
 </ion-view>

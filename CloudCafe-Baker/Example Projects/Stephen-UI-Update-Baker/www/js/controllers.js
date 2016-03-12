@@ -190,6 +190,9 @@ app.controller('Post2Ctrl', function($scope, $state) {})
 //controller for post3.html
 app.controller('Post3Ctrl', function($scope, $state) {})
 
+//controller for post4.html
+app.controller('Post4Ctrl', function($scope, $state) {})
+
 
 //controller for listingconfirmation.html
 app.controller('ListingCtrl', function($scope, $state) {})
