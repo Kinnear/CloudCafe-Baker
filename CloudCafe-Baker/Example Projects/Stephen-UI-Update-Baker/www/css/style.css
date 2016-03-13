@@ -68,6 +68,15 @@
     .button.button-balanced.active, .button.button-balanced.activated {
       background-color: #B72C6C; }
       
+/*      
+      .button.button-footer.button-balanced {
+    border-color: transparent;
+    background-color: #B72C6C;
+    color: #fff;
+    border-radius: 0px;
+    bottom: 49px;}*/
+      
+      
 .text-center {
   text-align: center; }
   
