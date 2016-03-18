@@ -253,3 +253,11 @@ app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory,
                             });
    }
 });
+
+app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
+    
+    $scope.isStateLogin = function()
+    {
+        return $state.is('login');    
+    };
+});
