@@ -93,7 +93,13 @@
 .card,
 .list-inset {
   overflow: hidden;
-  margin: 15px 7.5px;
+  margin: 10px 10px;
+  border-radius: 2px;
+  background-color: #fff; }
+  
+  .list.card {
+  overflow: hidden;
+  margin: 2px;
   border-radius: 2px;
   background-color: #fff; }
 
@@ -189,3 +195,37 @@
   padding: 4px 8px 3px 0;
   border: none;
   background-color: transparent; }
+  
+  .button.button-block.button-assertive {
+    border-color: transparent;
+    background-color: #cb0a73;
+    color: #fff; }
+    .button.button-block.button-assertive:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-block.button-assertive.active, .button.button-block.button-assertive.activated {
+      background-color: #e30b81; }
+      
+      .button.button-block.button-assertive.button-bottom {
+    border-color: transparent;
+    background-color: #cb0a73;
+    color: #fff;
+    position: fixed;
+    bottom:0; }
+    .button.button-block.button-assertive.button-bottom:hover {
+      color: #fff;
+      text-decoration: none;
+      position: fixed;
+    bottom:0;  }
+    .button.button-block.button-assertive.button-bottom.active,
+    .button.button-block.button-assertive.button-bottom.activated {
+      background-color: #e30b81;
+      position: fixed;
+    bottom:0;  }
+      
+      .button.button-block{
+      
+    width: 96%;
+    margin: 2%;
+  }
+  
