@@ -427,6 +427,7 @@ app.factory('Chats', function () {
 
   return self;
 })
+<<<<<<< HEAD
 
 app.factory('RegistrationDetails', function() {
     
@@ -486,3 +487,5 @@ app.factory('RegistrationDetails', function() {
         }
     };
 });
+=======
+>>>>>>> 6aa62971ba2b31659406ad06e5d5d169a30981fc

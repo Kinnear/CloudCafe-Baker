@@ -182,6 +182,8 @@ app.controller('ChangeCtrl', function($scope, $state) {})
 //controller for photographer.html
 app.controller('PhotographerCtrl', function($scope, $state) {})
 
+//controller for post2.html
+app.controller('Post1Ctrl', function($scope, $state) {})
 
 //controller for post2.html
 app.controller('Post2Ctrl', function($scope, $state) {})
