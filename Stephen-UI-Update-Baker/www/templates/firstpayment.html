@@ -1,0 +1,37 @@
+<ion-view view-title="FirstPayment" class="light-bg">
+  <ion-content class="light-bg" ng-controller="RegisterBaker">
+
+    <div class="login-content">
+
+      <!-- Logo -->
+      <div class="item item-image">
+            <img src="img/ui/splash 2.png">
+        </div>
+
+        <div class="">
+        <div class="item item-text-wrap">
+             We will make bank transfer to this account on a monthly basis.
+             Please ensure you have keyed in the correct bank account number
+        </div>
+        </div>
+      <!-- Location form -->
+      <div class="list">
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Bank account number</span>
+          <input type="tel" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
+        </label>
+
+      </div>
+
+      <div class="padding-top">
+        <button class="button button-block button-balanced" ui-sref="whyrubaking" ng-click="SaveFirstPaymentUI()">
+          Next
+        </button>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>
+
