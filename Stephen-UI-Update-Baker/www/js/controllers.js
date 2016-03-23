@@ -341,3 +341,78 @@ app.controller('RegisterBaker', function($scope, RegistrationDetails, $cordovaCa
         RegistrationDetails.Debug();
     }
 });
+
+app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
+    
+    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+    var refStalls = new Firebase("https://burning-heat-7015.firebaseio.com/stalls");
+    
+    $scope.authObj = $firebaseAuth(ref);
+    $scope.firebaseAdd = $firebaseArray(refStalls);
+    
+    $scope.RegisterToFirebase = function()
+    {
+        // attempt to register a new user
+        $scope.authObj.$createUser({
+                email: RegistrationDetails.GetEmail(),
+                password: RegistrationDetails.GetPassword()
+            }).then(function(userData) {
+                console.log("User " + userData.uid + " created successfully!");
+                
+                RegistrationDetails.SetUserID(userData.uid);
+                
+                var userInfo = {
+                                    userID: RegistrationDetails.GetUserID(),
+                                    // bakeryImage: "",
+                                    bakeryName: RegistrationDetails.GetBakeryName(),
+                                    bakeryAddress: RegistrationDetails.GetBakeryAddress(),
+                                    bakeryPostalCode: RegistrationDetails.GetBakeryPostalCode(),
+                                    bankAccountNumber: RegistrationDetails.GetBankAccountNumber(),
+                                    description: RegistrationDetails.GetDescription()
+                                };
+            
+                //do processing to add login credentials to store in our database
+                $scope.firebaseAdd.$add(userInfo).then(function(ref) {
+                    var id = ref.key();
+                    console.log("added record with id " + id);
+                });     
+
+            // attempt to login the recently signed up user
+            return $scope.authObj.$authWithPassword({
+                email: RegistrationDetails.GetEmail(),
+                password: RegistrationDetails.GetPassword()
+            });
+            }).then(function(authData) {
+                console.log("Logged in as:", authData.uid);
+            }).catch(function(error) {
+                console.error("Error: ", error);
+            });        
+    };
+});
+
+
+
+app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
+    
+    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+    
+    $scope.authObj = $firebaseAuth(ref);
+    
+    $scope.email = "";
+    $scope.password = "";
+    
+    $scope.TryLogin = function()
+    {
+        console.log("try");
+        $scope.authObj.$authWithPassword({
+                email: $scope.email,
+                password: $scope.password
+            }).then(function(authData) {
+                console.log("Logged in as:", authData.uid);
+                $state.go("post");
+            
+            }).catch(function(error) {
+            console.error("Authentication failed:", error);
+        });
+    }
+});
