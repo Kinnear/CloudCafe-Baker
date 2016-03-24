@@ -431,6 +431,7 @@ app.factory('Chats', function () {
 app.factory('RegistrationDetails', function() {
     
     var userData = {
+                        userID: "",
                         invitationCode: "",
                         email: "",
                         password: "",
@@ -443,6 +444,11 @@ app.factory('RegistrationDetails', function() {
                     };
     
      return {
+         
+         // invitation code
+        SetUserID: function (value) {userData.userID = value;},
+        GetUserID: function () {return userData.userID;},
+         
          // invitation code
         SetInvitationCode: function (value) {userData.invitationCode = value;},
         GetInvitationCode: function () {return userData.invitationCode;},

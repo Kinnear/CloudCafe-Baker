@@ -259,5 +259,5 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
   })
     
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/post');
+  $urlRouterProvider.otherwise('/login');
 });

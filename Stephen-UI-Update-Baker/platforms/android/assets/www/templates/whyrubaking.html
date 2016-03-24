@@ -23,8 +23,8 @@
 
       </div>
 
-      <div class="padding-top">
-        <button class="button button-block button-assertive" ui-sref="post" ng-click="SaveWhyrubakingUI()">
+      <div class="padding-top" ng-controller="FirebaseRegistration">
+        <button class="button button-block button-assertive" ui-sref="post" ng-click="SaveWhyrubakingUI(); RegisterToFirebase()">
           Start Baking!
         </button>
       </div>

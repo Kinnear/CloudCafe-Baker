@@ -403,7 +403,7 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
     
     $scope.TryLogin = function()
     {
-        console.log("try");
+        console.log("happy");
         $scope.authObj.$authWithPassword({
                 email: $scope.email,
                 password: $scope.password
