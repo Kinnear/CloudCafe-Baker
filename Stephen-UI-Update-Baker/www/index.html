@@ -9,12 +9,23 @@
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
 
     <!-- stripe
       $ bower install angular-stripe-checkout
       $ npm install angular-stripe-checkout
     -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    
+    <!-- jQuery is used for JavaScript animations (include this before angular.js) -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  
+  <!-- required module to enable animation support in AngularJS -->
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  
+  
+  <!-- for JavaScript Animations -->
+  <script src="js/animations.js"></script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -47,7 +58,7 @@
     
   </head>
   
-  <body ng-app="starter">
+  <body ng-app="starter" >
 
     <ion-side-menus>
 
@@ -82,7 +93,7 @@
 
       <!-- Left menu -->
       <ion-side-menu side="left">
-        <ion-content>
+        <ion-content class="light-bg">
 
           <!-- User profile -->
           <div class="text-center">
