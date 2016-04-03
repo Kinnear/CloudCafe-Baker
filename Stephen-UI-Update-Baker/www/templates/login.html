@@ -1,48 +1,39 @@
-<ion-view view-title="Login" class="light-bg" ng-controller="HideSideBarOnThisView">
-  <ion-content class="light-bg">
+<ion-view view-title="Login" class="light-bg">
+  <ion-content class="login-bg">
 
     <div class="login-content" ng-controller="LoginBaker">
 
       <!-- Logo -->
-      <div class="item item-image">
-            <img src="img/ui/splash 2.png">
+      <div class="item item-image login-logo">
+            <img src="img/backgrounds/logo_white.png">
         </div>
 
-    <form name="loginForm" novalidate ng-submit="loginForm.$valid && TryLogin()">
-        <!-- Login form -->
-        <div class="list">
-            <label class="item item-input item-floating-label">
+      <!-- Login form -->
+      <div class="card cardlogin">
+            <div class="list">
+                <label class="item item-input item-floating-label">
                 <span class="input-label">Email</span>
-                <input name="emailField" type="email" placeholder="Email" ng-model="email" required>
-            </label>
-                <div ng-messages="loginForm.emailField.$error" ng-if='loginForm.emailField.$touched'>
-                <div ng-message="required" class="form-error">Please enter a value for this field.</div>
-                <div ng-message="email" class="form-error">This field must be a valid email address.</div>
-            </div>
-                
-            <label class="item item-input item-floating-label">
+                <input type="email" placeholder="Email" ng-model="email" required>
+                </label>
+                <label class="item item-input item-floating-label">
                 <span class="input-label">Password</span>
-                <input name="passwordField" type="password" placeholder="Password" ng-model="password" required>
-            </label>
-            <div ng-messages="loginForm.passwordField.$error" ng-if='loginForm.passwordField.$touched'>
-                <div ng-message="required" class="form-error">Please enter a value for this field.</div>
+                <input type="password" placeholder="Password" ng-model="password" required>
+                </label>
             </div>
-        </div>
 
-        <p class="text-right balanced">Forgot Password?</p>
+      <p class="text-right balanced">Forgot Password?</p>
 
-        <div>
-            <button class="button button-block button-assertive" type="submit">
-                SIGN IN
-            </button>
-        </div>
-    </form>
+            <div>
+                <button class="button button-block button-assertive" ng-click="TryLogin()">
+                    SIGN IN
+                </button>
+            </div>
       
       <!-- Other links -->
-      <div class="text-center">
-          <a ui-sref="register" class="dark">New here? <span class="balanced">Register</span></a>
-      </div>
-
+            <div class="text-center">
+                <a ui-sref="register" class="dark">New here? <span class="balanced">Register</span></a>
+            </div>
+        </div>        
     </div>
 
   </ion-content>

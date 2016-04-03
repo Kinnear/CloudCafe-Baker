@@ -229,26 +229,36 @@
     margin: 2%;
   }
   
-/*CSS for our form validation error checks  */
-label.item.has-error {
-  border-bottom: 2px solid red;
+  
+  .login-bg{
+      background-image:url(../img/backgrounds/baker_login_screen.png);
+  }
+  
+  .item.item-image.login-logo{
+        background-color:none;
+        background: none;
+       width: 80%;
+       border:none;
+       padding: 20px;
+       margin-left: 10%;
+    }
+    
+     .card.cardlogin {
+   opacity: 0.8;
+    position: relative;
+    -webkit-animation: mymove 1s;
+    animation: mymove 1s;
+    
+    animation-fill-mode: forwards;
 }
 
-label.item.has-error-lr {
-  border-left: 2px solid red;
-  border-right: 2px solid red;
+@-webkit-keyframes mymove {
+    from {bottom: -500px;}
+    to {bottom: 10px;}
 }
 
-label.item.valid-lr {
-  border-left: 2px solid green;
-  border-right: 2px solid green;
+@keyframes mymove {
+    from {bottom: -500px;}
+    to {bottom: 10px;}
 }
 
-.form-errors {
-  margin: 5px 0
-}
-
-.form-error {
-  padding: 2px 0 2px 16px;
-  color: red;
-}
