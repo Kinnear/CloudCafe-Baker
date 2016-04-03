@@ -7,7 +7,7 @@ var STRIPE_API_PUBLISHABLE_KEY  = "pk_test_h57hQy5dRjVjlM7SoNVYG8Mn";
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"])
+angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -62,14 +62,7 @@ angular.module('starter', ['ionic', 'ui.router', 'stripe.checkout', 'starter.con
     templateUrl: 'templates/register.html',
     controller: 'AuthCtrl'
   })
-
-  // Home screen
-//   .state('home', {
-//     url: '/home',
-//     templateUrl: 'templates/home.html',
-//     controller: 'HomeCtrl'
-//   })
-
+  
   // Community detail
   .state('community', {
     url: '/community',

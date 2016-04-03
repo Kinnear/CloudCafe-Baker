@@ -1,4 +1,4 @@
-var app = angular.module('starter.services', ["ionic", "firebase", "ngCordova"]);
+var app = angular.module('starter.services', ["ionic", "ngMessages", "firebase", "ngCordova"]);
 
 // Our Firebase Data Factory retriever
 app.factory("FavouriteData", function($firebaseArray) {
@@ -489,6 +489,49 @@ app.factory('RegistrationDetails', function() {
         {
             //print out debug info
             console.log(userData);    
+        }
+    };
+});
+
+
+app.factory('AddNewFoodService', function() {
+    
+    var newFood = {
+                        foodName: "",
+                        bakeryImage: "",
+                        description: "",
+                        pricePerServing: "",
+                        quantityCap: "",
+                        
+                    };
+    
+     return {
+         
+        // bakery Image
+        SetFoodName: function (value) {newFood.foodName = value;},
+        GetFoodName: function () {return newFood.foodName;},
+         
+        // bakery Image
+        SetBakeryImage: function (value) {newFood.bakeryImage = value;},
+        GetBakeryImage: function () {return newFood.bakeryImage;},
+        
+        // description
+        SetDescription: function (value) {newFood.description = value;},
+        GetDescription: function () {return newFood.description;},
+        
+        // price per serving
+        SetPricePerServing: function (value) {newFood.pricePerServing = value;},
+        GetPricePerServing: function () {return newFood.pricePerServing;},
+        
+        // quantity cap
+        SetQuantityCap: function (value) {newFood.quantityCap = value;},
+        GetQuantityCap: function () {return newFood.quantityCap;},
+        
+        
+        Debug: function()
+        {
+            //print out debug info
+            console.log(newFood);    
         }
     };
 });

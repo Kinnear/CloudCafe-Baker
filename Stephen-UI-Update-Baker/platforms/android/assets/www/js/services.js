@@ -1,4 +1,4 @@
-var app = angular.module('starter.services', ["ionic", "firebase", "ngCordova"]);
+var app = angular.module('starter.services', ["ionic", "ngMessages", "firebase", "ngCordova"]);
 
 // Our Firebase Data Factory retriever
 app.factory("FavouriteData", function($firebaseArray) {
@@ -489,6 +489,43 @@ app.factory('RegistrationDetails', function() {
         {
             //print out debug info
             console.log(userData);    
+        }
+    };
+});
+
+
+app.factory('NewFoodDetails', function() {
+    
+    var newFood = {
+                        userID: "",
+                        foodName: "",
+                        bakeryImage: "",
+                        description: "",
+                        pricePerServing: "",
+                        quantityCap: "",
+                        
+                    };
+    
+     return {
+         
+         // invitation code
+        SetUserID: function (value) {newFood.userID = value;},
+        GetUserID: function () {return newFood.userID;},
+         
+        // bakery Image
+        SetBakeryImage: function (value) {newFood.bakeryImage = value;},
+        GetBakeryImage: function () {return newFood.bakeryImage;},
+        
+        // description
+        SetDescription: function (value) {newFood.description = value;},
+        GetDescription: function () {return newFood.description;},
+        
+        
+        
+        Debug: function()
+        {
+            //print out debug info
+            console.log(newFood);    
         }
     };
 });

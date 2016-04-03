@@ -1,4 +1,4 @@
-var app = angular.module('starter.controllers', ["ionic", "firebase", "ngCordova"]);
+var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"]);
 
 
 //app.service('productService', function() {
@@ -265,13 +265,13 @@ app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
 });
 
 
-app.controller('RegisterBaker', function($scope, RegistrationDetails, $cordovaCamera) {
+app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $cordovaCamera) {
     
     $scope.user = {
                     invitationCode: "",
                     email: "",
                     password: "",
-                    bakeryImage: "",
+                    bakeryImage: undefined,
                     bakeryName: "",
                     bakeryAddress: "",
                     bakeryPostalCode: "",
@@ -279,7 +279,7 @@ app.controller('RegisterBaker', function($scope, RegistrationDetails, $cordovaCa
                     description: ""
                   };
                   
-   $scope.takePicture = function(scopeValue) 
+   $scope.takePicture = function(scopeValue)
    {   
         var options = { 
             quality : 75, 
@@ -299,10 +299,12 @@ app.controller('RegisterBaker', function($scope, RegistrationDetails, $cordovaCa
                 var model = $parse(scopeValue);
                 // Assigns a value to it
                 model.assign($scope, "data:image/jpeg;base64," + imageData);
+                
+                // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
 
                 // Apply it to the scope
                 $scope.$apply();
-                // console.log("Testing" + $scope.img1URI);
+                
                 console.log("Picture taken.");                
             }, function(err) {
                 // An error occured. Show a message to the user
@@ -342,6 +344,63 @@ app.controller('RegisterBaker', function($scope, RegistrationDetails, $cordovaCa
     }
 });
 
+app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera) {
+    
+    var newFood = {
+                    userID: "",
+                    foodName: "",
+                    bakeryImage: "",
+                    description: "",
+                    pricePerServing: "",
+                    quantityCap: "",
+                    
+                };
+                  
+   $scope.takePicture = function(scopeValue)
+   {   
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
+            sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100, // height and width of the image
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+                
+                // Get the model
+                var model = $parse(scopeValue);
+                // Assigns a value to it
+                model.assign($scope, "data:image/jpeg;base64," + imageData);
+                
+                // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
+
+                // Apply it to the scope
+                $scope.$apply();
+                
+                console.log("Picture taken.");                
+            }, function(err) {
+                // An error occured. Show a message to the user
+                console.log("Couldn't take a picture, there was an error");
+            });
+   }
+    
+    $scope.SavePost = function()
+    {
+        RegistrationDetails.
+        AddNewFoodService.SetDescription($scope.newFood.userID);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.Debug();
+    }
+});
+
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -363,7 +422,7 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
                 
                 var userInfo = {
                                     userID: RegistrationDetails.GetUserID(),
-                                    // bakeryImage: "",
+                                    bakeryImage: RegistrationDetails.GetBakeryImage(),
                                     bakeryName: RegistrationDetails.GetBakeryName(),
                                     bakeryAddress: RegistrationDetails.GetBakeryAddress(),
                                     bakeryPostalCode: RegistrationDetails.GetBakeryPostalCode(),
@@ -390,8 +449,6 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
     };
 });
 
-
-
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -403,7 +460,6 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
     
     $scope.TryLogin = function()
     {
-        console.log("happy");
         $scope.authObj.$authWithPassword({
                 email: $scope.email,
                 password: $scope.password
@@ -415,4 +471,39 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
             console.error("Authentication failed:", error);
         });
     }
+});
+
+app.controller("HideSideBarOnThisView", function($scope, $ionicSideMenuDelegate){
+    
+    $scope.$on('$ionicView.enter', function(){
+        $ionicSideMenuDelegate.canDragContent(false);
+    });
+    $scope.$on('$ionicView.leave', function(){
+        $ionicSideMenuDelegate.canDragContent(true);
+    });
+  
+});
+
+app.controller("HideHamburgerMenu", function($scope, $state){
+    
+    $scope.isStateLogin = function()
+    {
+        return $state.is('login');    
+    };
+});
+
+app.controller("DeletePreviousNavigation", function($scope, $ionicHistory){
+    
+        $scope.$on('$ionicView.beforeEnter', function() {
+            //runs every time the page activates
+             $ionicHistory.clearCache();
+             $ionicHistory.clearHistory();    
+    
+            // remove your nav router history
+            $ionicHistory.nextViewOptions({
+                disableAnimate: false,
+                disableBack: true,
+                historyRoot: true
+            });
+        });
 });
