@@ -1,4 +1,36 @@
-var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"]);
+var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"])
+
+.directive('flippy', function() {
+		return {
+			restrict: 'EA',
+			link: function($scope, $elem, $attrs) {
+
+				var options = {
+					flipDuration: ($attrs.flipDuration) ? $attrs.flipDuration : 400,
+					timingFunction: 'ease-in-out',
+				};
+
+				// setting flip options
+				angular.forEach(['flippy-front', 'flippy-back'], function(name) {
+					var el = $elem.find(name);
+					if (el.length == 1) {
+						angular.forEach(['', '-ms-', '-webkit-'], function(prefix) {
+							angular.element(el[0]).css(prefix + 'transition', 'all ' + options.flipDuration/1000 + 's ' + options.timingFunction);
+						});
+					}
+				});
+
+				/**
+				 * behaviour for flipping effect.
+				 */
+				$scope.flip = function() {
+					$elem.toggleClass('flipped');
+				}
+
+			}
+		};
+	});;
+
 
 
 //app.service('productService', function() {
@@ -85,6 +117,8 @@ app.controller('FavoriteCtrl', function($scope, $state, Items, CartItemData) {
 
 // Active controller
 app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDelegate) {
+    
+    
   // get all items form Items model
   $scope.items = Items.all();
 
@@ -95,6 +129,8 @@ app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDeleg
 
   // disabled swipe menu
   $ionicSideMenuDelegate.canDragContent(false);
+  
+  
 });
 
 // Checkout controller
@@ -450,6 +486,13 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 });
 
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
+    
+    $scope.class = "class";
+  $scope.changeClass = function(){
+    if ($scope.class === "class")
+      $scope.class = "animated fadeOutLeft";
+    
+  };
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
     

@@ -8,8 +8,14 @@
             <img src="img/backgrounds/logo_white.png">
         </div>
 
-      <!-- Login form -->
-      <div class="card cardlogin">
+        <flippy
+            class="fancy"
+            flip-duration="800"
+            timing-function="ease-in-out">
+
+            <flippy-front>
+                
+                    <div class="card cardlogin">
             <div class="list">
                 <label class="item item-input item-floating-label">
                 <span class="input-label">Email</span>
@@ -29,11 +35,58 @@
                 </button>
             </div>
       
-      <!-- Other links -->
             <div class="text-center">
-                <a ui-sref="register" class="dark">New here? <span class="balanced">Register</span></a>
+                <a class="dark">New here? <span class="balanced" ng-click="flip()">Register</span></a>
             </div>
-        </div>        
+        </div>     
+                
+            </flippy-front>
+
+            <flippy-back>
+                
+                
+                    <div class="card cardlogin">
+                        <div class="text-center">
+                            <p>Due to quality control efforts...</p>
+                        </div>
+                        <div ng-class="class">
+                                <div class="list" >
+                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Invitation Code</span>
+                                <input type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
+                                </label>
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
+                                <input type="email" placeholder="Email" ng-model="user.email" required>
+                                </label>
+                                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Password</span>
+                                <input type="password" placeholder="Password" ng-model="user.password" required>
+                                </label>
+
+                                </div>
+              
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ui-sref="register">
+                                    SIGN UP
+                                    </button>
+                                </div>
+
+                                    <div class="text-center">
+                                        
+                                            <a class="dark">
+                                                Request an <span ng-click="changeClass()" class="balanced">Invitation</span></a>
+                                        </div>
+                                        
+                        </div>    
+                    </div>
+                    
+            </flippy-back>
+
+        </flippy>
     </div>
 
   </ion-content>
