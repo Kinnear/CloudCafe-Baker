@@ -174,4 +174,7 @@ CSS class since the keyframe will take charge of the animation */
 .fadeInRight {
   -webkit-animation-name: fadeInRight;
   animation-name: fadeInRight;
+  position: fixed;
+  top:45%;
+  width:95%;
 }
