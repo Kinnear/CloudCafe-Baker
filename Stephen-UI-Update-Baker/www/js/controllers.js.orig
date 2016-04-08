@@ -118,6 +118,8 @@ app.controller('FavoriteCtrl', function($scope, $state, Items, CartItemData) {
 
 // Active controller
 app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDelegate) {
+    
+    
   // get all items form Items model
   $scope.items = Items.all();
 
@@ -128,6 +130,8 @@ app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDeleg
 
   // disabled swipe menu
   $ionicSideMenuDelegate.canDragContent(false);
+  
+  
 });
 
 // Checkout controller
@@ -481,20 +485,26 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
     };
 });
 
+<<<<<<< HEAD
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
     // hide back button in next view
     $ionicHistory.nextViewOptions({
         disableBack: true
     });
+=======
+app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
     
-    $scope.authObj = Auth;
-
     $scope.class = "class";
   $scope.changeClass = function(){
     if ($scope.class === "class")
       $scope.class = "animated fadeOutLeft";
     
   };
+    
+    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+>>>>>>> 234bfb0ed695e4cbc7c40786e73ea542622ca9fd
+    
+    $scope.authObj = Auth;
     
     $scope.email = "";
     $scope.password = "";
@@ -510,6 +520,11 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
             }).catch(function(error) {
             console.error("Authentication failed:", error);
         });
+    }
+    
+    $scope.CheckIfLoggedInAlready = function()
+    {
+        
     }
 });
 
