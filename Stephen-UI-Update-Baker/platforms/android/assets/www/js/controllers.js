@@ -344,6 +344,63 @@ app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $c
     }
 });
 
+app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera) {
+    
+    var newFood = {
+                    userID: "",
+                    foodName: "",
+                    bakeryImage: "",
+                    description: "",
+                    pricePerServing: "",
+                    quantityCap: "",
+                    
+                };
+                  
+   $scope.takePicture = function(scopeValue)
+   {   
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
+            sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100, // height and width of the image
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+                
+                // Get the model
+                var model = $parse(scopeValue);
+                // Assigns a value to it
+                model.assign($scope, "data:image/jpeg;base64," + imageData);
+                
+                // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
+
+                // Apply it to the scope
+                $scope.$apply();
+                
+                console.log("Picture taken.");                
+            }, function(err) {
+                // An error occured. Show a message to the user
+                console.log("Couldn't take a picture, there was an error");
+            });
+   }
+    
+    $scope.SavePost = function()
+    {
+        RegistrationDetails.
+        AddNewFoodService.SetDescription($scope.newFood.userID);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.Debug();
+    }
+});
+
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -391,8 +448,6 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
             });        
     };
 });
-
-
 
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
     

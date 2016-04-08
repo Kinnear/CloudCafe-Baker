@@ -72,12 +72,13 @@ app.controller("FavouriteController", function($scope, FavouriteData) {
 
 // Authentication controller
 // Put your login, register functions here
-app.controller('AuthCtrl', function($scope, $ionicHistory) {
-  // hide back button in next view
-  $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
-});
+// app.controller('AuthCtrl', function($scope, $ionicHistory, currentAuth) {
+//     console.log(currentAuth);
+//   // hide back button in next view
+//   $ionicHistory.nextViewOptions({
+//     disableBack: true
+//   });
+// });
 
 // Item controller
 app.controller('ItemCtrl', function($scope, $state, Items, $stateParams) {
@@ -117,8 +118,6 @@ app.controller('FavoriteCtrl', function($scope, $state, Items, CartItemData) {
 
 // Active controller
 app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDelegate) {
-    
-    
   // get all items form Items model
   $scope.items = Items.all();
 
@@ -129,8 +128,6 @@ app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDeleg
 
   // disabled swipe menu
   $ionicSideMenuDelegate.canDragContent(false);
-  
-  
 });
 
 // Checkout controller
@@ -299,7 +296,6 @@ app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
         return $state.is('login');    
     };
 });
-
 
 app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $cordovaCamera) {
     
@@ -485,8 +481,14 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
     };
 });
 
-app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
+app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
+    // hide back button in next view
+    $ionicHistory.nextViewOptions({
+        disableBack: true
+    });
     
+    $scope.authObj = Auth;
+
     $scope.class = "class";
     $scope.class2 = "class2";
   $scope.changeClass = function(){
@@ -495,10 +497,6 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
       $scope.class2 = "animated fadeInRight";
   };
   
-    
-    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
-    
-    $scope.authObj = $firebaseAuth(ref);
     
     $scope.email = "";
     $scope.password = "";
@@ -511,12 +509,20 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
             }).then(function(authData) {
                 console.log("Logged in as:", authData.uid);
                 $state.go("post");
-            
             }).catch(function(error) {
             console.error("Authentication failed:", error);
         });
     }
 });
+
+app.controller('LogoutAuth', function($scope, $state, Auth) {
+    
+    $scope.Logout = function()
+    {
+        Auth.$unauth();
+        $state.go('login');   
+    }
+})
 
 app.controller("HideSideBarOnThisView", function($scope, $ionicSideMenuDelegate){
     

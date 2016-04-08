@@ -40,7 +40,7 @@
     <author email="you@example.com" href="http://example.com.com/">
       Your Name Here
     </author>
-    <content original-src="index.html" src="http://192.168.43.233:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -50,5 +50,5 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <allow-navigation href="*" />
-    <icon src="resources/ios/icon/icon-small@3x.png" />
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
 </widget>
