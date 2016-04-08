@@ -40,12 +40,13 @@ app.controller("FavouriteController", function($scope, FavouriteData) {
 
 // Authentication controller
 // Put your login, register functions here
-app.controller('AuthCtrl', function($scope, $ionicHistory) {
-  // hide back button in next view
-  $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
-});
+// app.controller('AuthCtrl', function($scope, $ionicHistory, currentAuth) {
+//     console.log(currentAuth);
+//   // hide back button in next view
+//   $ionicHistory.nextViewOptions({
+//     disableBack: true
+//   });
+// });
 
 // Item controller
 app.controller('ItemCtrl', function($scope, $state, Items, $stateParams) {
@@ -264,7 +265,6 @@ app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
     };
 });
 
-
 app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $cordovaCamera) {
     
     $scope.user = {
@@ -449,11 +449,13 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
     };
 });
 
-app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
+app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
+    // hide back button in next view
+    $ionicHistory.nextViewOptions({
+        disableBack: true
+    });
     
-    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
-    
-    $scope.authObj = $firebaseAuth(ref);
+    $scope.authObj = Auth;
     
     $scope.email = "";
     $scope.password = "";
@@ -466,12 +468,25 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, Registratio
             }).then(function(authData) {
                 console.log("Logged in as:", authData.uid);
                 $state.go("post");
-            
             }).catch(function(error) {
             console.error("Authentication failed:", error);
         });
     }
+    
+    $scope.CheckIfLoggedInAlready = function()
+    {
+        
+    }
 });
+
+app.controller('LogoutAuth', function($scope, $state, Auth) {
+    
+    $scope.Logout = function()
+    {
+        Auth.$unauth();
+        $state.go('login');   
+    }
+})
 
 app.controller("HideSideBarOnThisView", function($scope, $ionicSideMenuDelegate){
     

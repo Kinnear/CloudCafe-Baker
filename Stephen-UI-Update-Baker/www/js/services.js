@@ -6,6 +6,13 @@ app.factory("FavouriteData", function($firebaseArray) {
   return $firebaseArray(itemsRef);
 })
 
+// our authenticated user details
+app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
+    var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+    return $firebaseAuth(ref);
+  }
+]);
+
 app.factory('Categories', function() {
   // Might use a resource here that returns a JSON array
   

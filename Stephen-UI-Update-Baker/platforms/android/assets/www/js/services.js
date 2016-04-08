@@ -494,10 +494,9 @@ app.factory('RegistrationDetails', function() {
 });
 
 
-app.factory('NewFoodDetails', function() {
+app.factory('AddNewFoodService', function() {
     
     var newFood = {
-                        userID: "",
                         foodName: "",
                         bakeryImage: "",
                         description: "",
@@ -508,9 +507,9 @@ app.factory('NewFoodDetails', function() {
     
      return {
          
-         // invitation code
-        SetUserID: function (value) {newFood.userID = value;},
-        GetUserID: function () {return newFood.userID;},
+        // bakery Image
+        SetFoodName: function (value) {newFood.foodName = value;},
+        GetFoodName: function () {return newFood.foodName;},
          
         // bakery Image
         SetBakeryImage: function (value) {newFood.bakeryImage = value;},
@@ -520,6 +519,13 @@ app.factory('NewFoodDetails', function() {
         SetDescription: function (value) {newFood.description = value;},
         GetDescription: function () {return newFood.description;},
         
+        // price per serving
+        SetPricePerServing: function (value) {newFood.pricePerServing = value;},
+        GetPricePerServing: function () {return newFood.pricePerServing;},
+        
+        // quantity cap
+        SetQuantityCap: function (value) {newFood.quantityCap = value;},
+        GetQuantityCap: function () {return newFood.quantityCap;},
         
         
         Debug: function()
