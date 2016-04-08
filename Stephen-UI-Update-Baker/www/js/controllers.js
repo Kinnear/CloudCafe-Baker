@@ -488,11 +488,13 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
     
     $scope.class = "class";
+    $scope.class2 = "class2";
   $scope.changeClass = function(){
     if ($scope.class === "class")
       $scope.class = "animated fadeOutLeft";
-    
+      $scope.class2 = "animated fadeInRight";
   };
+  
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
     

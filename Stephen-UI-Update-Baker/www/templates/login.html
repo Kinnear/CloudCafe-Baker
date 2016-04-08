@@ -43,13 +43,14 @@
             </flippy-front>
 
             <flippy-back>
-                
-                
                     <div class="card cardlogin">
-                        <div class="text-center">
-                            <p>Due to quality control efforts...</p>
-                        </div>
-                        <div ng-class="class">
+                        
+                        <!--back of card main page-->
+                            <div ng-class="class">
+                                <div class="text-center">
+                                    <p>Due to quality control efforts...</p>
+                                </div>
+                        
                                 <div class="list" >
                 
                                 <label class="item item-input item-floating-label">
@@ -80,10 +81,35 @@
                                             <a class="dark">
                                                 Request an <span ng-click="changeClass()" class="balanced">Invitation</span></a>
                                         </div>
+                                             
+                                </div>
                                         
-                        </div>    
+                               <!--This is invitation page-->
+                               <div ng-class="class2" style="position:relative;">
+                               <div class="list">
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Name</span>
+                                <input type="text" placeholder="Name" required>
+                                </label>
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
+                                <input type="email" placeholder="Email" required>
+                                </label>
+
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ui-sref="signupthanks">
+                                    Email me!
+                                    </button>
+                                </div>
+                               </div>       
+                            
+                            <!--end of div    -->
+                            
                     </div>
-                    
             </flippy-back>
 
         </flippy>
