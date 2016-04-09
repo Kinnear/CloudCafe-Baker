@@ -59,13 +59,14 @@
             </flippy-front>
 
             <flippy-back>
-                
-                
                     <div class="card cardlogin">
-                        <div class="text-center">
-                            <p>Due to quality control efforts...</p>
-                        </div>
-                        <div ng-class="class">
+                        
+                        <!--back of card main page-->
+                            <div ng-class="class">
+                                <div class="text-center">
+                                    <p>Due to quality control efforts...</p>
+                                </div>
+                        
                                 <div class="list" >
                 
                                 <label class="item item-input item-floating-label">
@@ -86,7 +87,7 @@
                                 </div>
               
                                 <div class="padding-top">
-                                    <button class="button button-block button-assertive" ui-sref="register">
+                                    <button class="button button-block button-assertive" ng-click="changeClass4()">
                                     SIGN UP
                                     </button>
                                 </div>
@@ -94,12 +95,156 @@
                                     <div class="text-center">
                                         
                                             <a class="dark">
-                                                Request an <span ng-click="changeClass()" class="balanced">Invitation</span></a>
+                                                Request an <span ng-click="changeClass();changeClass2()" class="balanced">Invitation</span></a>
                                         </div>
+                                             
+                                </div>
                                         
-                        </div>    
+                               <!--This is invitation page-->
+                               <div ng-class="class2">
+                                   
+                                   <div>
+                                       Say some stuff here...
+                                   </div>
+                                   
+                               <div class="list">
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Name</span>
+                                <input type="text" placeholder="Name" required>
+                                </label>
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
+                                <input type="email" placeholder="Email" required>
+                                </label>
+
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ng-click="changeClass2();changeClass3()">
+                                    Email me!
+                                    </button>
+                                </div>
+                               </div>       
+                            
+                            <!--end of div    -->
+                            
+                            <!--start of signupthanks-->
+                            <div ng-class="class3">
+                                   
+                                   <div>
+                                        Success! We will get in contact with you soon! remember to check your spam/junk folder
+                                        for cloudcafe@gmail.com!
+                                    </div>
+                                   
+                               </div>
+                            <!--end of signupthanks-->
+                            
+                            <!--start of baker registration, input name and photo of bakery-->
+                            <div ng-class="class4">
+                                
+                            <div class="item item-text-wrap" style="width:98%; margin-top:-25%">
+                                    Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
+                                </div>
+                            
+                            <div style="margin-top: -10%;">
+                                    <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
+                                    <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
+                                    <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
+                            </div>
+                            
+                            <div class="list">
+                                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Bakery Name</span>
+                                <input type="text" placeholder="Bakery Name" ng-model="user.bakeryName" required>
+                                </label>
+
+                            </div>
+
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" ng-click="SaveBioUI();changeClass5()">
+                                Next
+                                </button>
+                            </div>
+                            
+                            </div>
+                            <!--this is end of baker registration-->
+                            
+                            <!--start of baker location-->
+                            <div ng-class="class5">
+                                <div class="list">
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Bakery Address</span>
+                                <input type="text" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
+                                </label>
+                                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Postal Code</span>
+                                <input type="tel" placeholder="Postal Code" ng-model="user.bakeryPostalCode" required>
+                                </label>
+
+                            </div>
+
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" ng-click="SaveLocationUI();changeClass6()">
+                                Next
+                                </button>
+                            </div>
+                            </div>
+                            <!--end of baker location-->
+                            
+                            <!--start of baker bank account-->
+                            <div ng-class="class6">
+                                <div class="item item-text-wrap">
+                                        We will make bank transfer to this account on a monthly basis.
+                                        Please ensure you have keyed in the correct bank account number
+                                    </div>
+                                    
+                                
+                                <div class="list">
+
+                                    <label class="item item-input item-floating-label">
+                                    <span class="input-label">Bank account number</span>
+                                    <input type="tel" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
+                                    </label>
+
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ng-click="SaveFirstPaymentUI();changeClass7()">
+                                    Next
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end of baker bank account-->
+                            
+                            <!--start of baker bio-->
+                            <div ng-class="class7">
+                                <div class="item item-text-wrap">
+                                        Tell us more of yourself and your bakery! e.g. Is baking your hobby?
+                                        How long have you been baking? What are your qualifications?
+                                    </div>
+
+                                <div class="list">
+                                    
+                                    <label class="item item-input item-floating-label">
+                                    <span class="input-label">Tell us more about why you bake:)</span>
+                                    <input type="text" placeholder="Tell us more about your bakery:)" ng-model="user.description">
+                                    </label>
+
+                                </div>
+
+                                <div class="padding-top" ng-controller="FirebaseRegistration">
+                                    <button class="button button-block button-assertive" ui-sref="post" ng-click="SaveWhyrubakingUI(); RegisterToFirebase(); changeClass8()">
+                                    Start Baking!
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end of baker bio-->
                     </div>
-                    
             </flippy-back>
 
         </flippy>

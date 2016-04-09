@@ -248,8 +248,8 @@
     position: relative;
     -webkit-animation: mymove 1s;
     animation: mymove 1s;
-
     animation-fill-mode: forwards;
+    height:auto;
 }
 
 @-webkit-keyframes mymove {
@@ -355,4 +355,51 @@ flippy.fancy flippy-back {
   text-align: center;
 }
 
+.class2{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}
 
+.class3{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}
+
+.class4{
+    display:none;
+    position: fixed;
+    top:-20%;
+    width:95%;
+}
+
+.class5{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}
+
+.class6{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}
+
+.class7{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}
+
+.class8{
+    display:none;
+    position: fixed;
+    top:45%;
+    width:95%;
+}

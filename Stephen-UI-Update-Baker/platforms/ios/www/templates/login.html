@@ -1,0 +1,119 @@
+<ion-view view-title="Login" class="light-bg">
+  <ion-content class="login-bg">
+
+    <div class="login-content" ng-controller="LoginBaker">
+
+      <!-- Logo -->
+      <div class="item item-image login-logo">
+            <img src="img/backgrounds/logo_white.png">
+        </div>
+
+        <flippy
+            class="fancy"
+            flip-duration="800"
+            timing-function="ease-in-out">
+
+            <flippy-front>
+                
+                    <div class="card cardlogin">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="email" placeholder="Email" ng-model="email" required>
+                </label>
+                <label class="item item-input item-floating-label">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="Password" ng-model="password" required>
+                </label>
+            </div>
+
+      <p class="text-right balanced">Forgot Password?</p>
+
+            <div>
+                <button class="button button-block button-assertive" ng-click="TryLogin()">
+                    SIGN IN
+                </button>
+            </div>
+      
+            <div class="text-center">
+                <a class="dark">New here? <span class="balanced" ng-click="flip()">Register</span></a>
+            </div>
+        </div>     
+                
+            </flippy-front>
+
+            <flippy-back>
+                    <div class="card cardlogin">
+                        
+                        <!--back of card main page-->
+                            <div ng-class="class">
+                                <div class="text-center">
+                                    <p>Due to quality control efforts...</p>
+                                </div>
+                        
+                                <div class="list" >
+                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Invitation Code</span>
+                                <input type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
+                                </label>
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
+                                <input type="email" placeholder="Email" ng-model="user.email" required>
+                                </label>
+                                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Password</span>
+                                <input type="password" placeholder="Password" ng-model="user.password" required>
+                                </label>
+
+                                </div>
+              
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ui-sref="register">
+                                    SIGN UP
+                                    </button>
+                                </div>
+
+                                    <div class="text-center">
+                                        
+                                            <a class="dark">
+                                                Request an <span ng-click="changeClass()" class="balanced">Invitation</span></a>
+                                        </div>
+                                             
+                                </div>
+                                        
+                               <!--This is invitation page-->
+                               <div ng-class="class2" style="position:relative;">
+                               <div class="list">
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Name</span>
+                                <input type="text" placeholder="Name" required>
+                                </label>
+
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
+                                <input type="email" placeholder="Email" required>
+                                </label>
+
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" ui-sref="signupthanks">
+                                    Email me!
+                                    </button>
+                                </div>
+                               </div>       
+                            
+                            <!--end of div    -->
+                            
+                    </div>
+            </flippy-back>
+
+        </flippy>
+    </div>
+
+  </ion-content>
+</ion-view>
