@@ -71,6 +71,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
       // Auth refers to our $firebaseAuth wrapper in the example above
       currentAuth: function(Auth, $state) {
         // $waitForAuth returns a promise so the resolve waits for it to complete
+        
         return Auth.$waitForAuth().then(function(authData)
         {
             if(authData != null)

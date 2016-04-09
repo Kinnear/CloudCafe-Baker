@@ -482,22 +482,23 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 });
 
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
+    
     // hide back button in next view
     $ionicHistory.nextViewOptions({
         disableBack: true
     });
     
-    $scope.authObj = Auth;
-
     $scope.class = "class";
-  $scope.changeClass = function(){
-    if ($scope.class === "class")
-      $scope.class = "animated fadeOutLeft";
+    $scope.changeClass = function()
+    {
+        if ($scope.class === "class")
+        $scope.class = "animated fadeOutLeft";
+    };
     
-  };
-    
+    $scope.authObj = Auth;
     $scope.email = "";
     $scope.password = "";
+    $scope.wrongPasswordMessage = "";
     
     $scope.TryLogin = function()
     {
@@ -509,6 +510,8 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
                 $state.go("post");
             }).catch(function(error) {
             console.error("Authentication failed:", error);
+            
+            $scope.wrongPasswordMessage = "The specified password is incorrect.";
         });
     }
 });
@@ -524,20 +527,20 @@ app.controller('LogoutAuth', function($scope, $state, Auth) {
 
 app.controller("HideSideBarOnThisView", function($scope, $ionicSideMenuDelegate){
     
-    $scope.$on('$ionicView.enter', function(){
+    $scope.$on('$ionicView.beforeEnter', function(){
         $ionicSideMenuDelegate.canDragContent(false);
     });
     $scope.$on('$ionicView.leave', function(){
         $ionicSideMenuDelegate.canDragContent(true);
     });
-  
 });
 
 app.controller("HideHamburgerMenu", function($scope, $state){
     
     $scope.isStateLogin = function()
     {
-        return $state.is('login');    
+        
+        return $state.is('login') || $state.is('register');    
     };
 });
 

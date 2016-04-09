@@ -1,4 +1,4 @@
-<ion-view view-title="Login" class="light-bg">
+<ion-view view-title="Login" class="light-bg" ng-controller="HideSideBarOnThisView" hide-nav-bar="true">
   <ion-content class="login-bg">
 
     <div class="login-content" ng-controller="LoginBaker">
@@ -6,7 +6,7 @@
       <!-- Logo -->
       <div class="item item-image login-logo">
             <img src="img/backgrounds/logo_white.png">
-        </div>
+      </div>
 
         <flippy
             class="fancy"
@@ -14,30 +14,46 @@
             timing-function="ease-in-out">
 
             <flippy-front>
-                
-                    <div class="card cardlogin">
-            <div class="list">
-                <label class="item item-input item-floating-label">
-                <span class="input-label">Email</span>
-                <input type="email" placeholder="Email" ng-model="email" required>
-                </label>
-                <label class="item item-input item-floating-label">
-                <span class="input-label">Password</span>
-                <input type="password" placeholder="Password" ng-model="password" required>
-                </label>
-            </div>
+            <div class="card cardlogin">
+                <form name="loginForm" ng-submit="TryLogin()">
+                    <div class="list">
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Email</span>
+                            <input name="email" type="email" placeholder="Email" ng-model="email" required>
+                        </label>
+                        
+                        <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
+                            <!-- this required message has overridden the template message -->
+                            <div ng-message="required">The email field is required!</div>
+                            <!-- this is a brand new message and will appear last in the prioritization -->
+                            <div ng-message="email">Your email address is invalid!</div>
+                        </div>
+                        
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Password</span>
+                            <input name="password" type="password" placeholder="Password" ng-model="password" required>
+                        </label>
+                        
+                        <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+                            <!-- this required message has overridden the template message -->
+                            <div ng-message="required">Password field is empty!</div>
+                        </div>
+                    </div>
+                    
+                    {{wrongPasswordMessage}}
 
-      <p class="text-right balanced">Forgot Password?</p>
+                    <p class="text-right balanced">Forgot Password?</p>
 
-            <div>
-                <button class="button button-block button-assertive" ng-click="TryLogin()">
-                    SIGN IN
-                </button>
-            </div>
-      
-            <div class="text-center">
-                <a class="dark">New here? <span class="balanced" ng-click="flip()">Register</span></a>
-            </div>
+                    <div>
+                        <button class="button button-block button-assertive" type="submit">
+                            SIGN IN
+                        </button>
+                    </div>
+            
+                    <div class="text-center">
+                        <a class="dark">New here? <span class="balanced" ng-click="flip()">Register</span></a>
+                    </div>
+                </form>
         </div>     
                 
             </flippy-front>
