@@ -230,9 +230,9 @@
   }
   
   
-  .login-bg{
+  /*.login-bg{
       background-image:url(../img/backgrounds/baker_login_screen.png);
-  }
+  }*/
   
   .item.item-image.login-logo{
         background-color:none;
@@ -241,15 +241,17 @@
        border:none;
        padding: 20px;
        margin-left: 10%;
+       top:0;
     }
     
      .card.cardlogin {
-   opacity: 0.8;
+    opacity: 0.8;
     position: relative;
     -webkit-animation: mymove 1s;
     animation: mymove 1s;
     animation-fill-mode: forwards;
-    height:auto;
+    height: auto;
+    max-height: 350px;
 }
 
 @-webkit-keyframes mymove {
@@ -355,7 +357,7 @@ flippy.fancy flippy-back {
   text-align: center;
 }
 
-.class2{
+/*.class2{
     display:none;
     position: fixed;
     top:45%;
@@ -386,20 +388,24 @@ flippy.fancy flippy-back {
 .class6{
     display:none;
     position: fixed;
-    top:45%;
+    top:40%;
     width:95%;
 }
 
 .class7{
     display:none;
-    position: fixed;
-    top:45%;
+    position: relative;
+    margin: -100px;
+    padding-top:-100px;
+    top:-100px;
     width:95%;
 }
 
 .class8{
     display:none;
-    position: fixed;
-    top:45%;
+    position: relative;
+    margin: -100px;
+    padding-top:-100px;
+    top:20px;
     width:95%;
-}
+}*/
