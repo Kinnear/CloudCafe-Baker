@@ -489,13 +489,11 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
     });
     
     $scope.class = "class";
-<<<<<<< HEAD
     $scope.changeClass = function()
     {
         if ($scope.class === "class")
         $scope.class = "animated fadeOutLeft";
     };
-=======
    
    $scope.class2 = "class2";
    $scope.changeClass2 = function(){
@@ -546,8 +544,6 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
       $scope.class7 = "animated fadeOutLeft";
   };
   
->>>>>>> 63013eadc71168ca6e5cda41634e6030b9eb815d
-    
     $scope.authObj = Auth;
     $scope.email = "";
     $scope.password = "";

@@ -482,24 +482,72 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 });
 
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
+    
     // hide back button in next view
     $ionicHistory.nextViewOptions({
         disableBack: true
     });
     
-    $scope.authObj = Auth;
-
     $scope.class = "class";
-    $scope.class2 = "class2";
-  $scope.changeClass = function(){
-    if ($scope.class === "class")
-      $scope.class = "animated fadeOutLeft";
+    $scope.changeClass = function()
+    {
+        if ($scope.class === "class")
+        $scope.class = "animated fadeOutLeft";
+    };
+   
+   $scope.class2 = "class2";
+   $scope.changeClass2 = function(){
+    if ($scope.class2 === "class2")
       $scope.class2 = "animated fadeInRight";
+      $scope.class = "animated fadeOutLeft";
   };
   
-    
+  $scope.class3 = "class3";
+   $scope.changeClass3 = function(){
+    if ($scope.class3 === "class3")
+      $scope.class3 = "animated fadeInRight";
+      $scope.class2 = "animated fadeOutLeft";
+  };
+  
+  $scope.class4 = "class4";
+   $scope.changeClass4 = function(){
+    if ($scope.class4 === "class4")
+      $scope.class4 = "animated fadeInRight";
+      $scope.class = "animated fadeOutLeft";
+  };
+  
+  $scope.class5 = "class5";
+   $scope.changeClass5 = function(){
+    if ($scope.class5 === "class5")
+      $scope.class5 = "animated fadeInRight";
+      $scope.class4 = "animated fadeOutLeft";
+  };
+  
+  $scope.class6 = "class6";
+   $scope.changeClass6 = function(){
+    if ($scope.class6 === "class6")
+      $scope.class6 = "animated fadeInRight";
+      $scope.class5 = "animated fadeOutLeft";
+  };
+  
+  $scope.class7 = "class7";
+   $scope.changeClass7 = function(){
+    if ($scope.class7 === "class7")
+      $scope.class7 = "animated fadeInRight";
+      $scope.class6 = "animated fadeOutLeft";
+  };
+  
+   $scope.class8 = "class8";
+   $scope.changeClass8 = function(){
+    if ($scope.class8 === "class8")
+      $scope.class8 = "animated fadeInRight";
+      $scope.class7 = "animated fadeOutLeft";
+  };
+  
+    $scope.authObj = Auth;
     $scope.email = "";
     $scope.password = "";
+    $scope.wrongPasswordMessage = "";
     
     $scope.TryLogin = function()
     {
@@ -511,6 +559,8 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
                 $state.go("post");
             }).catch(function(error) {
             console.error("Authentication failed:", error);
+            
+            $scope.wrongPasswordMessage = "The specified password is incorrect.";
         });
     }
 });
@@ -526,20 +576,20 @@ app.controller('LogoutAuth', function($scope, $state, Auth) {
 
 app.controller("HideSideBarOnThisView", function($scope, $ionicSideMenuDelegate){
     
-    $scope.$on('$ionicView.enter', function(){
+    $scope.$on('$ionicView.beforeEnter', function(){
         $ionicSideMenuDelegate.canDragContent(false);
     });
     $scope.$on('$ionicView.leave', function(){
         $ionicSideMenuDelegate.canDragContent(true);
     });
-  
 });
 
 app.controller("HideHamburgerMenu", function($scope, $state){
     
     $scope.isStateLogin = function()
     {
-        return $state.is('login');    
+        
+        return $state.is('login') || $state.is('register');    
     };
 });
 

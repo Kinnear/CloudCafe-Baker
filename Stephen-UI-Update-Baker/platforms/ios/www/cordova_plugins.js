@@ -3,6 +3,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "id": "cordova-plugin-camera.Camera",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "Camera"
         ]
@@ -10,6 +11,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
         "id": "cordova-plugin-camera.CameraPopoverOptions",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverOptions"
         ]
@@ -17,6 +19,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/Camera.js",
         "id": "cordova-plugin-camera.camera",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "navigator.camera"
         ]
@@ -24,6 +27,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-camera/www/ios/CameraPopoverHandle.js",
         "id": "cordova-plugin-camera.CameraPopoverHandle",
+        "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverHandle"
         ]
@@ -31,6 +35,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-network-information/www/network.js",
         "id": "cordova-plugin-network-information.network",
+        "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "navigator.connection",
             "navigator.network.connection"
@@ -39,6 +44,7 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-network-information/www/Connection.js",
         "id": "cordova-plugin-network-information.Connection",
+        "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "Connection"
         ]
@@ -46,6 +52,7 @@ module.exports = [
     {
         "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
         "id": "ionic-plugin-keyboard.keyboard",
+        "pluginId": "ionic-plugin-keyboard",
         "clobbers": [
             "cordova.plugins.Keyboard"
         ],
