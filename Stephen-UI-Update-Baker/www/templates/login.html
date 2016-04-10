@@ -13,14 +13,25 @@
       
             <div ng-class="class">
           <div class="card">      
-            <form name="signin" ng-submit="TryLogin()">
+            <form name="loginForm" ng-submit="TryLogin()">
             <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" placeholder="Email" required>
-            </label>
-            <label class="item item-input">
-                <input type="text" placeholder="Password" required>
-            </label>
+                                <input name="email" type="email" placeholder="Email" ng-model="email" required>
+                            </label>
+                            
+                            <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
+                                <div ng-message="required">The email field is required!</div>
+                                <div ng-message="email">Your email address is invalid!</div>
+                            </div>
+                            
+                            <label class="item item-input">
+                               <input name="password" type="password" placeholder="Password" ng-model="password" required>
+                            </label>
+                            
+                            <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+                                <div ng-message="required">Password field is empty!</div>
+                            </div>
+                            {{wrongPasswordMessage}}
             </div>
             
             <button class="button button-block button-balanced" type="submit">
