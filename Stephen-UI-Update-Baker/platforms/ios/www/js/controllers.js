@@ -489,22 +489,62 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
     });
     
     $scope.isRegisterVisible = false;
+    $scope.isInvitationVisible = false;
+    $scope.isCheckemailVisible = false;
+    $scope.isBakerybioVisible = false;
+    $scope.isBakerylocationVisible = false;
+    $scope.isBakeryaccountVisible = false;
+    $scope.isBakeryreasonVisible = false;
     
     $scope.class = "class";
     $scope.class2 = "class2";
+    $scope.class3 = "class3";
+    $scope.class4 = "class4";
+    $scope.class5 = "class5";
+    $scope.class6 = "class6";
+    $scope.class7 = "class7";
+    $scope.class8 = "class8";
     
     $scope.changeClass = function(){
-        if($scope.class === "class")
-        {$scope.class = "animated fadeOutLeft";
+        $scope.class = "animated fadeOutLeft";
         $scope.class2 = "animated fadeInRight";
-        $scope.isRegisterVisible = true;}
+        $scope.isRegisterVisible = true;
     }
     
-    $scope.changeClassReverse = function(){
-        if($scope.class2 === "animated fadeInRight")
-        $scope.class2 = "animated fadeOutRight";
-        $scope.class = "animated fadeInLeft";
-        $scope.isRegisterVisible = false;
+    $scope.changeClass2 = function(){
+        $scope.class2 = "animated fadeOutLeft";
+        $scope.class3 = "animated fadeInRight";
+        $scope.isInvitationVisible = true;
+    }
+    
+    $scope.changeClass3 = function(){
+        $scope.class3 = "animated fadeOutLeft";
+        $scope.class4 = "animated fadeInRight";
+        $scope.isCheckemailVisible = true;
+    }
+
+    $scope.changeClass4 = function(){
+        $scope.class2 = "animated fadeOutLeft";
+        $scope.class5 = "animated fadeInRight";
+        $scope.isBakerybioVisible = true;
+    }
+    
+    $scope.changeClass5 = function(){
+        $scope.class5 = "animated fadeOutLeft";
+        $scope.class6 = "animated fadeInRight";
+        $scope.isBakerylocationVisible = true;
+    }
+    
+    $scope.changeClass6 = function(){
+        $scope.class6 = "animated fadeOutLeft";
+        $scope.class7 = "animated fadeInRight";
+        $scope.isBakeryaccountVisible = true;
+    }
+    
+    $scope.changeClass7 = function(){
+        $scope.class7 = "animated fadeOutLeft";
+        $scope.class8 = "animated fadeInRight";
+        $scope.isBakeryreasonVisible = true;
     }
   
     $scope.authObj = Auth;
