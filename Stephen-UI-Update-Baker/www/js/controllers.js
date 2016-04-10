@@ -488,69 +488,24 @@ app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHisto
         disableBack: true
     });
     
+    $scope.isRegisterVisible = false;
+    
     $scope.class = "class";
     $scope.class2 = "class2";
+    
     $scope.changeClass = function(){
         if($scope.class === "class")
-        $scope.class = "animated fadeOutLeft";
+        {$scope.class = "animated fadeOutLeft";
         $scope.class2 = "animated fadeInRight";
+        $scope.isRegisterVisible = true;}
     }
     
-//     $scope.class = "class";
-//     $scope.changeClass = function()
-//     {
-//         if ($scope.class === "class")
-//         $scope.class = "animated fadeOutLeft";
-//     };
-   
-//    $scope.class2 = "class2";
-//    $scope.changeClass2 = function(){
-//     if ($scope.class2 === "class2")
-//       $scope.class2 = "animated fadeInRight";
-//       $scope.class = "animated fadeOutLeft";
-//   };
-  
-//   $scope.class3 = "class3";
-//    $scope.changeClass3 = function(){
-//     if ($scope.class3 === "class3")
-//       $scope.class3 = "animated fadeInRight";
-//       $scope.class2 = "animated fadeOutLeft";
-//   };
-  
-//   $scope.class4 = "class4";
-//    $scope.changeClass4 = function(){
-//     if ($scope.class4 === "class4")
-//       $scope.class4 = "animated fadeInRight";
-//       $scope.class = "animated fadeOutLeft";
-//   };
-  
-//   $scope.class5 = "class5";
-//    $scope.changeClass5 = function(){
-//     if ($scope.class5 === "class5")
-//       $scope.class5 = "animated fadeInRight";
-//       $scope.class4 = "animated fadeOutLeft";
-//   };
-  
-//   $scope.class6 = "class6";
-//    $scope.changeClass6 = function(){
-//     if ($scope.class6 === "class6")
-//       $scope.class6 = "animated fadeInRight";
-//       $scope.class5 = "animated fadeOutLeft";
-//   };
-  
-//   $scope.class7 = "class7";
-//    $scope.changeClass7 = function(){
-//     if ($scope.class7 === "class7")
-//       $scope.class7 = "animated fadeInRight";
-//       $scope.class6 = "animated fadeOutLeft";
-//   };
-  
-//    $scope.class8 = "class8";
-//    $scope.changeClass8 = function(){
-//     if ($scope.class8 === "class8")
-//       $scope.class8 = "animated fadeInRight";
-//       $scope.class7 = "animated fadeOutLeft";
-//   };
+    $scope.changeClassReverse = function(){
+        if($scope.class2 === "animated fadeInRight")
+        $scope.class2 = "animated fadeOutRight";
+        $scope.class = "animated fadeInLeft";
+        $scope.isRegisterVisible = false;
+    }
   
     $scope.authObj = Auth;
     $scope.email = "";
