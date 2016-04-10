@@ -9,7 +9,8 @@
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
 
     <!-- stripe
       $ bower install angular-stripe-checkout
@@ -75,7 +76,7 @@
 
           <!-- Burger button -->
           <ion-nav-buttons side="left">
-            <button class="button button-icon button-dark ion-navicon" menu-toggle="left">
+            <button class="button button-icon button-dark ion-navicon" menu-toggle="left"  ng-controller="HideHamburgerMenu" ng-hide="isStateLogin()">
             <!--<button class="button button-icon button-dark ion-navicon" menu-toggle="left" ng-controller="HideHamburgerMenu" ng-hide="isStateLogin()">-->
             </button>
           </ion-nav-buttons>
@@ -159,7 +160,7 @@
               Support</span>
             </div>
             
-           <div class="item item-icon-left" ui-sref="login">
+           <div class="item item-icon-left" ng-controller="LogoutAuth" ng-click="Logout()">
               <span class="dark"><i class="icon ion-log-out"></i>
               Logout</span>
             </div>

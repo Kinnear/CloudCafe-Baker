@@ -1,0 +1,42 @@
+<ion-view view-title="Bio" class="light-bg">
+  <ion-content class="light-bg" ng-controller="RegisterBaker">
+
+    <div class="login-content">
+
+      <!-- Logo -->
+      <div class="item item-image">
+            <img src="img/ui/splash 2.png">
+        </div>
+        
+        <div class="item item-text-wrap">
+             Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
+        </div>
+       
+      
+      <!--<div>Upload a photo here</div>-->
+      <div>
+            <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
+            <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
+            <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
+      </div>
+      
+      <div class="list">
+          
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Bakery Name</span>
+          <input type="text" placeholder="Bakery Name" ng-model="user.bakeryName" required>
+        </label>
+
+      </div>
+
+      <div class="padding-top">
+        <button class="button button-block button-assertive" ui-sref="location" ng-click="SaveBioUI()">
+          Next
+        </button>
+      </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>
+

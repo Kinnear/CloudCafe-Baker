@@ -1,4 +1,4 @@
-<ion-view view-title="Register" class="light-bg">
+<ion-view view-title="Register" class="light-bg" ng-controller="HideSideBarOnThisView" hide-nav-bar="true">
   <ion-content class="light-bg" ng-controller="RegisterBaker">
 
     <div class="login-content">
@@ -14,22 +14,36 @@
       </div>
       
       <div class="list">
-          
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Invitation Code</span>
-          <input type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
-        </label>
+            <form name="registrationForm">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Invitation Code</span>
+                    <input name="invitationCode" type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
+                </label>
+                <div ng-messages="registrationForm.invitationCode.$error" role="alert" ng-if="registrationForm.invitationCode.$touched">
+                    <!-- this required message has overridden the template message -->
+                    <div ng-message="required">An Invitation Code is required!</div>
+                </div>
 
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Email</span>
-          <input type="email" placeholder="Email" ng-model="user.email" required>
-        </label>
-        
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="Password" ng-model="user.password" required>
-        </label>
-
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Email</span>
+                    <input name="email" type="email" placeholder="Email" ng-model="user.email" required>
+                </label>
+                <div ng-messages="registrationForm.email.$error" role="alert" ng-if="registrationForm.email.$touched">
+                    <!-- this required message has overridden the template message -->
+                    <div ng-message="required">The email field is required!</div>
+                    <!-- this is a brand new message and will appear last in the prioritization -->
+                    <div ng-message="email">Your email address is invalid!</div>
+                </div>
+                
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Password</span>
+                    <input name="password" type="password" placeholder="Password" ng-model="user.password" required>
+                </label>
+                <div ng-messages="registrationForm.password.$error" role="alert" ng-if="registrationForm.password.$touched">
+                    <!-- this required message has overridden the template message -->
+                    <div ng-message="required">The password field is required!</div>
+                </div>
+            </form>
       </div>
 
       <div class="padding-top">

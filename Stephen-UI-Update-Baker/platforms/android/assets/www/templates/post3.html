@@ -1,35 +1,22 @@
-<!--<ion-view view-title="Delivery">
+<ion-view view-title="For home bakers">
 
 
   <ion-content>
       <div class="list">
             
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Delivery Surcharge (In your postal district)</span>
-                <input type="tel" placeholder="e.g. $3.00" required>
+                <span class="input-label">End date</span>
+                <input type="date" placeholder="orders must be placed before 2359hrs of the selected date" required>
             </label>
             
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Delivery Surcharge (outside your postal district)</span>
-                <input type="tel" placeholder="e.g. $4.00" required>
+                <span class="input-label">Maximum Quantity from now till end date</span>
+                <input type="tel" placeholder="e.g. 20" required>
             </label>
       </div>
-      
-      <div>Click the postal districts below to bake and deliver to customers living in those districts</div>
-      
-      <ion-list>
-
-        <ion-checkbox ng-model="filter.blue">North</ion-checkbox>
-        <ion-checkbox ng-model="filter.yellow">South</ion-checkbox>
-        <ion-checkbox ng-model="filter.pink">East</ion-checkbox>
-        <ion-checkbox ng-model="filter.red">West</ion-checkbox>
-        <ion-checkbox ng-model="filter.purple">Central</ion-checkbox>
-        </ion-list>
-            
-            
-        
-        <button class="button button-block button-assertive button-bottom" ui-sref="post4">
+       
+        <button class="button button-block button-assertive button-bottom" ui-sref="listing">
         Next
         </button>
   </ion-content>
-</ion-view>-->
+</ion-view>
