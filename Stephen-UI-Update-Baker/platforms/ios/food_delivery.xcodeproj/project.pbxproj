@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		073FC1170561440F88294B62 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 718B1C803D764DB287DE985A /* CDVCamera.m */; };
 		0D3EBB380F4D49FD8FDB7F17 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA427C77AB7460E9F2D5F2D /* IonicKeyboard.m */; };
@@ -341,7 +342,7 @@
 				LastUpgradeCheck = 510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 7N5Q44599U;
+						DevelopmentTeam = RNBM386DE4;
 					};
 				};
 			};
@@ -495,6 +496,7 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ionicframework.fooddelivery9351609;
 				PRODUCT_NAME = food_delivery;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -527,6 +529,7 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ionicframework.fooddelivery9351609;
 				PRODUCT_NAME = food_delivery;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
