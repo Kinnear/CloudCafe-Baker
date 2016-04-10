@@ -50,7 +50,9 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
     }
 })
 
-.config(function($stateProvider, $urlRouterProvider, StripeCheckoutProvider) {
+.config(function($stateProvider, $urlRouterProvider, StripeCheckoutProvider, $ionicConfigProvider) {
+
+$ionicConfigProvider.tabs.position('bottom');
 
     // Define your STRIPE_API_PUBLISHABLE_KEY
     StripeCheckoutProvider.defaults({key: STRIPE_API_PUBLISHABLE_KEY});

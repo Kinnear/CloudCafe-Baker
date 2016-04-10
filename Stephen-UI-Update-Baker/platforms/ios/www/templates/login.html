@@ -1,21 +1,77 @@
 <ion-view view-title="Login" class="light-bg" ng-controller="HideSideBarOnThisView" hide-nav-bar="true">
-  <ion-content class="login-bg">
-
-    <div class="login-content" ng-controller="LoginBaker">
-
-      <!-- Logo -->
-      <div class="item item-image login-logo">
+    
+    
+    
+    
+    
+  <ion-content overflow-scroll = "false" style="background-image:url(../img/backgrounds/baker_login_screen.png); background-size:100%;">
+    <div ng-controller="LoginBaker">
+        
+        <div class="item item-image login-logo" style="position:relative;">
             <img src="img/backgrounds/logo_white.png">
       </div>
+            <div ng-class="class">
+          <div class="card">      
+            <form name="signin" ng-submit="TryLogin()">
+            <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="First Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Last Name">
+            </label>
+            </div>
+            
+            <button class="button button-block button-balanced" type="submit" >
+            SIGN IN
+            </button>
+            
+            <div class="text-center">
+                <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
+            </div>
+            
+            </form>
+            </div>
+          </div>
+            
+            <div ng-class="class2" style="" ng-if="isRegisterVisible">
+          <div class="card">
+            <form name="signin" ng-submit="TryLogin()">
+            <div class="list list-inset">
+            <label class="item item-input">
+                <input type="text" placeholder="First Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Last Name">
+            </label>
+            </div>
+            <button class="button button-block button-balanced" type="submit" >
+            SIGN IN
+            </button>
+            
+            <button class="button button-block button-balanced" ng-click="changeClassReverse()" >
+            Back
+            </button>
+            
+            <div class="text-center">
+                <a class="dark">New here? <span class="balanced">Register</span></a>
+            </div>
+            
+            </form>
+            </div>
+          </div>
+            
+      <!-- Logo -->
+      
 
-        <flippy
+        <!--<flippy
             class="fancy"
             flip-duration="800"
             timing-function="ease-in-out">
 
             <flippy-front>
-            <div class="card cardlogin">
-                <form name="loginForm" ng-submit="TryLogin()">
+            <div class="card cardlogin">-->
+                <!--<form name="loginForm" ng-submit="TryLogin()">
                     <div class="list">
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Email</span>
@@ -23,9 +79,9 @@
                         </label>
                         
                         <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
-                            <!-- this required message has overridden the template message -->
+                            
                             <div ng-message="required">The email field is required!</div>
-                            <!-- this is a brand new message and will appear last in the prioritization -->
+                            
                             <div ng-message="email">Your email address is invalid!</div>
                         </div>
                         
@@ -35,7 +91,7 @@
                         </label>
                         
                         <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
-                            <!-- this required message has overridden the template message -->
+                            
                             <div ng-message="required">Password field is empty!</div>
                         </div>
                     </div>
@@ -53,21 +109,25 @@
                     <div class="text-center">
                         <a class="dark">New here? <span class="balanced" ng-click="flip()">Register</span></a>
                     </div>
-                </form>
-        </div>     
+                </form>-->
+        <!--</div>     
                 
             </flippy-front>
 
             <flippy-back>
-                    <div class="card cardlogin">
+                    <div class="card cardlogin">-->
+                        
+                        
                         
                         <!--back of card main page-->
-                            <div ng-class="class">
-                                <div class="text-center">
-                                    <p>Due to quality control efforts...</p>
-                                </div>
+                            <!--<div >
+                                
                         
                                 <div class="list" >
+                                    
+                                    <div class="text-center">
+                                    <p>Due to quality control efforts...</p>
+                                </div>
                 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Invitation Code</span>
@@ -84,8 +144,6 @@
                                 <input type="password" placeholder="Password" ng-model="user.password" required>
                                 </label>
 
-                                </div>
-              
                                 <div class="padding-top">
                                     <button class="button button-block button-assertive" ng-click="changeClass4()">
                                     SIGN UP
@@ -97,17 +155,22 @@
                                             <a class="dark">
                                                 Request an <span ng-click="changeClass();changeClass2()" class="balanced">Invitation</span></a>
                                         </div>
-                                             
+
+
                                 </div>
+              
+                                
+                                             
+                                </div>-->
                                         
                                <!--This is invitation page-->
-                               <div ng-class="class2">
+                               <!--<div>
                                    
                                    <div>
                                        Say some stuff here...
                                    </div>
                                    
-                               <div class="list">
+                               <div class="list list-inset">
 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Name</span>
@@ -119,34 +182,36 @@
                                 <input type="email" placeholder="Email" required>
                                 </label>
 
-                                </div>
-
                                 <div class="padding-top">
                                     <button class="button button-block button-assertive" ng-click="changeClass2();changeClass3()">
                                     Email me!
                                     </button>
                                 </div>
-                               </div>       
+
+                                </div>
+
+                                
+                               </div>       -->
                             
                             <!--end of div    -->
                             
                             <!--start of signupthanks-->
-                            <div ng-class="class3">
+                            <!--<div >
                                    
                                    <div>
                                         Success! We will get in contact with you soon! remember to check your spam/junk folder
                                         for cloudcafe@gmail.com!
                                     </div>
                                    
-                               </div>
+                               </div>-->
                             <!--end of signupthanks-->
                             
                             <!--start of baker registration, input name and photo of bakery-->
-                            <div ng-class="class4">
+                            <!--<div >
                                 
                             <div class="item item-text-wrap" style="width:98%; margin-top:-25%">
                                     Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
-                                </div>
+                            </div>
                             
                             <div style="margin-top: -10%;">
                                     <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
@@ -169,11 +234,11 @@
                                 </button>
                             </div>
                             
-                            </div>
+                            </div>-->
                             <!--this is end of baker registration-->
                             
                             <!--start of baker location-->
-                            <div ng-class="class5">
+                            <!--<div ng-class="class5">
                                 <div class="list">
 
                                 <label class="item item-input item-floating-label">
@@ -193,11 +258,11 @@
                                 Next
                                 </button>
                             </div>
-                            </div>
+                            </div>-->
                             <!--end of baker location-->
                             
                             <!--start of baker bank account-->
-                            <div ng-class="class6">
+                            <!--<div ng-class="class6">
                                 <div class="item item-text-wrap">
                                         We will make bank transfer to this account on a monthly basis.
                                         Please ensure you have keyed in the correct bank account number
@@ -218,11 +283,11 @@
                                     Next
                                     </button>
                                 </div>
-                            </div>
+                            </div>-->
                             <!--end of baker bank account-->
                             
                             <!--start of baker bio-->
-                            <div ng-class="class7">
+                            <!--<div ng-class="class7">
                                 <div class="item item-text-wrap">
                                         Tell us more of yourself and your bakery! e.g. Is baking your hobby?
                                         How long have you been baking? What are your qualifications?
@@ -242,12 +307,12 @@
                                     Start Baking!
                                     </button>
                                 </div>
-                            </div>
+                            </div>-->
                             <!--end of baker bio-->
-                    </div>
+                    <!--</div>
             </flippy-back>
 
-        </flippy>
+        </flippy>-->
     </div>
 
   </ion-content>

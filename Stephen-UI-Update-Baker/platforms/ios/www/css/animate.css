@@ -11,41 +11,13 @@
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
-/* The starting CSS styles for the enter animation */
-.fade.ng-enter {
-  transition:2s linear all;
-  opacity:0;
-}
 
-/* The starting CSS styles for the enter animation */
-.fade.ng-enter.ng-enter-active {
-  opacity:1;
-}
-
-/* there is no need to define anything inside of the destination
-CSS class since the keyframe will take charge of the animation */
-
-
-.fade.ng-leave {
-  animation: my_fade_animation 0.5s linear;
-  -webkit-animation: my_fade_animation 0.5s linear;
-}
-
-@keyframes my_fade_animation {
-  from { opacity:1; }
-  to { opacity:0; }
-}
-
-@-webkit-keyframes my_fade_animation {
-  from { opacity:1; }
-  to { opacity:0; }
-}
 
 /*This section animates the view*/
-/*.view-container {
+.view-container {
   position: relative;
 }
-
+/*
 .view-frame.ng-enter, .view-frame.ng-leave {
   background: white;
   position: absolute;
@@ -175,6 +147,69 @@ CSS class since the keyframe will take charge of the animation */
   -webkit-animation-name: fadeInRight;
   animation-name: fadeInRight;
   position: fixed;
-  top:45%;
+  top:55%;
   width:95%;
+  margin-left:2.5%;
+}
+
+@-webkit-keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.fadeOutRight {
+  -webkit-animation-name: fadeOutRight;
+  animation-name: fadeOutRight;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
 }
