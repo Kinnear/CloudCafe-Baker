@@ -33,6 +33,40 @@
             
             </form>
             </div>
+
+        </div>
+            <div ng-class="class">
+                <div class="card">      
+                    <form name="loginForm" ng-submit="TryLogin()">
+                        <div class="list list-inset">
+                            <label class="item item-input">
+                                <input name="email" type="email" placeholder="Email" ng-model="email" required>
+                            </label>
+                            
+                            <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
+                                <div ng-message="required">The email field is required!</div>
+                                <div ng-message="email">Your email address is invalid!</div>
+                            </div>
+                            
+                            <label class="item item-input">
+                               <input name="password" type="password" placeholder="Password" ng-model="password" required>
+                            </label>
+                            
+                            <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+                                <div ng-message="required">Password field is empty!</div>
+                            </div>
+                            {{wrongPasswordMessage}}
+                        </div>
+                        
+                        <button class="button button-block button-balanced" type="submit" >
+                        SIGN IN
+                        </button>
+                        
+                        <div class="text-center">
+                            <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
+                        </div>
+                    </form>
+                </div>
           </div>
             
             <div ng-class="class2" ng-if="isRegisterVisible">
