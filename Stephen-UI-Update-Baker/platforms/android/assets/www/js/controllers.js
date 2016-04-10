@@ -254,6 +254,7 @@ app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory,
                                 "stallID": $scope.form.stallID
                             });
    }
+   
 });
 
 app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
@@ -344,6 +345,93 @@ app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $c
     }
 });
 
+app.controller('post2', function($scope,$state,AddNewFoodService){
+   $scope.newFood = AddNewFoodService; 
+});
+
+app.controller('post4', function($scope,$state,$firebaseArray,AddNewFoodService){
+   $scope.newFood = AddNewFoodService; 
+   $scope.AddFood = function()
+   {
+       var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+       var refFoods = new Firebase("https://burning-heat-7015.firebaseio.com/food");
+       var refFoodsAdd = $firebaseArray(refFoods);
+       refFoodsAdd.$add({
+           "categoryID": "",
+           "description": $scope.newFood.description,
+           "foodName": $scope.newFood.foodName,
+           "halal": $scope.newFood.halal,
+           "img1": "",
+           "img2": "",
+           "img3": "",
+           "img4": "",
+           "likes": 0,
+           "price": $scope.newFood.pricePerServing,
+           "endDate": $scope.newFood.endDate,
+           "maxQuantity": $scope.newFood.quantityCap
+       })
+   }
+});
+
+
+app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera) {
+    
+    var newFood = {
+                    userID: "",
+                    foodName: "",
+                    bakeryImage: "",
+                    description: "",
+                    pricePerServing: "",
+                    quantityCap: "",
+                    
+                };
+   $scope.newFood = AddNewFoodService;               
+   $scope.takePicture = function(scopeValue)
+   {   
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
+            sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100, // height and width of the image
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+                
+                // Get the model
+                var model = $parse(scopeValue);
+                // Assigns a value to it
+                model.assign($scope, "data:image/jpeg;base64," + imageData);
+                
+                // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
+
+                // Apply it to the scope
+                $scope.$apply();
+                
+                console.log("Picture taken.");                
+            }, function(err) {
+                // An error occured. Show a message to the user
+                console.log("Couldn't take a picture, there was an error");
+            });
+   }
+    
+    $scope.SavePost = function()
+    {
+        RegistrationDetails.
+        AddNewFoodService.SetDescription($scope.newFood.userID);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.SetDescription($scope.user.description);
+        AddNewFoodService.Debug();
+    }
+   
+});
+
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
     
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -391,8 +479,6 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
             });        
     };
 });
-
-
 
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, RegistrationDetails){
     

@@ -254,6 +254,7 @@ app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory,
                                 "stallID": $scope.form.stallID
                             });
    }
+   
 });
 
 app.controller("HideNavaigation", function($scope, $state, $ionicHistory){
@@ -344,6 +345,35 @@ app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $c
     }
 });
 
+app.controller('post2', function($scope,$state,AddNewFoodService){
+   $scope.newFood = AddNewFoodService; 
+});
+
+app.controller('post4', function($scope,$state,$firebaseArray,AddNewFoodService){
+   $scope.newFood = AddNewFoodService; 
+   $scope.AddFood = function()
+   {
+       var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
+       var refFoods = new Firebase("https://burning-heat-7015.firebaseio.com/food");
+       var refFoodsAdd = $firebaseArray(refFoods);
+       refFoodsAdd.$add({
+           "categoryID": "",
+           "description": $scope.newFood.description,
+           "foodName": $scope.newFood.foodName,
+           "halal": $scope.newFood.halal,
+           "img1": "",
+           "img2": "",
+           "img3": "",
+           "img4": "",
+           "likes": 0,
+           "price": $scope.newFood.pricePerServing,
+           "endDate": $scope.newFood.endDate,
+           "maxQuantity": $scope.newFood.quantityCap
+       })
+   }
+});
+
+
 app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera) {
     
     var newFood = {
@@ -355,7 +385,7 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
                     quantityCap: "",
                     
                 };
-                  
+   $scope.newFood = AddNewFoodService;               
    $scope.takePicture = function(scopeValue)
    {   
         var options = { 
@@ -399,6 +429,7 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
         AddNewFoodService.SetDescription($scope.user.description);
         AddNewFoodService.Debug();
     }
+   
 });
 
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){

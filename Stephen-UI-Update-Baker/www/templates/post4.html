@@ -1,21 +1,21 @@
 <ion-view view-title="Date">
 
 
-  <ion-content>
-      
+  <ion-content ng-controller="post4">
+      {{newFood}}
       <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Orders Delivered on</span>
-                <input type="date" placeholder="" required>
+                <input type="date" ng-model="newFood.startDate" placeholder="" required>
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Stop taking orders on</span>
-                <input type="date" placeholder="" required>
+                <input type="date" ng-model="newFood.endDate" placeholder="" required>
             </label>
       </div>
    
-        <button class="button button-block button-assertive button-bottom" ui-sref="listing">
+        <button class="button button-block button-assertive" ui-sref="listing" ng-click="AddFood()">
         Submit
         </button>
   </ion-content>

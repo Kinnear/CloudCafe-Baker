@@ -1,32 +1,42 @@
 <ion-view view-title="Post">
-
-
-  <ion-content>
-      
-          
+  <ion-content ng-controller="AddNewFood">
           
       <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Food Name</span>
-                <input type="text" placeholder="e.g. Matcha Strawberries" required>
+                <input type="text" placeholder="e.g. Matcha Strawberries" ng-model="newFood.foodName" required>
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Description</span>
-                <input type="text" placeholder="e.g. are they organic? matcha from kyoto?" required>
+                <input type="text" placeholder="e.g. are they organic? matcha from kyoto?" ng-model="newFood.description" required>
             </label>
             
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Price per serving</span>
-                <input type="tel" placeholder="e.g. $16.00" required>
+                <input type="tel" placeholder="e.g. $16.00"  ng-model="newFood.pricePerServing" required>
             </label>
             
-            <label class="item item-input item-select">
-                <div class="input-label">
+            <label class="item item-input">
+                <span class="input-label">Quantity Cap</span>
+                <input type="tel" ng-model="newFood.quantityCap" required>
+            </label>
+            
+            <li class="item item-toggle">
+                Halal
+                <label class="toggle toggle-assertive">
+                    <input type="checkbox" ng-model="newFood.halal">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            
+                <!--<div class="input-label">
                 Quantity Cap
                 </div>
-                <select>
+                <select ng-model="newFood.quantityCap">
                     <option>20</option>
                     <option>15</option>
                     <option>10</option>
@@ -40,19 +50,19 @@
                 <option>2</option>
                 <option selected>1</option>
                 </select>
-            </label>
+            </label>-->
             
-        <button class="button button-block button-assertive button-bottom" ui-sref="post2">
+        <button class="button button-block button-assertive" ui-sref="post2">
         Next
-<ion-view view-title="Post" >
-
-  <ion-content>
-      <p>You have no specialities currently added. Begin your baking journey and start selling something!
-      </p>
+        </button>
+        
+  <!--<ion-content>
+      <!--<p>You have no specialities currently added. Begin your baking journey and start selling something!
+      </p>-->
        
-        <button class="button button-block button-assertive button-bottom" ui-sref="post2">
+        <!--<button class="button button-block button-assertive button-bottom" ui-sref="post2">
         Add Speciality
         </button>
         
-  </ion-content>
+  </ion-content>-->
 </ion-view>
