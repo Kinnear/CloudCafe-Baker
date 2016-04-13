@@ -625,9 +625,9 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
     
     // hide back button in next view
-    $ionicHistory.nextViewOptions({
-        disableBack: true
-    });
+    // $ionicHistory.nextViewOptions({
+    //     disableBack: true
+    // });
     
     $scope.isRegisterVisible = false;
     $scope.isInvitationVisible = false;
