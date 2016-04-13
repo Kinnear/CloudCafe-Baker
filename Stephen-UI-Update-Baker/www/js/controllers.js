@@ -126,6 +126,11 @@ app.controller('ActiveCtrl', function($scope, $state, Items, $ionicSideMenuDeleg
     $scope.item.faved = !$scope.item.faved;
   }
 
+  $scope.refresh = function(){
+      console.log($scope.items);
+      $scope.items = Items.all();
+  }
+
   // disabled swipe menu
   $ionicSideMenuDelegate.canDragContent(false);
 });
@@ -540,7 +545,7 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
                                     
                                     if (series) {
                                         console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
-
+                                        console.log(Object.keys(data)[0]);
                                         var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
                                         var obj = $firebaseObject(firebaseProducts);
                                         obj.$bindTo($scope, "data").then(function() {
@@ -559,11 +564,13 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
                                                 console.log("NOPE");
                                                 
                                                 var key = ref.key();
-                                                var json = {};
-                                                json[key] = true;
-                                                console.log(json);
+                                                var products = {};
+                                                products[key] = true;
+                                                console.log(products);
                                                 
-                                                $scope.data.products = { json };
+                                                firebaseProducts.child("products").update(products, onComplete);
+                                                
+                                                //$scope.data.products = { key : true };
                                             }
                                         })
                                         //console.log(dataSnapshot.child("products").val());
