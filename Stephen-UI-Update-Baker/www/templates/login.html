@@ -12,7 +12,7 @@
       </div>
       
             <div ng-class="class">
-          <div class="card">      
+          <div class="card card-translucent">      
             <form name="loginForm" ng-submit="TryLogin()">
             <div class="list list-inset">
             <label class="item item-input">
@@ -34,7 +34,7 @@
                             {{wrongPasswordMessage}}
             </div>
             
-            <button class="button button-block button-balanced" type="submit">
+            <button class="button button-block button-assertive" type="submit">
             Sign In
             </button>
             
@@ -81,7 +81,7 @@
           </div>-->
             
             <div ng-class="class2" ng-if="isRegisterVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
             <div class="list list-inset">
             <label class="item item-input">
@@ -94,7 +94,7 @@
                 <input type="text" placeholder="Password" required>
             </label>
             </div>
-            <button class="button button-block button-balanced" type="submit" ng-click="changeClass4()">
+            <button class="button button-block button-assertive" type="submit" ng-click="changeClass4()">
             Register
             </button>
             
@@ -109,7 +109,7 @@
           <!--registration route-->
           
           <div ng-class="class5" ng-if="isBakerybioVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
                 
                 <div class="item item-text-wrap">
@@ -142,7 +142,7 @@
           
           
           <div ng-class="class6" ng-if="isBakerylocationVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
                 
                 <div class="list list-inset">
@@ -167,7 +167,7 @@
           </div>
           
           <div ng-class="class7" ng-if="isBakeryaccountVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
                 
                 <div class="list list-inset">
@@ -189,12 +189,12 @@
           </div>
           
           <div ng-class="class8" ng-if="isBakeryreasonVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
                 
                 <div class="text-center">
                     <br><br>
-                    Tell us how your bakery started and why you are baking!
+                    Tell us how your bakery started!
                     <br><br>
                 </div>
                 
@@ -223,7 +223,7 @@
           <!--invitation route-->
           
           <div ng-class="class3" ng-if="isInvitationVisible">
-          <div class="card">
+          <div class="card card-translucent">
             <form name="signin" ng-submit="TryLogin()">
             <div class="list list-inset">
             <label class="item item-input">
@@ -231,7 +231,7 @@
             </label>
             
             </div>
-            <button class="button button-block button-balanced" type="submit" ng-click="changeClass3()">
+            <button class="button button-block button-assertive" type="submit" ng-click="changeClass3()">
             Email me
             </button>
             
@@ -240,7 +240,7 @@
           </div>
           
           <div ng-class="class4" ng-if="isCheckemailVisible">
-          <div class="card">
+          <div class="card card-translucent">
               <div class="text-center">
                   <br><br>
             Please check your email for our invitation!
