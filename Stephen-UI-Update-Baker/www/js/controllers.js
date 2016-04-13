@@ -235,7 +235,7 @@ app.controller('ListingCtrl', function($scope, $state) {})
 app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera){
     
    $scope.allFood = GetAllFood;
-   
+   $scope.newFood;
    $scope.allFoodCategories = GetAllCategory;
    
    $scope.takePicture = function(scopeValue) 
@@ -272,19 +272,21 @@ app.controller("AddToFood", function($scope, $parse, GetAllFood, GetAllCategory,
    $scope.AddFood = function()
    {
     //  console.log($scope.form.categoryID.$id);
-        console.log("$scope.img4URI" + $scope.img4URI);
-       
-        $scope.allFood.$add({   "categoryID" : $scope.form.categoryID.$id,
-                                "description" : $scope.form.description,
-                                "foodName": $scope.form.foodName,
-                                "halal": $scope.form.halal,
-                                "img1": $scope.img1URI,
-                                "img2": $scope.img2URI,
-                                "img3": $scope.img3URI,
-                                "img4": $scope.img4URI,
+        //console.log("$scope.img4URI" + $scope.img4URI);
+        console.log("Adding " + newFood)
+        $scope.allFood.$add({   "categoryID" : "",
+                                "description" : $scope.newFood.description,
+                                "foodName": $scope.newFood.foodName,
+                                "halal": $scope.newFood.halal,
+                                "img1": $scope.newFood.img1URI,
+                                "img2": $scope.newFood.img2URI,
+                                "img3": $scope.newFood.img3URI,
+                                "img4": $scope.newFood.img4URI,
                                 "likes": 0,
-                                "price": $scope.form.price,
-                                "stallID": $scope.form.stallID
+                                "price": $scope.newFood.price,
+                                "stallID": "",
+                                "preparationTime":$scope.newFood.prepTime,
+                                "maxQuantity":$scope.newFood.maxQuantity
                             });
    }
    
@@ -406,7 +408,7 @@ app.controller('post4', function($scope,$state,$firebaseArray,AddNewFoodService)
 });
 
 
-app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera) {
+app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera, $firebaseArray, $firebaseObject, Auth) {
     
     var newFood = {
                     userID: "",
@@ -417,7 +419,49 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
                     quantityCap: "",
                     
                 };
-   $scope.newFood = AddNewFoodService;               
+   $scope.newFood = AddNewFoodService;
+   var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
+   var refFood = FBref.child("food");
+   $scope.firebaseAdd = $firebaseArray(refFood);
+   console.log(Auth.$getAuth().uid);
+   console.log(Auth.$getAuth());
+   
+   var onComplete = function(error) {
+      if (error) {
+          console.log('Synchronization failed');
+      } else {
+          console.log('Synchronization succeeded');
+      }
+  };
+  
+ 
+   
+//    var refUsers = ref.child("stalls");
+//    var refUsersCollection = $firebaseArray(refUsers);
+//    refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function(dataSnapshot) {
+//        var series = dataSnapshot.val();
+//        var data = dataSnapshot.exportVal();
+//        if (series) {
+//            console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
+           
+//            var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/"+Object.keys(data)[0].toString());
+//            var obj = $firebaseObject(firebaseProducts);
+//            obj.$bindTo($scope, "data").then(function() {
+//                console.log($scope.data);
+//                if ($scope.data.hasOwnProperty("products")) {
+//                    console.log("HAVE!");
+//                    firebaseProducts.child("products").update({ food4: false }, onComplete);
+//                }
+//                else {
+//                    console.log("NOPE");
+//                    $scope.data.products = { food1: true, food2: true };
+//                }
+//            })
+//            //console.log(dataSnapshot.child("products").val());
+//            //var obj = $firebaseObject(dataSnapshot.child("products"));
+//        }
+//    });
+                  
    $scope.takePicture = function(scopeValue)
    {   
         var options = { 
@@ -448,6 +492,7 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
             }, function(err) {
                 // An error occured. Show a message to the user
                 console.log("Couldn't take a picture, there was an error");
+                var refUsers = ref.child("stalls");
             });
    }
     
@@ -462,6 +507,71 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
         AddNewFoodService.Debug();
     }
    
+   $scope.AddFood = function()
+   {
+    //  console.log($scope.form.categoryID.$id);
+        //console.log("$scope.img4URI" + $scope.img4URI);
+        console.log("Adding " + newFood)
+        $scope.firebaseAdd.$add({   "categoryID" : "",
+                                "description" : $scope.newFood.description,
+                                "foodName": $scope.newFood.foodName,
+                                "halal": $scope.newFood.halal,
+                                "img1": "",
+                                "img2": "",
+                                "img3": "",
+                                "img4": "",
+                                "likes": 0,
+                                "price": $scope.newFood.pricePerServing,
+                                "stallID": "",
+                                "preparationTime":$scope.newFood.prepTime,
+                                "maxQuantity":$scope.newFood.maxQuantity
+                            }).then(function(ref){
+                                console.log("Added " + ref.key());
+                                // Here, we update our login object.
+                                console.log(Auth.$getAuth());
+                                
+                                var refUsers = FBref.child("stalls");
+                                var refUsersCollection = $firebaseArray(refUsers);
+                                console.log("What");
+                                refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function(dataSnapshot) {
+                                    var series = dataSnapshot.val();
+                                    var data = dataSnapshot.exportVal();
+                                    console.log("the");
+                                    
+                                    if (series) {
+                                        console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
+
+                                        var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
+                                        var obj = $firebaseObject(firebaseProducts);
+                                        obj.$bindTo($scope, "data").then(function() {
+                                            console.log($scope.data);
+                                            if ($scope.data.hasOwnProperty("products")) {
+                                                console.log("HAVE!");
+                                                
+                                                var key = ref.key();
+                                                var json = {};
+                                                json[key] = true;
+                                                console.log(json);
+
+                                                firebaseProducts.child("products").update(json, onComplete);
+                                            }
+                                            else {
+                                                console.log("NOPE");
+                                                
+                                                var key = ref.key();
+                                                var json = {};
+                                                json[key] = true;
+                                                console.log(json);
+                                                
+                                                $scope.data.products = { json };
+                                            }
+                                        })
+                                        //console.log(dataSnapshot.child("products").val());
+                                        //var obj = $firebaseObject(dataSnapshot.child("products"));
+                                    }
+                                });
+                            });
+   }
 });
 
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
