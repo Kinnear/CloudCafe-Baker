@@ -1,6 +1,6 @@
 <ion-view view-title="Login" class="light-bg" ng-controller="HideSideBarOnThisView" hide-nav-bar="true">
 
-    <ion-content overflow-scroll="false" style="background-image:url(../img/backgrounds/baker_login_screen.png); background-size:100%;">
+    <ion-content overflow-scroll="false" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
         <div ng-controller="LoginBaker">
 
             <div class="item item-image login-logo" style="position:relative;">
@@ -8,17 +8,10 @@
             </div>
 
             <div ng-class="class">
-<<<<<<< HEAD
-          <div class="card card-translucent">      
-            <form name="loginForm" ng-submit="TryLogin()">
-            <div class="list list-inset">
-            <label class="item item-input">
-=======
                 <div class="card">
                     <form name="loginForm" ng-submit="TryLogin()">
                         <div class="list list-inset">
                             <label class="item item-input">
->>>>>>> 07c3f03f7305240528994c901e975eeaa337ff31
                                 <input name="email" type="email" placeholder="Email" ng-model="email" required>
                             </label>
 
@@ -35,46 +28,37 @@
                                 <div ng-message="required">Password field is empty!</div>
                             </div>
                             {{wrongPasswordMessage}}
-<<<<<<< HEAD
-            </div>
-            
-            <button class="button button-block button-assertive" type="submit">
-            Sign In
-            </button>
-            
-            <div class="text-center">
-                <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
-            </div>
-            
-            </form>
-=======
                         </div>
 
-                        <button class="button button-block button-balanced" type="submit">
+                        <button class="button button-block button-assertive" type="submit">
                             Sign In
                         </button>
 
                         <div class="text-center">
                             <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
                         </div>
-
                     </form>
                 </div>
->>>>>>> 07c3f03f7305240528994c901e975eeaa337ff31
+
             </div>
 
             <div ng-class="class2" ng-if="isRegisterVisible">
                 <div class="card">
-                    <form name="registerForm">
+                    <form name="signin" ng-submit="changeClass4()">
                         <div class="list list-inset">
                             <label class="item item-input">
                                 <input name="invitationCode" type="text" placeholder="Invitation Code" required>
                             </label>
+
+                            <div ng-messages="signin.invitationCode.$error" role="alert" ng-if="signin.invitationCode.$touched">
+                                <div ng-message="required">An Invitation code is required!</div>
+                            </div>
+
                             <label class="item item-input">
                                 <input name="email" type="email" placeholder="Email" required>
                             </label>
 
-                            <div ng-messages="registerForm.email.$error" role="alert" ng-if="registerForm.email.$touched">
+                            <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
                                 <div ng-message="required">The email field is required!</div>
                                 <div ng-message="email">Your email address is invalid!</div>
                             </div>
@@ -83,198 +67,28 @@
                                 <input name="password" type="password" placeholder="Password" required>
                             </label>
 
-                            <div ng-messages="registerForm.password.$error" role="alert" ng-if="registerForm.password.$touched">
+                            <div ng-messages="signin.password.$error" role="alert" ng-if="signin.password.$touched">
                                 <div ng-message="required">Password field is empty!</div>
                             </div>
-
                         </div>
-                        <button class="button button-block button-balanced" type="submit" ng-click="changeClass4()">
+                        <button class="button button-block button-assertive" type="submit">
                             Register
                         </button>
-
-                        <div class="text-center">
-                            <a class="dark">Get an <span class="balanced" ng-click="changeClass2()">invitation code</span></a>
-                        </div>
-
                     </form>
-                </div>
-<<<<<<< HEAD
-          </div>-->
-            
-            <div ng-class="class2" ng-if="isRegisterVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-            <div class="list list-inset">
-            <label class="item item-input">
-                <input type="text" placeholder="Invitation Code" required>
-            </label>
-            <label class="item item-input">
-                <input type="email" placeholder="Email" required>
-            </label>
-            <label class="item item-input">
-                <input type="text" placeholder="Password" required>
-            </label>
-            </div>
-            <button class="button button-block button-assertive" type="submit" ng-click="changeClass4()">
-            Register
-            </button>
-            
-            <div class="text-center">
-                <a class="dark">Get an <span class="balanced" ng-click="changeClass2()">invitation code</span></a>
-            </div>
-            
-            </form>
-            </div>
-          </div>
-          
-          <!--registration route-->
-          
-          <div ng-class="class5" ng-if="isBakerybioVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-                
-                <div class="item item-text-wrap">
-                    Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
-                </div>
-                
-                <div>
-                        <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
-                        <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
-                        <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
-                </div>
-      
-                <div class="list list-inset">
-                    
-                    <label class="item item-input">
-                        <input type="text" placeholder="Bakery Name" required>
-                    </label>
-                    
-                </div>
 
-            <div class="padding-top">
-                <button class="button button-block button-assertive" ng-click="SaveBioUI(); changeClass5()">
-                Next
-                </button>
-            </div>
-            
-            </form>
-            </div>
-          </div>
-          
-          
-          <div ng-class="class6" ng-if="isBakerylocationVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-                
-                <div class="list list-inset">
-                    
-                    <label class="item item-input">
-                        <input type="text" placeholder="Bakery Address" required>
-                    </label>
-                    <label class="item item-input">
-                        <input type="tel" placeholder="Postal Code" required>
-                    </label>
-                    
+                    <div class="text-center">
+                        <a class="dark">
+                                Get an <span class="balanced" ng-click="changeClass2()">invitation code</span>
+                            </a>
+                    </div>
                 </div>
-
-            <div class="padding-top">
-                <button class="button button-block button-assertive" ng-click="SaveBioUI();changeClass6()">
-                Next
-                </button>
-            </div>
-            
-            </form>
-            </div>
-          </div>
-          
-          <div ng-class="class7" ng-if="isBakeryaccountVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-                
-                <div class="list list-inset">
-                    
-                    <label class="item item-input">
-                        <input type="tel" placeholder="Bank Account Number" required>
-                    </label>
-                    
-                </div>
-
-            <div class="padding-top">
-                <button class="button button-block button-assertive" ng-click="SaveBioUI();changeClass7()">
-                Next
-                </button>
-            </div>
-            
-            </form>
-            </div>
-          </div>
-          
-          <div ng-class="class8" ng-if="isBakeryreasonVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-                
-                <div class="text-center">
-                    <br><br>
-                    Tell us how your bakery started!
-                    <br><br>
-                </div>
-                
-                <div class="list list-inset">
-                    
-                    <label class="item item-input">
-                        <input type="text" placeholder="Bakery Bio" required>
-                    </label>
-                    
-                </div>
-                
-                <!--at this point redirect to post.html-->
-
-            <div class="padding-top">
-                <button class="button button-block button-assertive">
-                Start Baking
-                </button>
-            </div>
-            
-            </form>
-            </div>
-          </div>
-          
-          
-          
-          <!--invitation route-->
-          
-          <div ng-class="class3" ng-if="isInvitationVisible">
-          <div class="card card-translucent">
-            <form name="signin" ng-submit="TryLogin()">
-            <div class="list list-inset">
-            <label class="item item-input">
-                <input type="text" placeholder="Email" required>
-            </label>
-            
-            </div>
-            <button class="button button-block button-assertive" type="submit" ng-click="changeClass3()">
-            Email me
-            </button>
-            
-            </form>
-            </div>
-          </div>
-          
-          <div ng-class="class4" ng-if="isCheckemailVisible">
-          <div class="card card-translucent">
-              <div class="text-center">
-                  <br><br>
-            Please check your email for our invitation!
-                  <br><br><br>
-              </div>
-=======
             </div>
 
             <!--registration route-->
 
             <div ng-class="class5" ng-if="isBakerybioVisible">
                 <div class="card">
-                    <form name="signin">
+                    <form name="signin" ng-submit="TryLogin()">
 
                         <div class="item item-text-wrap">
                             Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
@@ -307,7 +121,7 @@
 
             <div ng-class="class6" ng-if="isBakerylocationVisible">
                 <div class="card">
-                    <form name="signin">
+                    <form name="signin" ng-submit="TryLogin()">
 
                         <div class="list list-inset">
 
@@ -325,14 +139,13 @@
                                 Next
                             </button>
                         </div>
-
                     </form>
                 </div>
             </div>
 
             <div ng-class="class7" ng-if="isBakeryaccountVisible">
                 <div class="card">
-                    <form name="signin">
+                    <form name="signin" ng-submit="TryLogin()">
 
                         <div class="list list-inset">
 
@@ -350,16 +163,15 @@
 
                     </form>
                 </div>
->>>>>>> 07c3f03f7305240528994c901e975eeaa337ff31
             </div>
 
-            <div ng-class="class8" ng-if="isBakeryreasonVisible" ng-controller="FirebaseRegistration">
+            <div ng-class="class8" ng-if="isBakeryreasonVisible">
                 <div class="card">
-                    <form name="signin" ng-submit="RegisterToFirebase()">
+                    <form name="signin" ng-submit="TryLogin()">
 
                         <div class="text-center">
                             <br>
-                            <br> Tell us how your bakery started and why you are baking!
+                            <br> Tell us how your bakery started!
                             <br>
                             <br>
                         </div>
@@ -371,10 +183,11 @@
                             </label>
 
                         </div>
+
                         <!--at this point redirect to post.html-->
 
                         <div class="padding-top">
-                            <button class="button button-block button-assertive" type="submit">
+                            <button class="button button-block button-assertive">
                                 Start Baking
                             </button>
                         </div>
@@ -387,14 +200,14 @@
 
             <div ng-class="class3" ng-if="isInvitationVisible">
                 <div class="card">
-                    <form name="signin">
+                    <form name="signin" ng-submit="TryLogin()">
                         <div class="list list-inset">
                             <label class="item item-input">
                                 <input type="text" placeholder="Email" required>
                             </label>
 
                         </div>
-                        <button class="button button-block button-balanced" type="submit" ng-click="changeClass3()">
+                        <button class="button button-block button-assertive" type="submit" ng-click="changeClass3()">
                             Email me
                         </button>
 

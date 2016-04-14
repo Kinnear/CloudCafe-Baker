@@ -385,7 +385,7 @@ app.controller('RegisterBaker', function($scope, $parse, RegistrationDetails, $c
 });
 
 app.controller('post2', function($scope,$state,AddNewFoodService){
-   $scope.newFood = AddNewFoodService; 
+   $scope.newFood = AddNewFoodService;
 });
 
 app.controller('post4', function($scope,$state,$firebaseArray,AddNewFoodService){
@@ -438,34 +438,6 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
           console.log('Synchronization succeeded');
       }
   };
-  
- 
-   
-//    var refUsers = ref.child("stalls");
-//    var refUsersCollection = $firebaseArray(refUsers);
-//    refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function(dataSnapshot) {
-//        var series = dataSnapshot.val();
-//        var data = dataSnapshot.exportVal();
-//        if (series) {
-//            console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
-           
-//            var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/"+Object.keys(data)[0].toString());
-//            var obj = $firebaseObject(firebaseProducts);
-//            obj.$bindTo($scope, "data").then(function() {
-//                console.log($scope.data);
-//                if ($scope.data.hasOwnProperty("products")) {
-//                    console.log("HAVE!");
-//                    firebaseProducts.child("products").update({ food4: false }, onComplete);
-//                }
-//                else {
-//                    console.log("NOPE");
-//                    $scope.data.products = { food1: true, food2: true };
-//                }
-//            })
-//            //console.log(dataSnapshot.child("products").val());
-//            //var obj = $firebaseObject(dataSnapshot.child("products"));
-//        }
-//    });
                   
    $scope.takePicture = function(scopeValue)
    {   
@@ -583,6 +555,7 @@ app.controller('AddNewFood', function($scope, $parse, RegistrationDetails, AddNe
 
 app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebaseArray, RegistrationDetails){
     
+    // Include and run this controller only when your form is about to register
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
     var refStalls = new Firebase("https://burning-heat-7015.firebaseio.com/stalls");
     
@@ -614,7 +587,7 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
                 $scope.firebaseAdd.$add(userInfo).then(function(ref) {
                     var id = ref.key();
                     console.log("added record with id " + id);
-                });     
+                });
 
             // attempt to login the recently signed up user
             return $scope.authObj.$authWithPassword({
@@ -632,9 +605,9 @@ app.controller('FirebaseRegistration', function($scope, $firebaseAuth, $firebase
 app.controller('LoginBaker', function($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth){
     
     // hide back button in next view
-    // $ionicHistory.nextViewOptions({
-    //     disableBack: true
-    // });
+    $ionicHistory.nextViewOptions({
+        disableBack: true
+    });
     
     $scope.isRegisterVisible = false;
     $scope.isInvitationVisible = false;
