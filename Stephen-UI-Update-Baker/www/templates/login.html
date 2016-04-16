@@ -1,230 +1,254 @@
 <ion-view view-title="Login" class="light-bg" ng-controller="HideSideBarOnThisView" hide-nav-bar="true">
 
     <ion-content overflow-scroll="false" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
-        <div ng-controller="LoginBaker">
+        <div ng-controller="AnimatedLoginCards">
 
             <div class="item item-image login-logo" style="position:relative;">
                 <img src="img/backgrounds/logo_white.png">
             </div>
 
-            <div ng-class="class">
-                <div class="card">
-                    <form name="loginForm" ng-submit="TryLogin()">
-                        <div class="list list-inset">
-                            <label class="item item-input">
+            <div ng-controller="LoginBaker">
+                <div ng-class="class">
+                    <div class="card">
+                        <form name="loginForm" ng-submit="TryLogin()">
+                            <div class="list list-inset">
+                                <label class="item item-input">
                                 <input name="email" type="email" placeholder="Email" ng-model="email" required>
                             </label>
 
-                            <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
-                                <div ng-message="required">The email field is required!</div>
-                                <div ng-message="email">Your email address is invalid!</div>
-                            </div>
+                                <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
+                                    <div ng-message="required">The email field is required!</div>
+                                    <div ng-message="email">Your email address is invalid!</div>
+                                </div>
 
-                            <label class="item item-input">
+                                <label class="item item-input">
                                 <input name="password" type="password" placeholder="Password" ng-model="password" required>
                             </label>
 
-                            <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
-                                <div ng-message="required">Password field is empty!</div>
+                                <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+                                    <div ng-message="required">Password field is empty!</div>
+                                </div>
+                                {{wrongPasswordMessage}}
                             </div>
-                            {{wrongPasswordMessage}}
-                        </div>
 
-                        <button class="button button-block button-assertive" type="submit">
+                            <button class="button button-block button-assertive" type="submit">
                             Sign In
                         </button>
 
-                        <div class="text-center">
-                            <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
-                        </div>
-                    </form>
-                </div>
+                            <div class="text-center">
+                                <a class="dark">New here? <span class="balanced" ng-click="changeClass()">Register</span></a>
+                            </div>
+                        </form>
+                    </div>
 
+                </div>
             </div>
 
-            <div ng-class="class2" ng-if="isRegisterVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="changeClass4()">
-                        <div class="list list-inset">
-                            <label class="item item-input">
-                                <input name="invitationCode" type="text" placeholder="Invitation Code" required>
+            <div ng-controller="RegisterBaker">
+
+                <div ng-class="class2" ng-if="isRegisterVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
+                            <div class="list list-inset">
+                                <label class="item item-input">
+                                <input name="invitationCode" type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
                             </label>
 
-                            <div ng-messages="signin.invitationCode.$error" role="alert" ng-if="signin.invitationCode.$touched">
-                                <div ng-message="required">An Invitation code is required!</div>
-                            </div>
+                                <div ng-messages="signin.invitationCode.$error" role="alert" ng-if="signin.invitationCode.$touched">
+                                    <div ng-message="required">An Invitation code is required!</div>
+                                </div>
 
-                            <label class="item item-input">
-                                <input name="email" type="email" placeholder="Email" required>
+                                <label class="item item-input">
+                                <input name="email" type="email" placeholder="Email" ng-model="user.email" required>
                             </label>
 
-                            <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
-                                <div ng-message="required">The email field is required!</div>
-                                <div ng-message="email">Your email address is invalid!</div>
-                            </div>
+                                <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
+                                    <div ng-message="required">The email field is required!</div>
+                                    <div ng-message="email">Your email address is invalid!</div>
+                                </div>
 
-                            <label class="item item-input">
-                                <input name="password" type="password" placeholder="Password" required>
+                                <label class="item item-input">
+                                <input name="password" type="password" placeholder="Password" ng-model="user.password" required>
                             </label>
 
-                            <div ng-messages="signin.password.$error" role="alert" ng-if="signin.password.$touched">
-                                <div ng-message="required">Password field is empty!</div>
+                                <div ng-messages="signin.password.$error" role="alert" ng-if="signin.password.$touched">
+                                    <div ng-message="required">Password field is empty!</div>
+                                </div>
                             </div>
-                        </div>
-                        <button class="button button-block button-assertive" type="submit">
+                            <button class="button button-block button-assertive" type="submit">
                             Register
                         </button>
-                    </form>
-
-                    <div class="text-center">
-                        <a class="dark">
-                                Get an <span class="balanced" ng-click="changeClass2()">invitation code</span>
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!--registration route-->
-
-            <div ng-class="class5" ng-if="isBakerybioVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="TryLogin()">
-
-                        <div class="item item-text-wrap">
-                            Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
-                        </div>
-
-                        <div>
-                            <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
-                            <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
-                            <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
-                        </div>
-
-                        <div class="list list-inset">
-
-                            <label class="item item-input">
-                                <input type="text" placeholder="Bakery Name" required>
-                            </label>
-
-                        </div>
-
-                        <div class="padding-top">
-                            <button class="button button-block button-assertive" ng-click="SaveBioUI(); changeClass5()">
-                                Next
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-
-            <div ng-class="class6" ng-if="isBakerylocationVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="TryLogin()">
-
-                        <div class="list list-inset">
-
-                            <label class="item item-input">
-                                <input type="text" placeholder="Bakery Address" required>
-                            </label>
-                            <label class="item item-input">
-                                <input type="tel" placeholder="Postal Code" required>
-                            </label>
-
-                        </div>
-
-                        <div class="padding-top">
-                            <button class="button button-block button-assertive" ng-click="SaveBioUI();changeClass6()">
-                                Next
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div ng-class="class7" ng-if="isBakeryaccountVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="TryLogin()">
-
-                        <div class="list list-inset">
-
-                            <label class="item item-input">
-                                <input type="tel" placeholder="Bank Account Number" required>
-                            </label>
-
-                        </div>
-
-                        <div class="padding-top">
-                            <button class="button button-block button-assertive" ng-click="SaveBioUI();changeClass7()">
-                                Next
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-            <div ng-class="class8" ng-if="isBakeryreasonVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="TryLogin()">
+                        </form>
 
                         <div class="text-center">
-                            <br>
-                            <br> Tell us how your bakery started!
-                            <br>
-                            <br>
+                            <a class="dark">
+                                <!--REMEMBER TO PUT LINK TO REQUEST INVITATION CODE HERE!-->
+                                Get an <span class="balanced" ng-click="changeClass2()">invitation code</span>
+                            </a>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="list list-inset">
+                <!--registration route-->
 
-                            <label class="item item-input">
-                                <input type="text" placeholder="Bakery Bio" required>
+                <div ng-class="class5" ng-if="isBakerybioVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
+
+                            <div class="item item-text-wrap">
+                                Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
+                            </div>
+
+                            <div>
+                                <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
+                                <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
+                                <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
+                            </div>
+
+                            <div class="list list-inset">
+
+                                <label class="item item-input">
+                                <input name="bakeryName" type="text" placeholder="Bakery Name" ng-model="user.bakeryName" required>
+                                </label>
+                                <div ng-messages="signin.bakeryName.$error" role="alert" ng-if="signin.bakeryName.$touched">
+                                    <div ng-message="required">Your name is required</div>
+                                </div>
+
+                            </div>
+
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" type="submit">
+                                Next
+                            </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <div ng-class="class6" ng-if="isBakerylocationVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
+
+                            <div class="list list-inset">
+
+                                <label class="item item-input">
+                                <input type="text" name="address" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
                             </label>
+                            <div ng-messages="signin.address.$error" role="alert" ng-if="signin.address.$touched">
+                                <div ng-message="required">Your bakery's address is required</div>
+                            </div>
+                            
+                            <label class="item item-input">
+                                <input type="tel" name="bakeryPostalCode" placeholder="Postal Code" ng-model="user.bakeryPostalCode" required>
+                            </label>
+                            
+                            <div ng-messages="signin.bakeryPostalCode.$error" role="alert" ng-if="signin.bakeryPostalCode.$touched">
+                                <div ng-message="required">Your bakery's postal code is required</div>
+                            </div>
 
-                        </div>
+                            </div>
 
-                        <!--at this point redirect to post.html-->
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" type="submit">
+                                Next
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-                        <div class="padding-top">
-                            <button class="button button-block button-assertive">
+                <div ng-class="class7" ng-if="isBakeryaccountVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
+
+                            <div class="list list-inset">
+
+                                <label class="item item-input">
+                                <input type="tel" name="telephoneNumber" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
+                            </label>
+                                <div ng-messages="signin.telephoneNumber.$error" role="alert" ng-if="signin.telephoneNumber.$touched">
+                                    <div ng-message="required">Your account number is required</div>
+                                </div>
+                            </div>
+
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" type="submit">
+                                Next
+                            </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div ng-controller="FirebaseRegistration">
+                    <div ng-class="class8" ng-if="isBakeryreasonVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase(); ResetAllRegistrationVariables();">
+
+                                <div class="text-center">
+                                    <br>
+                                    <br> Tell us how your bakery started!
+                                    <br>
+                                    <br>
+                                </div>
+
+                                <div class="list list-inset">
+
+                                    <label class="item item-input">
+                                    <input type="text" name="description" placeholder="Bakery Bio" ng-model="user.description" required>
+                                </label>
+                                <div ng-messages="signin.description.$error" role="alert" ng-if="signin.description.$touched">
+                                    <div ng-message="required">Your bakery's description is required</div>
+                                </div>
+                                
+                                </div>
+
+                                <!--at this point redirect to post.html-->
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" type="submit">
                                 Start Baking
                             </button>
+                                </div>
+                            </form>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
-            </div>
 
-            <!--invitation route-->
+                <!--invitation route-->
 
-            <div ng-class="class3" ng-if="isInvitationVisible">
-                <div class="card">
-                    <form name="signin" ng-submit="TryLogin()">
-                        <div class="list list-inset">
-                            <label class="item item-input">
+                <div ng-class="class3" ng-if="isInvitationVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="TryLogin()">
+                            <div class="list list-inset">
+                                <label class="item item-input">
                                 <input type="text" placeholder="Email" required>
                             </label>
 
-                        </div>
-                        <button class="button button-block button-assertive" type="submit" ng-click="changeClass3()">
+                            </div>
+                            <button class="button button-block button-assertive" type="submit" ng-click="changeClass3()">
                             Email me
                         </button>
 
-                    </form>
-                </div>
-            </div>
-
-            <div ng-class="class4" ng-if="isCheckemailVisible">
-                <div class="card">
-                    <div class="text-center">
-                        <br>
-                        <br> Please check your email for our invitation!
-                        <br>
-                        <br>
-                        <br>
+                        </form>
                     </div>
                 </div>
+
+                <div ng-class="class4" ng-if="isCheckemailVisible">
+                    <div class="card">
+                        <div class="text-center">
+                            <br>
+                            <br> Please check your email for our invitation!
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

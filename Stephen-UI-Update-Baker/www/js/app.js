@@ -85,20 +85,20 @@ $ionicConfigProvider.tabs.position('bottom');
     }
   })
 
-  // register screen
-  .state('register', {
-    url: '/register',
-    templateUrl: 'templates/register.html',
-    controller: 'RegisterBaker',
-    resolve: {
-      // controller will not be loaded until $waitForAuth resolves
-      // Auth refers to our $firebaseAuth wrapper in the example above
-      "currentAuth": ["Auth", function(Auth) {
-        // $waitForAuth returns a promise so the resolve waits for it to complete
-        return Auth.$waitForAuth();
-      }]
-    }
-  })
+  // // register screen
+  // .state('register', {
+  //   url: '/register',
+  //   templateUrl: 'templates/register.html',
+  //   controller: 'RegisterBaker',
+  //   resolve: {
+  //     // controller will not be loaded until $waitForAuth resolves
+  //     // Auth refers to our $firebaseAuth wrapper in the example above
+  //     "currentAuth": ["Auth", function(Auth) {
+  //       // $waitForAuth returns a promise so the resolve waits for it to complete
+  //       return Auth.$waitForAuth();
+  //     }]
+  //   }
+  // })
   
   // Community detail
   .state('community', {
