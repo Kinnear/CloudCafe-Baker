@@ -712,23 +712,35 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     }
 });
 
-app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth) {
+app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth, $ionicLoading, $ionicPopup) {
 
     $scope.email = "";
     $scope.password = "";
     $scope.wrongPasswordMessage = "";
 
     $scope.TryLogin = function () {
+        
+        $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner>'
+        });
+        
         Auth.$authWithPassword({
             email: $scope.email,
             password: $scope.password
         }).then(function (authData) {
             console.log("Logged in as:", authData.uid);
+            $ionicLoading.hide();
             $state.go("post");
         }).catch(function (error) {
             console.error("Authentication failed:", error);
 
             $scope.wrongPasswordMessage = "The specified password is incorrect.";
+            $ionicLoading.hide();
+            
+            $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
         });
     }
 });
