@@ -426,14 +426,31 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
     var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
     var refFood = FBref.child("food");
     $scope.firebaseAdd = $firebaseArray(refFood);
-    console.log(Auth.$getAuth().uid);
-    console.log(Auth.$getAuth());
+    //console.log(Auth.$getAuth().uid);
+    //console.log(Auth.$getAuth());
 
     var onComplete = function (error) {
         if (error) {
             console.log('Synchronization failed');
         } else {
             console.log('Synchronization succeeded');
+            var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
+            var itemsFB = $firebaseArray(newfirebaseProducts);
+            itemsFB.$loaded().then(function () {
+                var key = "food1";
+                var json = {};
+                json[key] = true;
+                console.log(json);
+
+                // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
+                // var itemsFB = $firebaseArray(newfirebaseProducts);
+                // itemsFB.$loaded().then(function () {
+                //     console.log("Before: " + itemsFB.length);
+                // });
+
+                newfirebaseProducts.update(json);
+                console.log("Update Called");
+            });   
         }
     };
 
@@ -483,7 +500,7 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
     $scope.AddFood = function () {
         //  console.log($scope.form.categoryID.$id);
         //console.log("$scope.img4URI" + $scope.img4URI);
-        console.log("Adding " + newFood)
+        //console.log("Adding " + newFood)
         $scope.firebaseAdd.$add({
             "categoryID": "",
             "description": $scope.newFood.description,
@@ -505,14 +522,17 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
 
             var refUsers = FBref.child("stalls");
             var refUsersCollection = $firebaseArray(refUsers);
-            console.log("What");
+            //console.log("What");
             refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
                 var series = dataSnapshot.val();
                 var data = dataSnapshot.exportVal();
-                console.log("the");
+                //console.log("the");
 
                 if (series) {
+                    // This prints the current object in the array of products under their user id
                     console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
+                    
+                    // This is their user ID
                     console.log(Object.keys(data)[0]);
                     var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
                     var obj = $firebaseObject(firebaseProducts);
@@ -526,7 +546,19 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
                             json[key] = true;
                             console.log(json);
 
+                            // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
+                            // var itemsFB = $firebaseArray(newfirebaseProducts);
+                            // itemsFB.$loaded().then(function () {
+                            //     console.log("Before: " + itemsFB.length);
+                            // });
+
                             firebaseProducts.child("products").update(json, onComplete);
+                            console.log("Update Called");
+                            // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
+                            // var itemsFB = $firebaseArray(newfirebaseProducts);
+                            // itemsFB.$loaded().then(function () {
+                            //     console.log("After: " + itemsFB.length);
+                            // });
                         }
                         else {
                             console.log("NOPE");
@@ -537,7 +569,11 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
                             console.log(products);
 
                             firebaseProducts.child("products").update(products, onComplete);
-
+                            var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
+                            var itemsFB = $firebaseArray(newfirebaseProducts);
+                            itemsFB.$loaded().then(function () {
+                                console.log(itemsFB.length);
+                            });
                             //$scope.data.products = { key : true };
                         }
                     })
