@@ -197,12 +197,22 @@
   border: none;
   background-color: transparent; }
   
+  /*for login button that is solid*/
   .button.button-block.button-assertive {
     border-color: transparent;
     background-color: #cb0a73;
     color: #fff; }
     .button.button-block.button-assertive.active, .button.button-block.button-assertive.activated {
       background-color: #e30b81; }
+      
+ /*for login button that is outlined*/
+  .button.button-outline.button-block.button-assertive {
+    border-color: #cb0a73;
+    background-color: transparent;
+    color: #cb0a73; }
+    .button.button-outline.button-block.button-assertive.active, .button.button-outline.button-block.button-assertive.activated {
+      background-color: #cb0a73;
+      color: #fff; }
       
       .button.button-block.button-assertive.button-bottom {
     border-color: transparent;
