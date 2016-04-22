@@ -729,6 +729,11 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
             password: $scope.password
         }).then(function (authData) {
             console.log("Logged in as:", authData.uid);
+            
+            $scope.email = "";
+            $scope.password = "";
+            $scope.wrongPasswordMessage = "";
+            
             $ionicLoading.hide();
             $state.go("post");
         }).catch(function (error) {
