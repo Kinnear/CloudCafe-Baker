@@ -12,28 +12,32 @@
                     <div class="card">
                         <form name="loginForm" ng-submit="TryLogin()">
                             <div class="list list-inset">
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>
                                 <input name="email" type="email" placeholder="Email" ng-model="email" required>
-                            </label>
 
-                                <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
-                                    <div ng-message="required" class="errorMessage">The email field is required!</div>
-                                    <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
-                                </div>
+                                        <div ng-messages="loginForm.email.$error" role="alert" ng-if="loginForm.email.$touched">
+                                            <div ng-message="required" class="errorMessage">The email field is required!</div>
+                                            <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
+                                        </div>
+                                </label>
+                               
 
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Password</span>    
                                 <input name="password" type="password" placeholder="Password" ng-model="password" required>
+                            
+                                    <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
+                                        <div ng-message="required" class="errorMessage">Password field is empty!</div>
+                                    </div>
+                                    {{wrongPasswordMessage}}
+                                    
+                            
                             </label>
-
-                                <div ng-messages="loginForm.password.$error" role="alert" ng-if="loginForm.password.$touched">
-                                    <div ng-message="required" class="errorMessage">Password field is empty!</div>
-                                </div>
-                                {{wrongPasswordMessage}}
                             </div>
-
                             <button class="button button-block button-assertive" type="submit">
-                            Sign In
-                        </button>
+                                Sign In
+                            </button>
                         
                         </form>
                         
@@ -52,30 +56,38 @@
                     <div class="card">
                         <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
                             <div class="list list-inset">
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Invitation Code</span>    
                                 <input name="invitationCode" type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
+                            
+                                    <div ng-messages="signin.invitationCode.$error" role="alert" ng-if="signin.invitationCode.$touched">
+                                        <div ng-message="required" class="errorMessage">An Invitation code is required!</div>
+                                    </div>
+                            
                             </label>
-
-                                <div ng-messages="signin.invitationCode.$error" role="alert" ng-if="signin.invitationCode.$touched">
-                                    <div ng-message="required" class="errorMessage">An Invitation code is required!</div>
-                                </div>
-
-                                <label class="item item-input">
+                            
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Email</span>    
                                 <input name="email" type="email" placeholder="Email" ng-model="user.email" required>
+                            
+                                    <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
+                                        <div ng-message="required" class="errorMessage">The email field is required!</div>
+                                        <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
+                                    </div>
+                            
                             </label>
 
-                                <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
-                                    <div ng-message="required" class="errorMessage">The email field is required!</div>
-                                    <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
-                                </div>
-
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Password</span>    
                                 <input name="password" type="password" placeholder="Password" ng-model="user.password" required>
+                            
+                                    <div ng-messages="signin.password.$error" role="alert" ng-if="signin.password.$touched">
+                                        <div ng-message="required" class="errorMessage">Password field is empty!</div>
+                                    </div>
+                            
                             </label>
 
-                                <div ng-messages="signin.password.$error" role="alert" ng-if="signin.password.$touched">
-                                    <div ng-message="required" class="errorMessage">Password field is empty!</div>
-                                </div>
+                                
                             </div>
                             <button class="button button-block button-assertive" type="submit">
                             Register
@@ -107,12 +119,16 @@
 
                             <div class="list list-inset">
 
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Bakery Name</span>    
                                 <input name="bakeryName" type="text" placeholder="Bakery Name" ng-model="user.bakeryName" required>
+                                
+                                        <div ng-messages="signin.bakeryName.$error" role="alert" ng-if="signin.bakeryName.$touched">
+                                            <div ng-message="required" class="errorMessage">Your name is required</div>
+                                        </div>
+                                
                                 </label>
-                                <div ng-messages="signin.bakeryName.$error" role="alert" ng-if="signin.bakeryName.$touched">
-                                    <div ng-message="required" class="errorMessage">Your name is required</div>
-                                </div>
+                                
 
                             </div>
 
@@ -133,20 +149,28 @@
 
                             <div class="list list-inset">
 
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Bakery Address</span>      
                                 <input type="text" name="address" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
-                            </label>
-                            <div ng-messages="signin.address.$error" role="alert" ng-if="signin.address.$touched">
-                                <div ng-message="required" class="errorMessage">Your bakery's address is required</div>
-                            </div>
                             
-                            <label class="item item-input">
+                                    <div ng-messages="signin.address.$error" role="alert" ng-if="signin.address.$touched">
+                                        <div ng-message="required" class="errorMessage">Your bakery's address is required</div>
+                                    </div>
+                            
+                            </label>
+                            
+                            
+                            <label class="item item-input item-floating-label">
+                                <span class="input-label">Postal Code</span>  
                                 <input type="tel" name="bakeryPostalCode" placeholder="Postal Code" ng-model="user.bakeryPostalCode" required>
+                            
+                                    <div ng-messages="signin.bakeryPostalCode.$error" role="alert" ng-if="signin.bakeryPostalCode.$touched">
+                                        <div ng-message="required" class="errorMessage">Your bakery's postal code is required</div>
+                                    </div>
+                            
                             </label>
                             
-                            <div ng-messages="signin.bakeryPostalCode.$error" role="alert" ng-if="signin.bakeryPostalCode.$touched">
-                                <div ng-message="required" class="errorMessage">Your bakery's postal code is required</div>
-                            </div>
+                            
 
                             </div>
 
@@ -165,12 +189,16 @@
 
                             <div class="list list-inset">
 
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Bank Account Number</span>    
                                 <input type="tel" name="telephoneNumber" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
+                            
+                                    <div ng-messages="signin.telephoneNumber.$error" role="alert" ng-if="signin.telephoneNumber.$touched">
+                                        <div ng-message="required" class="errorMessage">Your account number is required</div>
+                                    </div>
+                            
                             </label>
-                                <div ng-messages="signin.telephoneNumber.$error" role="alert" ng-if="signin.telephoneNumber.$touched">
-                                    <div ng-message="required" class="errorMessage">Your account number is required</div>
-                                </div>
+                               
                             </div>
 
                             <div class="padding-top">
@@ -197,12 +225,16 @@
 
                                 <div class="list list-inset">
 
-                                    <label class="item item-input">
+                                    <label class="item item-input item-floating-label">
+                                    <span class="input-label">Bakery Bio</span>     
                                     <input type="text" name="description" placeholder="Bakery Bio" ng-model="user.description" required>
+                                
+                                        <div ng-messages="signin.description.$error" role="alert" ng-if="signin.description.$touched">
+                                            <div ng-message="required" class="errorMessage">Your bakery's description is required</div>
+                                        </div>
+                                
                                 </label>
-                                <div ng-messages="signin.description.$error" role="alert" ng-if="signin.description.$touched">
-                                    <div ng-message="required" class="errorMessage">Your bakery's description is required</div>
-                                </div>
+                                
                                 
                                 </div>
 
@@ -224,7 +256,8 @@
                     <div class="card">
                         <form name="signin" ng-submit="TryLogin()">
                             <div class="list list-inset">
-                                <label class="item item-input">
+                                <label class="item item-input item-floating-label">
+                                    <span class="input-label">Email</span>
                                 <input type="text" placeholder="Email" required>
                             </label>
 
