@@ -1,200 +1,66 @@
-Array.prototype.inArray = function(comparer) { 
-    for(var i=0; i < this.length; i++) { 
-        if(comparer(this[i])) return true; 
-    }
-    return false; 
-}; 
-
-// adds an element to the array if it does not already exist using a comparer 
-// function
-Array.prototype.pushIfNotExist = function(element, comparer) { 
-    if (!this.inArray(comparer)) {
-        this.push(element);
-    }
-}; 
-
 var app = angular.module('starter.services', ["ionic", "ngMessages", "firebase", "ngCordova"]);
 
-// Our Firebase Data Factory retriever
-app.factory("FavouriteData", function($firebaseArray) {
-    var itemsRef = new Firebase("https://burning-heat-7015.firebaseio.com/");
-    return $firebaseArray(itemsRef);
-})
-
 // our authenticated user details
-app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
+app.factory("Auth", ["$firebaseAuth", function ($firebaseAuth) {
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
     return $firebaseAuth(ref);
 }
 ]);
 
-app.factory('Categories', function() {
-    // Might use a resource here that returns a JSON array
-
-    // Some fake testing data
-    var categories = [
-        {
-            id: 1,
-            name: "Entrees",
-            thumb: 'img/categories/entree.jpg',
-            items: [
-                {
-                    id: 1,
-                    name: "Seared tuna",
-                    price: 14.20,
-                    thumb: "img/items/seared_tuna.jpg"
-                },
-                {
-                    id: 2,
-                    name: "Rib eye",
-                    price: 15.20,
-                    thumb: "img/items/rib_eyes.jpg"
-                },
-                {
-                    id: 3,
-                    name: "Brick chicken",
-                    price: 16.20,
-                    thumb: "img/items/brick_chicken.jpg"
-                },
-                {
-                    id: 4,
-                    name: "Fried calamari",
-                    price: 17.20,
-                    thumb: "img/items/fried_calamari.jpg"
-                },
-                {
-                    id: 5,
-                    name: "Zuppa",
-                    price: 17.20,
-                    thumb: "img/items/zuppa.jpg"
-                }
-            ]
-        },
-        {
-            id: 2,
-            name: "Drinks",
-            thumb: 'img/categories/drink.jpg',
-            items: []
-        },
-        {
-            id: 3,
-            name: "Salads",
-            thumb: 'img/categories/salad.jpg',
-            items: []
-        },
-        {
-            id: 4,
-            name: "Fruits",
-            thumb: 'img/categories/fruit.jpg',
-            items: []
-        },
-        {
-            id: 5,
-            name: "Pizzas",
-            thumb: 'img/categories/pizza.jpg',
-            items: []
-        },
-        {
-            id: 6,
-            name: "Sushi",
-            thumb: 'img/categories/sushi.jpg',
-            items: []
-        },
-        {
-            id: 7,
-            name: "Buggers",
-            thumb: 'img/categories/bugger.jpg',
-            items: []
-        },
-    ];
-
-    return {
-        all: function() {
-            return categories;
-        },
-        remove: function(cat) {
-            categories.splice(categories.indexOf(cat), 1);
-        },
-        get: function(catId) {
-            for (var i = 0; i < categories.length; i++) {
-                if (categories[i].id === parseInt(catId)) {
-                    return categories[i];
-                }
-            }
-            return null;
-        }
-    };
-});
-
-
-app.factory('Items', function($firebaseArray, Auth) {
-    var items = [];
+app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup) {
+    var products = { items: [] };
     var refFB = new Firebase("https://burning-heat-7015.firebaseio.com");
     var refUsers = refFB.child("stalls");
     var refUsersCollection = $firebaseArray(refUsers);
-    refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function(dataSnapshot) {
+    $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner>'
+        });
+    refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
         // User Data, This is to get the key so that I can access their products. 
         var data = dataSnapshot.exportVal();
+        
         var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString() + "/products");
         var itemsFB = $firebaseArray(firebaseProducts);
-        
-        console.log(data);
-        
-        //items = [];
-        itemsFB.$loaded().then(function() {
-            itemsFB.$ref().on("value", function(snapshot) {
-                console.log("Length: " + itemsFB.length);
-                for (i = 0; i < itemsFB.length; i++) {
+
+        // console.log(data);
+
+        itemsFB.$loaded().then(function () {
+            itemsFB.$ref().on("value", function (snapshot) {
+
+                products.items = [];
+
+                for (i = 0; i < snapshot.numChildren(); i++) {
                     var newpost = snapshot.val();
                     var refFood = new Firebase("https://burning-heat-7015.firebaseio.com/food/" + Object.keys(newpost)[i]);
                     console.log("(" + itemsFB.length + "): " + i + " Here with " + Object.keys(newpost)[i]);
                     var specFoodData = $firebaseArray(refFood);
-                    specFoodData.$ref().on("value", function(snapshot2) {
+                    specFoodData.$ref().on("value", function (snapshot2) {
                         var newpost2 = snapshot2.val();
-                        console.log(newpost2);
-                        //items.push(newpost2);
-                        
-                        items.pushIfNotExist(newpost2, function(e){
-                            return e.foodName == newpost2.foodName && e.description == newpost2.description;
-                        })
+
+                        // Add any new products updated on the database
+                        products.items.push(newpost2);
                     });
                 }
+                $ionicLoading.hide();
             })
         })
-
-        // itemsFB.$loaded().then(function(){
-        //     console.log(itemsFB.length);
-        //     for(i = 0; i < itemsFB.length; i++) 
-        //     {
-        //         console.log(itemsFB.length);
-        //         itemsFB.$ref().on("value", function(snapshot) {
-        //             var newpost = snapshot.val();
-        //             var refFood = new Firebase("https://burning-heat-7015.firebaseio.com/food/"+Object.keys(newpost)[i]);
-        //             var specFoodData = $firebaseArray(refFood);
-        //             specFoodData.$ref().on("value", function(snapshot2) {
-        //                 var newpost2 = snapshot2.val();
-        //                 console.log(newpost2);
-        //                 items.push(newpost2);
-        //             });
-        //         })
-        //     }
-        // })
     });
 
     console.log(Auth.$getAuth().uid);
 
 
     return {
-        all: function() {
-            return items;
+        all: function () {
+
+            return products.items;
         },
-        remove: function(item) {
-            items.splice(items.indexOf(item), 1);
+        remove: function (item) {
+            products.items.splice(items.indexOf(item), 1);
         },
-        get: function(itemId) {
-            for (var i = 0; i < items.length; i++) {
-                if (items[i].id === parseInt(itemId)) {
-                    return items[i];
+        get: function (itemId) {
+            for (var i = 0; i < products.items.length; i++) {
+                if (products.items[i].id === parseInt(itemId)) {
+                    return products.items[i];
                 }
             }
             return null;
@@ -202,7 +68,7 @@ app.factory('Items', function($firebaseArray, Auth) {
     };
 });
 
-app.factory('Cart', function() {
+app.factory('Cart', function () {
     // Might use a resource here that returns a JSON array
 
     // Some fake testing data
@@ -242,113 +108,13 @@ app.factory('Cart', function() {
     };
 
     return {
-        get: function() {
+        get: function () {
             return cart;
         }
     };
 });
 
-app.factory('Chats', function() {
-    // Might use a resource here that returns a JSON array
-
-    // Some fake testing data
-    var chats = [
-        {
-            id: 0,
-            name: 'Ben Sparrow',
-            lastText: 'You on your way?',
-            face: 'img/people/ben.png',
-            messages: [
-                {
-                    type: 'received',
-                    text: 'Hey, How are you? wanna hang out this friday?',
-                    image: '',
-                    time: 'Thursday 05:55 PM'
-                },
-                {
-                    type: 'sent',
-                    text: 'Good, Yes sure why not :D',
-                    image: '',
-                    time: 'Thursday 05:56 PM'
-                },
-                {
-                    type: 'received',
-                    text: 'Check out this view from my last trip',
-                    image: '',
-                    time: 'Thursday 05:57 PM'
-                },
-                {
-                    type: 'sent',
-                    text: 'Looks Great is that view in Canada?',
-                    image: '',
-                    time: 'Thursday 05:58 PM'
-                },
-                {
-                    type: 'received',
-                    text: 'Yes, it\'s in Canada',
-                    image: '',
-                    time: 'Thursday 05:57 PM'
-                }
-            ]
-        },
-        {
-            id: 1,
-            name: 'Max Lynx',
-            lastText: 'Hey, it\'s me',
-            face: 'img/people/max.png'
-        },
-        {
-            id: 2,
-            name: 'Adam Bradleyson',
-            lastText: 'I should buy a boat',
-            face: 'img/people/adam.jpg'
-        },
-        {
-
-            d: 3,
-            name: 'Perry Governor',
-            lastText: 'Look at my mukluks!',
-            face: 'img/people/perry.png'
-        },
-        {
-            id: 4,
-            name: 'Mike Harrington',
-            lastText: 'This is wicked good ice cream.',
-            face: 'img/people/mike.png'
-        },
-        {
-            id: 5,
-            name: 'Ben Sparrow',
-            lastText: 'You on your way?',
-            face: 'img/people/ben.png'
-        },
-        {
-            id: 6,
-            name: 'Max Lynx',
-            lastText: 'Hey, it\'s me',
-            face: 'img/people/max.png'
-        }
-    ];
-
-    return {
-        all: function() {
-            return chats;
-        },
-        remove: function(chat) {
-            chats.splice(chats.indexOf(chat), 1);
-        },
-        get: function(chatId) {
-            for (var i = 0; i < chats.length; i++) {
-                if (chats[i].id === parseInt(chatId)) {
-                    return chats[i];
-                }
-            }
-            return null;
-        }
-    };
-})
-
-.factory('StripeCharge', function($q, $http, StripeCheckout) {
+app.factory('StripeCharge', function ($q, $http, StripeCheckout) {
     var self = this;
 
     /**
@@ -360,7 +126,7 @@ app.factory('Chats', function() {
      * retrieve the price from the back-end (thus the server-side). In this way the client
      * cannot write his own application and choose a price that he/she prefers
      */
-    self.chargeUser = function(stripeToken, ProductMeta) {
+    self.chargeUser = function (stripeToken, ProductMeta) {
         var qCharge = $q.defer();
 
         var chargeUrl = SERVER_SIDE_URL + "/charge";
@@ -372,13 +138,13 @@ app.factory('Chats', function() {
         };
         $http.post(chargeUrl, curlData)
             .success(
-            function(StripeInvoiceData) {
+            function (StripeInvoiceData) {
                 qCharge.resolve(StripeInvoiceData);
                 // you can store the StripeInvoiceData for your own administration
             }
             )
             .error(
-            function(error) {
+            function (error) {
                 console.log(error)
                 qCharge.reject(error);
             }
@@ -390,7 +156,7 @@ app.factory('Chats', function() {
     /**
      * Get a stripe token through the checkout handler
      */
-    self.getStripeToken = function(ProductMeta) {
+    self.getStripeToken = function (ProductMeta) {
         var qToken = $q.defer();
 
         var handlerOptions = {
@@ -402,13 +168,13 @@ app.factory('Chats', function() {
 
         var handler = StripeCheckout.configure({
             name: ProductMeta.title,
-            token: function(token, args) {
+            token: function (token, args) {
                 //console.log(token.id)
             }
         })
 
         handler.open(handlerOptions).then(
-            function(result) {
+            function (result) {
                 var stripeToken = result[0].id;
                 if (stripeToken != undefined && stripeToken != null && stripeToken != "") {
                     //console.log("handler success - defined")
@@ -417,7 +183,7 @@ app.factory('Chats', function() {
                     //console.log("handler success - undefined")
                     qToken.reject("ERROR_STRIPETOKEN_UNDEFINED");
                 }
-            }, function(error) {
+            }, function (error) {
                 if (error == undefined) {
                     qToken.reject("ERROR_CANCEL");
                 } else {
@@ -432,7 +198,7 @@ app.factory('Chats', function() {
     return self;
 })
 
-app.factory('RegistrationDetails', function() {
+app.factory('RegistrationDetails', function () {
 
     var userData = {
         userID: "",
@@ -450,46 +216,61 @@ app.factory('RegistrationDetails', function() {
     return {
 
         // invitation code
-        SetUserID: function(value) { userData.userID = value; },
-        GetUserID: function() { return userData.userID; },
+        SetUserID: function (value) { userData.userID = value; },
+        GetUserID: function () { return userData.userID; },
 
         // invitation code
-        SetInvitationCode: function(value) { userData.invitationCode = value; },
-        GetInvitationCode: function() { return userData.invitationCode; },
+        SetInvitationCode: function (value) { userData.invitationCode = value; },
+        GetInvitationCode: function () { return userData.invitationCode; },
 
         // email
-        SetEmail: function(value) { userData.email = value; },
-        GetEmail: function() { return userData.email; },
+        SetEmail: function (value) { userData.email = value; },
+        GetEmail: function () { return userData.email; },
 
         // password
-        SetPassword: function(value) { userData.password = value; },
-        GetPassword: function() { return userData.password; },
+        SetPassword: function (value) { userData.password = value; },
+        GetPassword: function () { return userData.password; },
 
         // bakery Image
-        SetBakeryImage: function(value) { userData.bakeryImage = value; },
-        GetBakeryImage: function() { return userData.bakeryImage; },
+        SetBakeryImage: function (value) { userData.bakeryImage = value; },
+        GetBakeryImage: function () { return userData.bakeryImage; },
 
         // bakery Image
-        SetBakeryName: function(value) { userData.bakeryName = value; },
-        GetBakeryName: function() { return userData.bakeryName; },
+        SetBakeryName: function (value) { userData.bakeryName = value; },
+        GetBakeryName: function () { return userData.bakeryName; },
 
         // bakery address 
-        SetBakeryAddress: function(value) { userData.bakeryAddress = value; },
-        GetBakeryAddress: function() { return userData.bakeryAddress; },
+        SetBakeryAddress: function (value) { userData.bakeryAddress = value; },
+        GetBakeryAddress: function () { return userData.bakeryAddress; },
 
         // bakery address 
-        SetBakeryPostalCode: function(value) { userData.bakeryPostalCode = value; },
-        GetBakeryPostalCode: function() { return userData.bakeryPostalCode; },
+        SetBakeryPostalCode: function (value) { userData.bakeryPostalCode = value; },
+        GetBakeryPostalCode: function () { return userData.bakeryPostalCode; },
 
         // bank account number 
-        SetBankAccountNumber: function(value) { userData.bankAccountNumber = value; },
-        GetBankAccountNumber: function() { return userData.bankAccountNumber; },
+        SetBankAccountNumber: function (value) { userData.bankAccountNumber = value; },
+        GetBankAccountNumber: function () { return userData.bankAccountNumber; },
 
         // description
-        SetDescription: function(value) { userData.description = value; },
-        GetDescription: function() { return userData.description; },
+        SetDescription: function (value) { userData.description = value; },
+        GetDescription: function () { return userData.description; },
 
-        Debug: function() {
+        ResetAllRegistrationVariables: function () {
+            userData = {
+                userID: "",
+                invitationCode: "",
+                email: "",
+                password: "",
+                bakeryImage: "",
+                bakeryName: "",
+                bakeryAddress: "",
+                bakeryPostalCode: "",
+                bankAccountNumber: null,
+                description: ""
+            };
+        },
+
+        Debug: function () {
             //print out debug info
             console.log(userData);
         }
@@ -497,11 +278,11 @@ app.factory('RegistrationDetails', function() {
 });
 
 
-app.factory('AddNewFoodService', function() {
+app.factory('AddNewFoodService', function () {
 
     var newFood = {
         foodName: "",
-        bakeryImage: "",
+        img : [],
         description: "",
         pricePerServing: "",
         quantityCap: "",
@@ -511,27 +292,26 @@ app.factory('AddNewFoodService', function() {
     return {
 
         // bakery Image
-        SetFoodName: function(value) { newFood.foodName = value; },
-        GetFoodName: function() { return newFood.foodName; },
-
-        // bakery Image
-        SetBakeryImage: function(value) { newFood.bakeryImage = value; },
-        GetBakeryImage: function() { return newFood.bakeryImage; },
+        SetFoodName: function (value) { newFood.foodName = value; },
+        GetFoodName: function () { return newFood.foodName; },
 
         // description
-        SetDescription: function(value) { newFood.description = value; },
-        GetDescription: function() { return newFood.description; },
+        SetDescription: function (value) { newFood.description = value; },
+        GetDescription: function () { return newFood.description; },
 
         // price per serving
-        SetPricePerServing: function(value) { newFood.pricePerServing = value; },
-        GetPricePerServing: function() { return newFood.pricePerServing; },
+        SetPricePerServing: function (value) { newFood.pricePerServing = value; },
+        GetPricePerServing: function () { return newFood.pricePerServing; },
 
         // quantity cap
-        SetQuantityCap: function(value) { newFood.quantityCap = value; },
-        GetQuantityCap: function() { return newFood.quantityCap; },
+        SetQuantityCap: function (value) { newFood.quantityCap = value; },
+        GetQuantityCap: function () { return newFood.quantityCap; },
 
+        // bakery Image
+        SetFoodImg: function (index, value) { newFood.img[index] = value; },
+        GetFoodImg: function (index) { return newFood.img[index]; },
 
-        Debug: function() {
+        Debug: function () {
             //print out debug info
             console.log(newFood);
         }

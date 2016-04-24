@@ -108,16 +108,23 @@ app.controller('FavoriteCtrl', function ($scope, $state, Items, CartItemData) {
 // Active controller
 app.controller('ActiveCtrl', function ($scope, $state, Items, $ionicSideMenuDelegate) {
     // get all items form Items model
-    $scope.items = Items.all();
+    $scope.products = { items: null };
+    $scope.products.items = Items.all();
+
+    $scope.$watch(function () { return Items.all() }, function (newVal, oldVal) {
+        if (typeof newVal !== 'undefined') {
+            $scope.products.items = Items.all();
+        }
+    });
 
     // toggle favorite
     $scope.toggleFav = function () {
-        $scope.item.faved = !$scope.item.faved;
+        $scope.products.item.faved = !$scope.products.item.faved;
     }
 
     $scope.refresh = function () {
-        console.log($scope.items);
-        $scope.items = Items.all();
+        console.log($scope.products.items);
+        $scope.products.items = Items.all();
     }
 
     // disabled swipe menu
@@ -209,81 +216,8 @@ app.controller('ChangeCtrl', function ($scope, $state) { })
 //controller for photographer.html
 app.controller('PhotographerCtrl', function ($scope, $state) { })
 
-//controller for post2.html
-app.controller('Post1Ctrl', function ($scope, $state) { })
-
-//controller for post2.html
-app.controller('Post2Ctrl', function ($scope, $state) { })
-
-
-//controller for post3.html
-app.controller('Post3Ctrl', function ($scope, $state) { })
-
-//controller for post4.html
-app.controller('Post4Ctrl', function ($scope, $state) { })
-
-
 //controller for listingconfirmation.html
 app.controller('ListingCtrl', function ($scope, $state) { })
-
-app.controller("AddToFood", function ($scope, $parse, GetAllFood, GetAllCategory, $cordovaCamera) {
-
-    $scope.allFood = GetAllFood;
-    $scope.newFood;
-    $scope.allFoodCategories = GetAllCategory;
-
-    $scope.takePicture = function (scopeValue) {
-        var options = {
-            quality: 75,
-            destinationType: Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
-            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
-
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-
-            // Get the model
-            var model = $parse(scopeValue);
-            // Assigns a value to it
-            model.assign($scope, "data:image/jpeg;base64," + imageData);
-
-            // Apply it to the scope
-            $scope.$apply();
-            // console.log("Testing" + $scope.img1URI);
-            console.log("Picture taken.");
-        }, function (err) {
-            // An error occured. Show a message to the user
-            console.log("Couldn't take a picture, there was an error");
-        });
-    }
-
-    $scope.AddFood = function () {
-        //  console.log($scope.form.categoryID.$id);
-        //console.log("$scope.img4URI" + $scope.img4URI);
-        console.log("Adding " + newFood)
-        $scope.allFood.$add({
-            "categoryID": "",
-            "description": $scope.newFood.description,
-            "foodName": $scope.newFood.foodName,
-            "halal": $scope.newFood.halal,
-            "img1": $scope.newFood.img1URI,
-            "img2": $scope.newFood.img2URI,
-            "img3": $scope.newFood.img3URI,
-            "img4": $scope.newFood.img4URI,
-            "likes": 0,
-            "price": $scope.newFood.price,
-            "stallID": "",
-            "preparationTime": $scope.newFood.prepTime,
-            "maxQuantity": $scope.newFood.maxQuantity
-        });
-    }
-
-});
 
 app.controller("HideNavaigation", function ($scope, $state, $ionicHistory) {
 
@@ -367,51 +301,9 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $
         RegistrationDetails.SetDescription($scope.user.description);
         RegistrationDetails.Debug();
     }
-
-    $scope.ResetAllRegistrationVariables = function () {
-        $scope.user = {
-            invitationCode: "",
-            email: "",
-            password: "",
-            bakeryImage: null,
-            bakeryName: "",
-            bakeryAddress: "",
-            bakeryPostalCode: "",
-            bankAccountNumber: null,
-            description: ""
-        };
-    }
 });
 
-app.controller('post2', function ($scope, $state, AddNewFoodService) {
-    $scope.newFood = AddNewFoodService;
-});
-
-app.controller('post4', function ($scope, $state, $firebaseArray, AddNewFoodService) {
-    $scope.newFood = AddNewFoodService;
-    $scope.AddFood = function () {
-        var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
-        var refFoods = new Firebase("https://burning-heat-7015.firebaseio.com/food");
-        var refFoodsAdd = $firebaseArray(refFoods);
-        refFoodsAdd.$add({
-            "categoryID": "",
-            "description": $scope.newFood.description,
-            "foodName": $scope.newFood.foodName,
-            "halal": $scope.newFood.halal,
-            "img1": "",
-            "img2": "",
-            "img3": "",
-            "img4": "",
-            "likes": 0,
-            "price": $scope.newFood.pricePerServing,
-            "endDate": $scope.newFood.endDate,
-            "maxQuantity": $scope.newFood.quantityCap
-        })
-    }
-});
-
-
-app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddNewFoodService, $cordovaCamera, $firebaseArray, $firebaseObject, Auth) {
+app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordovaCamera, $firebaseArray, $firebaseObject, Auth, $ionicHistory) {
 
     var newFood = {
         userID: "",
@@ -420,41 +312,14 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
         description: "",
         pricePerServing: "",
         quantityCap: "",
-
     };
+
     $scope.newFood = AddNewFoodService;
     var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
     var refFood = FBref.child("food");
     $scope.firebaseAdd = $firebaseArray(refFood);
-    //console.log(Auth.$getAuth().uid);
-    //console.log(Auth.$getAuth());
 
-    var onComplete = function (error) {
-        if (error) {
-            console.log('Synchronization failed');
-        } else {
-            console.log('Synchronization succeeded');
-            var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
-            var itemsFB = $firebaseArray(newfirebaseProducts);
-            itemsFB.$loaded().then(function () {
-                var key = "food1";
-                var json = {};
-                json[key] = true;
-                console.log(json);
-
-                // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
-                // var itemsFB = $firebaseArray(newfirebaseProducts);
-                // itemsFB.$loaded().then(function () {
-                //     console.log("Before: " + itemsFB.length);
-                // });
-
-                newfirebaseProducts.update(json);
-                console.log("Update Called");
-            });   
-        }
-    };
-
-    $scope.takePicture = function (scopeValue) {
+    $scope.takePicture = function (index, scopeValue) {
         var options = {
             quality: 75,
             destinationType: Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
@@ -474,7 +339,7 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
             // Assigns a value to it
             model.assign($scope, "data:image/jpeg;base64," + imageData);
 
-            // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
+            AddNewFoodService.SetFoodImg(index, model);
 
             // Apply it to the scope
             $scope.$apply();
@@ -483,33 +348,21 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
-            var refUsers = ref.child("stalls");
+            //var refUsers = ref.child("stalls");
         });
     }
 
-    $scope.SavePost = function () {
-        RegistrationDetails.
-            AddNewFoodService.SetDescription($scope.newFood.userID);
-        AddNewFoodService.SetDescription($scope.user.description);
-        AddNewFoodService.SetDescription($scope.user.description);
-        AddNewFoodService.SetDescription($scope.user.description);
-        AddNewFoodService.SetDescription($scope.user.description);
-        AddNewFoodService.Debug();
-    }
-
     $scope.AddFood = function () {
-        //  console.log($scope.form.categoryID.$id);
-        //console.log("$scope.img4URI" + $scope.img4URI);
-        //console.log("Adding " + newFood)
+
         $scope.firebaseAdd.$add({
             "categoryID": "",
             "description": $scope.newFood.description,
             "foodName": $scope.newFood.foodName,
             "halal": $scope.newFood.halal,
-            "img1": "",
-            "img2": "",
-            "img3": "",
-            "img4": "",
+            "img1": $scope.newFood.img[0],
+            "img2": $scope.newFood.img[1],
+            "img3": $scope.newFood.img[2],
+            "img4": $scope.newFood.img[3],
             "likes": 0,
             "price": $scope.newFood.pricePerServing,
             "stallID": "",
@@ -522,16 +375,15 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
 
             var refUsers = FBref.child("stalls");
             var refUsersCollection = $firebaseArray(refUsers);
-            //console.log("What");
+
             refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
                 var series = dataSnapshot.val();
                 var data = dataSnapshot.exportVal();
-                //console.log("the");
 
                 if (series) {
                     // This prints the current object in the array of products under their user id
                     console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
-                    
+
                     // This is their user ID
                     console.log(Object.keys(data)[0]);
                     var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
@@ -539,53 +391,32 @@ app.controller('AddNewFood', function ($scope, $parse, RegistrationDetails, AddN
                     obj.$bindTo($scope, "data").then(function () {
                         console.log($scope.data);
                         if ($scope.data.hasOwnProperty("products")) {
-                            console.log("HAVE!");
 
                             var key = ref.key();
                             var json = {};
                             json[key] = true;
                             console.log(json);
 
-                            // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
-                            // var itemsFB = $firebaseArray(newfirebaseProducts);
-                            // itemsFB.$loaded().then(function () {
-                            //     console.log("Before: " + itemsFB.length);
-                            // });
-
-                            firebaseProducts.child("products").update(json, onComplete);
-                            console.log("Update Called");
-                            // var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
-                            // var itemsFB = $firebaseArray(newfirebaseProducts);
-                            // itemsFB.$loaded().then(function () {
-                            //     console.log("After: " + itemsFB.length);
-                            // });
+                            firebaseProducts.child("products").update(json);
                         }
                         else {
-                            console.log("NOPE");
-
                             var key = ref.key();
                             var products = {};
                             products[key] = true;
                             console.log(products);
 
-                            firebaseProducts.child("products").update(products, onComplete);
-                            var newfirebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/-KDdoqZkDI4GCXm0YyZS/products");
-                            var itemsFB = $firebaseArray(newfirebaseProducts);
-                            itemsFB.$loaded().then(function () {
-                                console.log(itemsFB.length);
-                            });
-                            //$scope.data.products = { key : true };
+                            firebaseProducts.child("products").update(products);
                         }
                     })
-                    //console.log(dataSnapshot.child("products").val());
-                    //var obj = $firebaseObject(dataSnapshot.child("products"));
                 }
             });
         });
+
+
     }
 });
 
-app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, $firebaseArray, RegistrationDetails) {
+app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, $firebaseArray, RegistrationDetails, $ionicLoading, $ionicPopup) {
 
     // Include and run this controller only when your form is about to register
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -595,6 +426,11 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
     $scope.firebaseAdd = $firebaseArray(refStalls);
 
     $scope.RegisterToFirebase = function () {
+
+        $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner>'
+        });
+
         // attempt to register a new user
         $scope.authObj.$createUser({
             email: RegistrationDetails.GetEmail(),
@@ -627,8 +463,18 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
             });
         }).then(function (authData) {
             console.log("Logged in as:", authData.uid);
+            $ionicLoading.hide();
+
+            RegistrationDetails.ResetAllRegistrationVariables();
+
             $state.go('post');
         }).catch(function (error) {
+            $ionicLoading.hide();
+
+            $ionicPopup.alert({
+                title: 'Registration failed!',
+                template: 'An Error has occured! : ' + error
+            });
             console.error("Error: ", error);
         });
     };
@@ -699,9 +545,8 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         $scope.class8 = "animated fadeInRight";
         $scope.isBakeryreasonVisible = true;
     }
-    
-    $scope.ResetAnimatedCardVariables = function () 
-    {
+
+    $scope.ResetAnimatedCardVariables = function () {
         $scope.isRegisterVisible = false;
         $scope.isInvitationVisible = false;
         $scope.isCheckemailVisible = false;
@@ -719,21 +564,21 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
     $scope.wrongPasswordMessage = "";
 
     $scope.TryLogin = function () {
-        
+
         $ionicLoading.show({
             template: '<ion-spinner></ion-spinner>'
         });
-        
+
         Auth.$authWithPassword({
             email: $scope.email,
             password: $scope.password
         }).then(function (authData) {
             console.log("Logged in as:", authData.uid);
-            
+
             $scope.email = "";
             $scope.password = "";
             $scope.wrongPasswordMessage = "";
-            
+
             $ionicLoading.hide();
             $state.go("post");
         }).catch(function (error) {
@@ -741,7 +586,7 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
 
             $scope.wrongPasswordMessage = "The specified password is incorrect.";
             $ionicLoading.hide();
-            
+
             $ionicPopup.alert({
                 title: 'Login failed!',
                 template: 'Please check your credentials!'
@@ -768,26 +613,14 @@ app.controller("HideSideBarOnThisView", function ($scope, $ionicSideMenuDelegate
     });
 });
 
-app.controller("HideHamburgerMenu", function ($scope, $state) {
-
-    $scope.isStateLogin = function () {
-
-        return $state.is('login') || $state.is('register');
-    };
-});
-
 app.controller("DeletePreviousNavigation", function ($scope, $ionicHistory) {
 
-    $scope.$on('$ionicView.beforeEnter', function () {
-        //runs every time the page activates
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
+    $scope.test = function () {
 
         // remove your nav router history
         $ionicHistory.nextViewOptions({
-            disableAnimate: false,
-            disableBack: true,
+            disableBack: false,
             historyRoot: true
         });
-    });
+    }
 });

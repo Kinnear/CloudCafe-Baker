@@ -10,7 +10,6 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="font-awesome.min.css">
 
     <!-- stripe
       $ bower install angular-stripe-checkout
@@ -18,16 +17,6 @@
     -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     
-    <!-- jQuery is used for JavaScript animations (include this before angular.js) -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  
-  <!-- required module to enable animation support in AngularJS -->
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  
-  
-  <!-- for JavaScript Animations -->
-  <script src="js/animations.js"></script>
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
@@ -76,8 +65,7 @@
 
           <!-- Burger button -->
           <ion-nav-buttons side="left">
-            <button class="button button-icon button-dark ion-navicon" menu-toggle="left"  ng-controller="HideHamburgerMenu" ng-hide="isStateLogin()">
-            <!--<button class="button button-icon button-dark ion-navicon" menu-toggle="left" ng-controller="HideHamburgerMenu" ng-hide="isStateLogin()">-->
+            <button class="button button-icon button-dark ion-navicon" menu-toggle="left"ng-hide="isStateLogin()">
             </button>
           </ion-nav-buttons>
 

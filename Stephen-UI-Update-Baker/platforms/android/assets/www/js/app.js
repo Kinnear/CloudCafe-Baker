@@ -50,7 +50,9 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
     }
 })
 
-.config(function($stateProvider, $urlRouterProvider, StripeCheckoutProvider) {
+.config(function($stateProvider, $urlRouterProvider, StripeCheckoutProvider, $ionicConfigProvider) {
+
+$ionicConfigProvider.tabs.position('bottom');
 
     // Define your STRIPE_API_PUBLISHABLE_KEY
     StripeCheckoutProvider.defaults({key: STRIPE_API_PUBLISHABLE_KEY});
@@ -83,20 +85,20 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
     }
   })
 
-  // register screen
-  .state('register', {
-    url: '/register',
-    templateUrl: 'templates/register.html',
-    controller: 'RegisterBaker',
-    resolve: {
-      // controller will not be loaded until $waitForAuth resolves
-      // Auth refers to our $firebaseAuth wrapper in the example above
-      "currentAuth": ["Auth", function(Auth) {
-        // $waitForAuth returns a promise so the resolve waits for it to complete
-        return Auth.$waitForAuth();
-      }]
-    }
-  })
+  // // register screen
+  // .state('register', {
+  //   url: '/register',
+  //   templateUrl: 'templates/register.html',
+  //   controller: 'RegisterBaker',
+  //   resolve: {
+  //     // controller will not be loaded until $waitForAuth resolves
+  //     // Auth refers to our $firebaseAuth wrapper in the example above
+  //     "currentAuth": ["Auth", function(Auth) {
+  //       // $waitForAuth returns a promise so the resolve waits for it to complete
+  //       return Auth.$waitForAuth();
+  //     }]
+  //   }
+  // })
   
   // Community detail
   .state('community', {
@@ -469,7 +471,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
 .state('post2', {
     url: '/post2',
     templateUrl: 'templates/post2.html',
-    controller: 'Post2Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above
@@ -485,7 +487,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
 .state('post3', {
     url: '/post3',
     templateUrl: 'templates/post3.html',
-    controller: 'Post3Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above
@@ -501,7 +503,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
 .state('post4', {
     url: '/post4',
     templateUrl: 'templates/post4.html',
-    controller: 'Post4Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above

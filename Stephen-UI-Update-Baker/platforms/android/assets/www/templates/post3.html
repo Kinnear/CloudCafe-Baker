@@ -1,22 +1,20 @@
-<ion-view view-title="For home bakers">
-
-
+<ion-view view-title="For home bakers" ng-controller="DeletePreviousNavigation">
   <ion-content>
-      <div class="list">
-            
+      <div class="list" ng-controller="AddNewFood">
+            {{newFood}}
             <label class="item item-input item-stacked-label">
                 <span class="input-label">End date</span>
-                <input type="date" placeholder="orders must be placed before 2359hrs of the selected date" required>
+                <input type="date" ng-model="newFood.endDate" placeholder="orders must be placed before 2359hrs of the selected date" required >
             </label>
             
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Maximum Quantity from now till end date</span>
-                <input type="tel" placeholder="e.g. 20" required>
+                <input type="tel" ng-model="newFood.maxQuantity" placeholder="e.g. 20" required>
             </label>
+            
+            <button class="button button-block button-assertive" ui-sref="active" ng-click="AddFood()">
+            Next
+            </button>
       </div>
-       
-        <button class="button button-block button-assertive button-bottom" ui-sref="listing">
-        Next
-        </button>
   </ion-content>
 </ion-view>

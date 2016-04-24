@@ -23,19 +23,27 @@
                 <div class="input-label">
                 Preparation Time (days)
                 </div>
-                <select ng-model="newFood.quantityCap">
-                    
+                <select ng-model="newFood.prepTime">
                     <option>7</option>
                     <option>6</option>
                     <option>5</option>
                     <option>4</option>
                     <option selected>3</option>
-                <option>2</option>
-                <option>1</option>
+                    <option>2</option>
+                    <option>1</option>
                 </select>
             </label>
             
-        <button class="button button-block button-assertive button-bottom" ui-sref="post2">
+            <li class="item item-toggle">
+                Halal
+                <label class="toggle toggle-assertive">
+                    <input type="checkbox" ng-model="newFood.halal">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+        <button class="button button-block button-assertive" ui-sref="post2">
         Next
         </button>
 <!--<ion-view view-title="Post" >
