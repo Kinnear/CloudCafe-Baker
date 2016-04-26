@@ -240,11 +240,26 @@
 
                                 <!--at this point redirect to post.html-->
 
-                                <div class="padding-top">
-                                    <button class="button button-block button-assertive" type="submit">
+                                <div class="padding-top" ng-controller="MyController">
+                                    <button class="button button-block button-assertive" type="submit" ng-click="openModal(class)">
                                 Start Baking
                             </button>
-                                </div>
+                            
+      <script id = "my-modal.html" type = "text/ng-template">
+    <ion-modal-view>
+        
+        <ion-header-bar class="bar bar-header bar-light">
+            <h1 class="title">Terms & Conditions</h1>
+            
+        </ion-header-bar>
+            
+        <ion-content class="stable-bg">
+           Insert T&C Document here
+           <button class = "button button-icon icon-left ion-close-round" ng-click = "closeModal()"></button>
+            <button class = "button button-block button-calm" ng-click = "closeModal()">Accept</button>
+        </ion-content>
+        
+    </ion-modal-view>
                             </form>
                         </div>
                     </div>
