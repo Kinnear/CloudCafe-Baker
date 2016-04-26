@@ -1,4 +1,4 @@
-<ion-view view-title="For home bakers" ng-controller="DeletePreviousNavigation">
+<ion-view view-title="For home bakers" ng-controller="NavHistoryModifier">
     <ion-content>
         <div class="list" ng-controller="AddNewFood">
             {{newFood}}
@@ -11,7 +11,7 @@
                 <span class="input-label">Maximum Quantity from now till end date</span>
                 <input type="tel" ng-model="newFood.maxQuantity" placeholder="e.g. 20" required>
             </label>
-            <button class="button button-block button-assertive" ui-sref="active" ng-click="test(); AddFood()">
+            <button class="button button-block button-assertive" ui-sref="active" ng-click="NextViewIsNavRoot(); AddFood()">
             Next
             </button>
         </div>

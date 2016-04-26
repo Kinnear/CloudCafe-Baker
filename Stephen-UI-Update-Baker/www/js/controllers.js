@@ -219,20 +219,13 @@ app.controller('PhotographerCtrl', function ($scope, $state) { })
 //controller for listingconfirmation.html
 app.controller('ListingCtrl', function ($scope, $state) { })
 
-app.controller("HideNavaigation", function ($scope, $state, $ionicHistory) {
-
-    $scope.isStateLogin = function () {
-        return $state.is('login');
-    };
-});
-
 app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $cordovaCamera) {
 
     $scope.user = {
         invitationCode: "",
         email: "",
         password: "",
-        bakeryImage: null,
+        bakeryImage: undefined,
         bakeryName: "",
         bakeryAddress: "",
         bakeryPostalCode: "",
@@ -260,10 +253,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $
             // Assigns a value to it
             model.assign($scope, "data:image/jpeg;base64," + imageData);
 
-            // RegistrationDetails.SetBakeryImage(scope.user.bakeryImage);
-
-            // Apply it to the scope
-            $scope.$apply();
+            RegistrationDetails.SetBakeryImage($scope.user.bakeryImage);
 
             console.log("Picture taken.");
         }, function (err) {
@@ -334,21 +324,23 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
 
-            // Get the model
+            // This sets our data in the scope to show the image.
+            // In other words sets our 'scopeValue' parameter object to be the returned img 
             var model = $parse(scopeValue);
-            // Assigns a value to it
             model.assign($scope, "data:image/jpeg;base64," + imageData);
 
-            AddNewFoodService.SetFoodImg(index, model);
+            // Save our image to the service 
+            AddNewFoodService.SetFoodImg(index, "data:image/jpeg;base64," + imageData);
+
+            RegistrationDetails.SetBakeryImage("data:image/jpeg;base64," + $scope.user.bakeryImage);
 
             // Apply it to the scope
-            $scope.$apply();
+            // $scope.$apply();
 
             console.log("Picture taken.");
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
-            //var refUsers = ref.child("stalls");
         });
     }
 
@@ -359,10 +351,10 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
             "description": $scope.newFood.description,
             "foodName": $scope.newFood.foodName,
             "halal": $scope.newFood.halal,
-            "img1": $scope.newFood.img[0],
-            "img2": $scope.newFood.img[1],
-            "img3": $scope.newFood.img[2],
-            "img4": $scope.newFood.img[3],
+            "img1": AddNewFoodService.GetFoodImg(0),
+            "img2": AddNewFoodService.GetFoodImg(1),
+            "img3": AddNewFoodService.GetFoodImg(2),
+            "img4": AddNewFoodService.GetFoodImg(3),
             "likes": 0,
             "price": $scope.newFood.pricePerServing,
             "stallID": "",
@@ -411,8 +403,6 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
                 }
             });
         });
-
-
     }
 });
 
@@ -613,14 +603,24 @@ app.controller("HideSideBarOnThisView", function ($scope, $ionicSideMenuDelegate
     });
 });
 
-app.controller("DeletePreviousNavigation", function ($scope, $ionicHistory) {
+app.controller("NavHistoryModifier", function ($scope, $ionicHistory) {
 
-    $scope.test = function () {
-
+    $scope.NextViewIsNavRoot = function () {
         // remove your nav router history
         $ionicHistory.nextViewOptions({
             disableBack: false,
             historyRoot: true
         });
     }
+});
+
+app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
+
+    $scope.userBakerProfile = UserBakerProfile.GetProfile();
+
+    $scope.$on('bakeryUser:updated', function (event, data) {
+        // you could inspect the data to see if what you care about changed, or just update your own scope
+        $scope.userBakerProfile = UserBakerProfile.GetProfile();
+        console.log($scope.userBakerProfile.bakeryImage);
+    });
 });

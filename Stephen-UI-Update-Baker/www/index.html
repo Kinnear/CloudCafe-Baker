@@ -81,10 +81,14 @@
       <ion-content class="light-bg">
 
         <!-- User profile -->
-        <div class="text-center">
-          <img class="profile-picture circle" menu-close="" src="img/people/adam.jpg">
-          <span class="dark"><h4>Baker One</h4>
-              <h5>Bakery Location</h5></span>
+        <div class="text-center" ng-controller="DisplayUserBakeryImage">
+          
+          <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage !== undefined" ng-src="{{userBakerProfile.bakeryImage}}">
+          <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
+            
+          <!--<img class="profile-picture circle" menu-close="" src="img/people/adam.jpg">-->
+          <span class="dark"><h4>{{userBakerProfile.bakeryName}}</h4>
+              <h5>{{userBakerProfile.bakeryAddress}}</h5></span>
         </div>
 
         <div class="list" menu-close="">

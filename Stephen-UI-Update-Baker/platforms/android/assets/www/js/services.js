@@ -1,11 +1,5 @@
 var app = angular.module('starter.services', ["ionic", "ngMessages", "firebase", "ngCordova"]);
 
-// // Our Firebase Data Factory retriever
-// app.factory("FavouriteData", function($firebaseArray) {
-//     var itemsRef = new Firebase("https://burning-heat-7015.firebaseio.com/");
-//     return $firebaseArray(itemsRef);
-// })
-
 // our authenticated user details
 app.factory("Auth", ["$firebaseAuth", function ($firebaseAuth) {
     var ref = new Firebase("https://burning-heat-7015.firebaseio.com/");
@@ -19,8 +13,8 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
     var refUsers = refFB.child("stalls");
     var refUsersCollection = $firebaseArray(refUsers);
     $ionicLoading.show({
-            template: '<ion-spinner></ion-spinner>'
-        });
+        template: '<ion-spinner></ion-spinner>'
+    });
     refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
         // User Data, This is to get the key so that I can access their products. 
         var data = dataSnapshot.exportVal();
@@ -28,8 +22,7 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
         var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString() + "/products");
         var itemsFB = $firebaseArray(firebaseProducts);
 
-        console.log(data);
-        
+        // console.log(data);
 
         itemsFB.$loaded().then(function () {
             itemsFB.$ref().on("value", function (snapshot) {
@@ -48,9 +41,7 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
                         products.items.push(newpost2);
                     });
                 }
-
                 $ionicLoading.hide();
-
             })
         })
     });
@@ -286,16 +277,43 @@ app.factory('RegistrationDetails', function () {
     };
 });
 
+app.service('UserBakerProfile', function ($rootScope, Auth, $firebaseObject) {
+
+    var userBakerProfile = {};
+    
+    var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
+
+    Auth.$onAuth(function (authData) {
+       if (authData) {
+            // make a query to firebase for the user data
+            var refUsers = FBref.child("stalls");
+            var refUsersCollection = $firebaseObject(refUsers);
+
+            refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).on("value", function (dataSnapshot) {
+                userBakerProfile = dataSnapshot.child(Object.keys(dataSnapshot.val())[0]).val();
+                console.log(userBakerProfile);
+                $rootScope.$broadcast('bakeryUser:updated', userBakerProfile);
+            });
+        } else {
+            console.log("Logged out");
+        }
+    });
+    
+    // return userBakerProfile;
+
+    return {
+        GetProfile: function () { return userBakerProfile; },
+    };
+});
 
 app.factory('AddNewFoodService', function () {
 
     var newFood = {
         foodName: "",
-        img : [],
+        img: [],
         description: "",
         pricePerServing: "",
         quantityCap: "",
-
     };
 
     return {
@@ -326,3 +344,4 @@ app.factory('AddNewFoodService', function () {
         }
     };
 });
+
