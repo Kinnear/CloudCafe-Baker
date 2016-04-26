@@ -255,3 +255,12 @@
   color: red;
   font-family:inherit;
 }
+
+.userPic{
+    margin:5%;
+    padding: 0%;
+}
+
+.userPanel{
+  padding-left:2%;
+}

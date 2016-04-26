@@ -61,7 +61,7 @@
       <ion-nav-bar class="bar-balanced" align-title="center">
         <!-- Back button -->
         <ion-nav-back-button>
-          <span class="dark"> </span>
+          <span class="light"> </span>
         </ion-nav-back-button>
 
         <!-- Burger button -->
@@ -78,19 +78,20 @@
 
     <!-- Left menu -->
     <ion-side-menu side="left">
-      <ion-content class="light-bg">
+      <ion-content class="stable-bg">
 
         <!-- User profile -->
-        <div class="text-center" ng-controller="DisplayUserBakeryImage">
+        <div class="userPic"  style="text-align:center;" ng-controller="DisplayUserBakeryImage">
           
           <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage !== undefined" ng-src="{{userBakerProfile.bakeryImage}}">
           <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
             
           <!--<img class="profile-picture circle" menu-close="" src="img/people/adam.jpg">-->
           <span class="dark"><h4>{{userBakerProfile.bakeryName}}</h4>
-              <h5>{{userBakerProfile.bakeryAddress}}</h5></span>
+              <p style="width:50%; margin-left:25%;">{{userBakerProfile.bakeryAddress}}</p></span>
         </div>
-
+        
+        <div class="userPanel">
         <div class="list" menu-close="">
 
           <div class="item item-icon-left" ui-sref="post">
@@ -117,7 +118,8 @@
             <span class="dark"><i class="icon ion-log-out"></i>
               Logout</span>
           </div>
-
+        </div>
+        
       </ion-content>
 
     </ion-side-menu>
