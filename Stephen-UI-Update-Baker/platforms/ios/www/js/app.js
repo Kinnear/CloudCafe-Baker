@@ -85,20 +85,20 @@ $ionicConfigProvider.tabs.position('bottom');
     }
   })
 
-  // register screen
-  .state('register', {
-    url: '/register',
-    templateUrl: 'templates/register.html',
-    controller: 'RegisterBaker',
-    resolve: {
-      // controller will not be loaded until $waitForAuth resolves
-      // Auth refers to our $firebaseAuth wrapper in the example above
-      "currentAuth": ["Auth", function(Auth) {
-        // $waitForAuth returns a promise so the resolve waits for it to complete
-        return Auth.$waitForAuth();
-      }]
-    }
-  })
+  // // register screen
+  // .state('register', {
+  //   url: '/register',
+  //   templateUrl: 'templates/register.html',
+  //   controller: 'RegisterBaker',
+  //   resolve: {
+  //     // controller will not be loaded until $waitForAuth resolves
+  //     // Auth refers to our $firebaseAuth wrapper in the example above
+  //     "currentAuth": ["Auth", function(Auth) {
+  //       // $waitForAuth returns a promise so the resolve waits for it to complete
+  //       return Auth.$waitForAuth();
+  //     }]
+  //   }
+  // })
   
   // Community detail
   .state('community', {
@@ -471,7 +471,7 @@ $ionicConfigProvider.tabs.position('bottom');
 .state('post2', {
     url: '/post2',
     templateUrl: 'templates/post2.html',
-    controller: 'Post2Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above
@@ -487,7 +487,7 @@ $ionicConfigProvider.tabs.position('bottom');
 .state('post3', {
     url: '/post3',
     templateUrl: 'templates/post3.html',
-    controller: 'Post3Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above
@@ -503,7 +503,7 @@ $ionicConfigProvider.tabs.position('bottom');
 .state('post4', {
     url: '/post4',
     templateUrl: 'templates/post4.html',
-    controller: 'Post4Ctrl',
+    controller: 'AddNewFood',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above
