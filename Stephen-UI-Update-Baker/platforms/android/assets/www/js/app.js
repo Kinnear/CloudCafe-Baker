@@ -435,11 +435,11 @@ $ionicConfigProvider.tabs.position('bottom');
     }
   })
   
-//state for shop
-.state('shop', {
-    url: '/shop',
-    templateUrl: 'templates/shop.html',
-    controller: 'ShopCtrl',
+//state for profile
+.state('profile', {
+    url: '/profile',
+    templateUrl: 'templates/profile.html',
+    controller: 'ProfileEditor',
     resolve: {
       // controller will not be loaded until $requireAuth resolves
       // Auth refers to our $firebaseAuth wrapper in the example above

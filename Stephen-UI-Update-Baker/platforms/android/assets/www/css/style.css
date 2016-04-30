@@ -1,18 +1,27 @@
 /* Empty. Add your own CSS if you like */
 
 /*general font*/
+
+.bar.bar-balanced {
+    border-color: #cb0a73;
+    background-color: #cb0a73;
+    
+    color: #fff; }
+    .bar.bar-balanced .title {
+      color: #fff; }
+      
 .balanced, a.balanced {
-  color: #B72C6C; }
+  color: #cb0a73; }
 
 .balanced-bg {
-  background-color: #B72C6C; }
+  background-color: #cb0a73; }
 
 .balanced-border {
-  border-color: #B72C6C; }
+  border-color: #cb0a73; }
   
 .tabs .tab-item .badge.badge-balanced,
 .badge.badge-balanced {
-  background-color: #B72C6C;
+  background-color: #cb0a73;
   color: #fff; }
 
 /* for index.html*/  
@@ -59,19 +68,19 @@
 /* Back this project button*/
 .button.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff;
     border-radius: 0px;}
     .button.button-balanced:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-balanced.active, .button.button-balanced.activated {
-      background-color: #B72C6C; }
+      background-color: #cb0a73; }
       
 /*      
       .button.button-footer.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff;
     border-radius: 0px;
     bottom: 49px;}*/
@@ -170,7 +179,7 @@
     
 .button.button-block.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff; }
     .button.button-balanced:hover {
       color: #CC6B98;
@@ -245,4 +254,13 @@
 .errorMessage{
   color: red;
   font-family:inherit;
+}
+
+.userPic{
+    margin:5%;
+    padding: 0%;
+}
+
+.userPanel{
+  padding-left:2%;
 }

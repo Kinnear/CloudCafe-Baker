@@ -31,7 +31,32 @@ var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebas
         };
     });;
 
-
+app.controller('MyController', function ($scope, $ionicModal) {
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.modal = modal;
+    });
+    $scope.openModal = function () {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function () {
+        $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+        $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function () {
+        // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function () {
+        // Execute action
+    });
+});
 
 //app.service('productService', function() {
 //  var productList = [];
@@ -173,9 +198,6 @@ app.controller('SettingsCtrl', function ($scope, $state) { })
 
 //controller for Support support.html
 app.controller('SupportCtrl', function ($scope, $state) { })
-
-//controller for Shop shop.html
-app.controller('ShopCtrl', function ($scope, $state) { })
 
 //controller for location.html
 app.controller('LocationCtrl', function ($scope, $state) { })
@@ -504,6 +526,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         $scope.class2 = "animated fadeOutLeft";
         $scope.class3 = "animated fadeInRight";
         $scope.isInvitationVisible = true;
+        console.log($scope.class3);
     }
 
     $scope.changeClass3 = function () {
@@ -614,19 +637,6 @@ app.controller("NavHistoryModifier", function ($scope, $ionicHistory) {
     }
 });
 
-// app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
-
-//     var userBakerProfile = UserBakerProfile
-//     $scope.userBakerProfile.bakeryImage = userBakerProfile.bakeryImage;
-
-//     $scope.$on('bakeryUser:updated', function (event, data) {
-//         // you could inspect the data to see if what you care about changed, or just update your own scope
-//         $scope.userBakerProfile = userBakerProfile.bakeryImage;
-//         console.log(UserBakerProfile.bakeryImage);
-//     });
-
-// });
-
 app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
 
     $scope.userBakerProfile = UserBakerProfile.GetProfile();
@@ -634,6 +644,30 @@ app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
     $scope.$on('bakeryUser:updated', function (event, data) {
         // you could inspect the data to see if what you care about changed, or just update your own scope
         $scope.userBakerProfile = UserBakerProfile.GetProfile();
-        console.log($scope.userBakerProfile.bakeryImage);
+        // console.log($scope.userBakerProfile.bakeryImage);
     });
 });
+
+//Edits the profile for the baker
+app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImageGalleryService) {
+
+    $scope.bakerProfile = UserBakerProfile.GetProfile();
+
+    $scope.$on('bakeryUser:updated', function (event, data) {
+        // you could inspect the data to see if what you care about changed, or just update your own scope
+        $scope.bakerProfile = UserBakerProfile.GetProfile();
+    });
+
+    $scope.modifyProfile = function () {
+        UserBakerProfile.UpdateProfile();
+    }
+
+    $scope.updateProfilePicture = function () {
+        var temp = CordovaImageGalleryService.ChoosePictureFromGallery().then(function (imageData) {
+            $scope.bakerProfile.bakeryImage = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+            // An error occured. Show a message to the user
+            console.log("Couldn't take a picture, there was an error");
+        });;
+    }
+})

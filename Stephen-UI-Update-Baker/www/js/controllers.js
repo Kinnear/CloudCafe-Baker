@@ -649,7 +649,7 @@ app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
 });
 
 //Edits the profile for the baker
-app.controller('ProfileEditor', function ($scope, UserBakerProfile) {
+app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImageGalleryService) {
 
     $scope.bakerProfile = UserBakerProfile.GetProfile();
 
@@ -658,7 +658,16 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile) {
         $scope.bakerProfile = UserBakerProfile.GetProfile();
     });
 
-    $scope.ModifyProfile = function () {
+    $scope.modifyProfile = function () {
         UserBakerProfile.UpdateProfile();
+    }
+
+    $scope.updateProfilePicture = function () {
+        var temp = CordovaImageGalleryService.ChoosePictureFromGallery().then(function (imageData) {
+            $scope.bakerProfile.bakeryImage = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+            // An error occured. Show a message to the user
+            console.log("Couldn't take a picture, there was an error");
+        });;
     }
 })

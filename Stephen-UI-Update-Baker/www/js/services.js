@@ -330,6 +330,32 @@ app.service('UserBakerProfile', function ($rootScope, Auth, $firebaseObject, $io
     };
 });
 
+app.factory('CordovaImageGalleryService', function ($cordovaCamera, $parse) {
+
+    return {
+
+        // Returns a promise that contains the image data
+        // use .then(function name(params) {
+        //  //params contains all the info from the response
+        // })
+        ChoosePictureFromGallery: function () {
+            var options = {
+                quality: 75,
+                destinationType: Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
+                sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+                allowEdit: true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100, // height and width of the image
+                targetHeight: 100,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false
+            };
+
+            return $cordovaCamera.getPicture(options);
+        }
+    };
+});
+
 app.factory('AddNewFoodService', function () {
 
     var newFood = {

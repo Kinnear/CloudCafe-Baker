@@ -95,26 +95,59 @@
                         </form>
                         
                         <!--REMEMBER TO PUT LINK TO REQUEST INVITATION CODE HERE!-->
-                        <button class="button  button-outline button-block button-assertive" ng-click="changeClass2()">
+                        <button class="button button-outline button-block button-assertive" ng-click="changeClass2()">
                             Get Invited
                         </button>
                     </div>
                 </div>
+            </div>
+            
+            <!--invitation route-->
 
+                <div ng-class="class3" ng-if="isInvitationVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="TryLogin()">
+                            <div class="list list-inset">
+                                <label class="item item-input item-floating-label">
+                                    <span class="input-label">Email</span>
+                                <input type="text" placeholder="Email" required>
+                            </label>
+
+                            </div>
+                            <button class="button button-outline button-block button-assertive" type="submit" ng-click="changeClass3()">
+                            Email me
+                        </button>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div ng-class="class4" ng-if="isCheckemailVisible">
+                    <div class="card">
+                        <div class="text-center">
+                            <br>
+                            <br> Please check your email for our invitation!
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            
                 <!--registration route-->
 
                 <div ng-class="class5" ng-if="isBakerybioVisible">
                     <div class="card">
                         <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
-
+                            <div class="text-center">
                             <div class="item item-text-wrap">
-                                Welcome aboard! Give your bakery an awesome name! Do note that this name will be permanent!
+                                Welcome aboard. <br>Let's build your bakery.
                             </div>
-
-                            <div>
+                            </div>
+                            <div class="text-center" style="margin-top:5%;">
                                 <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
                                 <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
-                                <button class="button" ng-click="takePicture('user.bakeryImage')">Home Photo</button>
+                                <button class="button" ng-click="takePicture('user.bakeryImage')">Upload Photo</button>
                             </div>
 
                             <div class="list list-inset">
@@ -146,9 +179,17 @@
                 <div ng-class="class6" ng-if="isBakerylocationVisible">
                     <div class="card">
                         <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
-
+                            
+                            <div class="text-center">
+                            <div class="item item-text-wrap">
+                                
+                                Cloud Café delivers your products for you!<br>
+                                Input your location to get started
+                            </div>
+                            </div>
+                            
                             <div class="list list-inset">
-
+                                
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Bakery Address</span>      
                                 <input type="text" name="address" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
@@ -186,7 +227,11 @@
                 <div ng-class="class7" ng-if="isBakeryaccountVisible">
                     <div class="card">
                         <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
-
+                            <div class="text-center">
+                            <div class="item item-text-wrap">
+                                Bakers can expect to receive earnings weekly via bank transfer
+                            </div>
+                            </div>
                             <div class="list list-inset">
 
                                 <label class="item item-input item-floating-label">
@@ -240,50 +285,34 @@
 
                                 <!--at this point redirect to post.html-->
 
-                                <div class="padding-top">
-                                    <button class="button button-block button-assertive" type="submit">
+                                <div class="padding-top" ng-controller="MyController">
+                                    <button class="button button-block button-assertive" type="submit" ng-click="openModal(class)">
                                 Start Baking
                             </button>
-                                </div>
+                            
+      <script id = "my-modal.html" type = "text/ng-template">
+    <ion-modal-view>
+        
+        <ion-header-bar class="bar bar-header bar-balanced">
+            <div class="text-center"><h1 class="title">T & Cs</h1></div>
+            <button class = "button button-icon icon-left" ng-click = "closeModal()">Close</button>
+            <button class = "button button-icon" ng-click = "closeModal()">Accept</button>
+        </ion-header-bar>
+            
+        <ion-content class="stable-bg">
+           Insert T&C Document here
+           
+        </ion-content>
+        
+    </ion-modal-view>
                             </form>
                         </div>
                     </div>
                 </div>
+</div>
+                
 
-                <!--invitation route-->
-
-                <div ng-class="class3" ng-if="isInvitationVisible">
-                    <div class="card">
-                        <form name="signin" ng-submit="TryLogin()">
-                            <div class="list list-inset">
-                                <label class="item item-input item-floating-label">
-                                    <span class="input-label">Email</span>
-                                <input type="text" placeholder="Email" required>
-                            </label>
-
-                            </div>
-                            <button class="button button-outline button-block button-assertive" type="submit" ng-click="changeClass3()">
-                            Email me
-                        </button>
-
-                        </form>
-                    </div>
-                </div>
-
-                <div ng-class="class4" ng-if="isCheckemailVisible">
-                    <div class="card">
-                        <div class="text-center">
-                            <br>
-                            <br> Please check your email for our invitation!
-                            <br>
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
-
+      
     </ion-content>
 </ion-view>
