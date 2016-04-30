@@ -277,32 +277,56 @@ app.factory('RegistrationDetails', function () {
     };
 });
 
-app.service('UserBakerProfile', function ($rootScope, Auth, $firebaseObject) {
+app.service('UserBakerProfile', function ($rootScope, Auth, $firebaseObject, $ionicLoading, $ionicPopup) {
 
-    var userBakerProfile = {};
-    
-    var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
+    var userFirebaseObject = null;
 
     Auth.$onAuth(function (authData) {
-       if (authData) {
-            // make a query to firebase for the user data
-            var refUsers = FBref.child("stalls");
-            var refUsersCollection = $firebaseObject(refUsers);
 
-            refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).on("value", function (dataSnapshot) {
-                userBakerProfile = dataSnapshot.child(Object.keys(dataSnapshot.val())[0]).val();
-                console.log(userBakerProfile);
-                $rootScope.$broadcast('bakeryUser:updated', userBakerProfile);
+        $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner>'
+        });
+
+        if (authData) {
+
+            var FBref = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/");
+            FBref.orderByChild("userID").equalTo(Auth.$getAuth().uid).on("value", function (dataSnapshot) {
+
+                var userFirebaseReference = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(dataSnapshot.val())[0]);
+
+                userFirebaseObject = new $firebaseObject(userFirebaseReference);
+
+                userFirebaseObject.$loaded().then(function (data) {
+                    $ionicLoading.hide();
+                })
+                    .catch(function (error) {
+                        console.error("Error:", error);
+                        $ionicLoading.hide();
+                    });
+
+                $rootScope.$broadcast('bakeryUser:updated', userFirebaseObject);
             });
+
         } else {
-            console.log("Logged out");
+            console.log("The user is logged out and hence we aren't able to get any user data.");
+            $ionicLoading.hide();
         }
     });
-    
-    // return userBakerProfile;
 
     return {
-        GetProfile: function () { return userBakerProfile; },
+        GetProfile: function () { return userFirebaseObject; },
+        UpdateProfile: function () {
+
+            userFirebaseObject.$save().then(function (ref) {
+                console.log("successfully saved!");
+                $ionicPopup.alert({
+                    title: 'Success!',
+                    template: 'Successfully Updated!'
+                });
+            }, function (error) {
+                console.log("Error:", error);
+            });
+        }
     };
 });
 

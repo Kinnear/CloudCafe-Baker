@@ -1,0 +1,102 @@
+<!--
+  This template loads for the 'user' state (app.js)
+-->
+<ion-view view-title="Profile">
+
+  <ion-content style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
+
+    <!--shop details-->
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div class="item item-avatar">
+          <img src="img/max.png">
+          <!--<h2>{{bakerProfile.bakeryName}}</h2>-->
+          <p>
+            Established Jun 1996<br> {{bakerProfile.bakeryAddress}}
+            <br> {{bakerProfile.description}}
+          </p>
+        </div>
+      </div>
+      <!--<a class="button button-icon icon ion-settings" ui-sref="editshop">Edit Profile</a>-->
+    </div>
+
+    <form name="modifyProfileForm" ng-submit="ModifyProfile()" <div class="card">
+      <div class="list">
+        
+        <!--put baker's picture here-->
+        
+        
+        <label class="item item-input item-stacked-label">
+    <span class="input-label">Baker's Name</span>
+    <input type="text" placeholder="John" ng-model="bakerProfile.bakeryName">
+  </label>
+
+        <label class="item item-input item-stacked-label">
+    <span class="input-label">Baker's Address</span>
+    <input type="text" placeholder="Street 123 Avenue 123 #01-123" ng-model="bakerProfile.bakeryAddress">
+  </label>
+
+        <label class="item item-input item-stacked-label">
+    <span class="input-label">Baker's Postal Code</span>
+    <input type="text" placeholder="310148" ng-model="bakerProfile.bakeryPostalCode">
+  </label>
+  
+        <label class="item item-input item-stacked-label">
+    <span class="input-label">Baker's Bank Account Number</span>
+    <textarea placeholder="123-456-789" ng-model="bakerProfile.bankAccountNumber"></textarea>
+  </label>
+
+        <label class="item item-input item-stacked-label">
+    <span class="input-label">Baker's Description</span>
+    <textarea placeholder="Description" ng-model="bakerProfile.description"></textarea>
+  </label>
+  
+        <button class="button button-outline button-block button-assertive" type="submit">
+    Save Changes</button>
+      </div>
+      </div>
+    </form>
+
+    <!--previous listings-->
+    <!--<div class="row">
+         
+  <div class="col col-50">
+  <div class="list card" ui-sref="inactivate">
+  <div class="item item-image">
+    <img src="img/items/thumbs/fried_calamari.jpg">
+  </div>
+  </div>
+  </div>
+  
+  <div class="col col-50">
+  <div class="list card" ui-sref="inactivate">
+  <div class="item item-image">
+    <img src="img/items/thumbs/zuppa.jpg">
+  </div>
+  </div>
+  </div>
+  
+</div> 
+      
+<div class="row">
+         
+  <div class="col col-50">
+  <div class="list card" ui-sref="inactivate">
+  <div class="item item-image">
+    <img src="img/items/thumbs/brick_chicken.jpg">
+  </div>
+  </div>
+  </div>
+  
+  <div class="col col-50">
+  <div class="list card" ui-sref="inactivate">
+  <div class="item item-image">
+    <img src="img/items/thumbs/rib_eyes.jpg">
+  </div>
+  </div>
+  </div>
+  
+</div>-->
+
+  </ion-content>
+</ion-view>
