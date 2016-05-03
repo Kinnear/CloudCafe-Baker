@@ -126,8 +126,6 @@ app.controller('FavoriteCtrl', function ($scope, $state, Items, CartItemData) {
         CartItemData.setItemData(index);
         first.item = CartItemData.getItemData();
     }
-
-
 });
 
 // Active controller
@@ -647,7 +645,6 @@ app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
         // console.log($scope.userBakerProfile.bakeryImage);
     });
 });
-
 //Edits the profile for the baker
 app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImageGalleryService) {
 
@@ -670,4 +667,12 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
             console.log("Couldn't take a picture, there was an error");
         });;
     }
-})
+});
+
+app.controller('ProductsPage', function ($scope) {
+    
+    $scope.products = null;
+    
+    // get list of products by 
+    
+});

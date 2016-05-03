@@ -68,6 +68,8 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
     };
 });
 
+app.factory('GetProducts');
+
 app.factory('Cart', function () {
     // Might use a resource here that returns a JSON array
 
