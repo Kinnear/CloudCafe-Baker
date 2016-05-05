@@ -22,8 +22,6 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
         var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString() + "/products");
         var itemsFB = $firebaseArray(firebaseProducts);
 
-        // console.log(data);
-
         itemsFB.$loaded().then(function () {
             itemsFB.$ref().on("value", function (snapshot) {
 
@@ -32,13 +30,14 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
                 for (i = 0; i < snapshot.numChildren(); i++) {
                     var newpost = snapshot.val();
                     var refFood = new Firebase("https://burning-heat-7015.firebaseio.com/food/" + Object.keys(newpost)[i]);
-                    console.log("(" + itemsFB.length + "): " + i + " Here with " + Object.keys(newpost)[i]);
+                    // console.log("(" + itemsFB.length + "): " + i + " Here with " + Object.keys(newpost)[i]);
                     var specFoodData = $firebaseArray(refFood);
                     specFoodData.$ref().on("value", function (snapshot2) {
                         var newpost2 = snapshot2.val();
 
                         // Add any new products updated on the database
                         products.items.push(newpost2);
+                        console.log(newpost2);
                     });
                 }
                 $ionicLoading.hide();

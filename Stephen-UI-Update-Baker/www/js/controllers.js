@@ -366,6 +366,14 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
 
     $scope.AddFood = function () {
 
+        console.log($scope.newFood.description);
+
+        for (var i = 0; i < 4; i++) {
+            if (AddNewFoodService.GetFoodImg(i) == undefined) {
+                AddNewFoodService.SetFoodImg(i, null);
+            }
+        }
+
         $scope.firebaseAdd.$add({
             "categoryID": "",
             "description": $scope.newFood.description,
@@ -670,9 +678,9 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
 });
 
 app.controller('ProductsPage', function ($scope) {
-    
+
     $scope.products = null;
-    
+
     // get list of products by 
-    
+
 });
