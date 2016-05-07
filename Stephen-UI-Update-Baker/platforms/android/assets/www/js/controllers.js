@@ -366,6 +366,14 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
 
     $scope.AddFood = function () {
 
+        console.log($scope.newFood.description);
+
+        for (var i = 0; i < 4; i++) {
+            if (AddNewFoodService.GetFoodImg(i) == undefined) {
+                AddNewFoodService.SetFoodImg(i, null);
+            }
+        }
+
         $scope.firebaseAdd.$add({
             "categoryID": "",
             "description": $scope.newFood.description,
@@ -379,9 +387,20 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
             "price": $scope.newFood.pricePerServing,
             "stallID": "",
             "preparationTime": $scope.newFood.prepTime,
-            "maxQuantity": $scope.newFood.maxQuantity
+            "maxQuantity": $scope.newFood.maxQuantity,
         }).then(function (ref) {
             console.log("Added " + ref.key());
+
+            var addID = $firebaseObject(new Firebase("https://burning-heat-7015.firebaseio.com/food/" + ref.key()));
+
+            addID.$loaded().then(function (data) {
+                data.id = ref.key();
+
+                data.$save().then(function (saved) {
+                    console.log("saved ID");
+                });
+            });
+
             // Here, we update our login object.
             console.log(Auth.$getAuth());
 
@@ -670,9 +689,9 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
 });
 
 app.controller('ProductsPage', function ($scope) {
-    
+
     $scope.products = null;
-    
+
     // get list of products by 
-    
+
 });
