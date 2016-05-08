@@ -7,7 +7,7 @@ app.factory("Auth", ["$firebaseAuth", function ($firebaseAuth) {
 }
 ]);
 
-app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup) {
+app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoading, $ionicPopup) {
     var products = { items: [] };
     var refFB = new Firebase("https://burning-heat-7015.firebaseio.com");
     var refUsers = refFB.child("stalls");
@@ -36,17 +36,15 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
                     var newpost2 = snapshot2.val();
 
                     // Add any new products updated on the database
-                    for (var a = 0; a < products.items.length; a++)
-                    {
-                        if (products.items[a].id == newpost2.id)
-                        {
+                    for (var a = 0; a < products.items.length; a++) {
+                        if (products.items[a].id == newpost2.id) {
                             products.items[a] = newpost2;
                             return;
                         }
                     }
                     products.items.push(newpost2);
 
-                    console.log(newpost2);
+                    // console.log(newpost2);
                 });
             }
             $ionicLoading.hide();
@@ -66,11 +64,14 @@ app.factory('Items', function ($firebaseArray, Auth, $ionicLoading, $ionicPopup)
         },
         get: function (itemId) {
             for (var i = 0; i < products.items.length; i++) {
-                if (products.items[i].id === parseInt(itemId)) {
+                if (products.items[i].id == itemId) {
                     return products.items[i];
                 }
             }
             return null;
+        },
+        editFood: function (id, quantity) {
+            refFB.child("food").child(id).update({maxQuantity: quantity});
         }
     };
 });

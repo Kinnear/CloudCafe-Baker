@@ -371,6 +371,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
         url: '/change',
         templateUrl: 'templates/change.html',
         controller: 'ChangeCtrl',
+        params:{'ItemData':null},
         resolve: {
           // controller will not be loaded until $requireAuth resolves
           // Auth refers to our $firebaseAuth wrapper in the example above

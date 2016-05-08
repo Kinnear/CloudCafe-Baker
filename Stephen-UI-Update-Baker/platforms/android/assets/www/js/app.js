@@ -96,22 +96,6 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
       //   }
       // })
 
-      // Products that the baker owns
-      .state('products', {
-        url: '/products',
-        templateUrl: 'templates/products.html',
-        // controller: 'ProductCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
       // Community detail
       .state('community', {
         url: '/community',
@@ -387,6 +371,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
         url: '/change',
         templateUrl: 'templates/change.html',
         controller: 'ChangeCtrl',
+        params:{'ItemData':null},
         resolve: {
           // controller will not be loaded until $requireAuth resolves
           // Auth refers to our $firebaseAuth wrapper in the example above

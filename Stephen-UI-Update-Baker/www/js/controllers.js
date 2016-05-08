@@ -150,6 +150,17 @@ app.controller('ActiveCtrl', function ($scope, $state, Items, $ionicSideMenuDele
         $scope.products.items = Items.all();
     }
 
+    $scope.changeItem = function (item) {
+        $state.go('change', { ItemData: Items.get(item.id) });
+    }
+
+    $scope.alterQuantity = function (id, number) {
+        if (number < 0) {
+            number = 0;
+        }
+        Items.editFood(id, number)
+    }
+
     // disabled swipe menu
     $ionicSideMenuDelegate.canDragContent(false);
 });
@@ -231,7 +242,42 @@ app.controller('WhyrubakingCtrl', function ($scope, $state) { })
 app.controller('EditpaymentCtrl', function ($scope, $state) { })
 
 //controller for change.html
-app.controller('ChangeCtrl', function ($scope, $state) { })
+app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
+    var productID = $stateParams.ItemData.id;
+    $scope.transactionData = [];
+
+    // Query for Data from firebase for by FoodID
+
+    var foodReference = new Firebase("https://burning-heat-7015.firebaseio.com/transactions");
+    foodReference.orderByChild("foodID").equalTo(productID).on("value", function (dataSnapshot) {
+
+        if (dataSnapshot == null) {
+            console.log("No Transaction Data for this product!");
+        }
+        else {
+            $scope.transactionData = [];
+
+            dataSnapshot.forEach(function (childSnapshot) {
+                $scope.transactionData.push(childSnapshot.val());
+            });
+
+            for (var i = 0; i < $scope.transactionData.length; i++) {
+
+                $scope.transactionData[i].pickupEpoch = new Date($scope.transactionData[i].pickupEpoch * 1000);
+
+                var userReference = new Firebase("https://burning-heat-7015.firebaseio.com/users");
+                userReference.orderByKey().equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
+                    for (var i = 0; i < $scope.transactionData.length; i++) {
+                        var data = userSnapshot.exportVal();
+                        var key = Object.keys(data)[0];
+
+                        $scope.transactionData[i].customerName = userSnapshot.child(key).val().username;
+                    }
+                });
+            }
+        }
+    });
+})
 
 //controller for photographer.html
 app.controller('PhotographerCtrl', function ($scope, $state) { })
@@ -686,12 +732,4 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
             console.log("Couldn't take a picture, there was an error");
         });;
     }
-});
-
-app.controller('ProductsPage', function ($scope) {
-
-    $scope.products = null;
-
-    // get list of products by 
-
 });
