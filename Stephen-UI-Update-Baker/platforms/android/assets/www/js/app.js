@@ -7,32 +7,32 @@ var STRIPE_API_PUBLISHABLE_KEY = "pk_test_h57hQy5dRjVjlM7SoNVYG8Mn";
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"])
+var app = angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"]);
 
-  .run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state, $ionicPlatform) {
+app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state, $ionicPlatform) {
 
-    $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
-      // We can catch the error thrown when the $requireAuth promise is rejected
-      // and redirect the user back to the home page
-      if (error === "AUTH_REQUIRED") {
-        // console.log('Going to Home because authentication is required');
-        $state.go("login");
-      }
-    });
+  $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+    // We can catch the error thrown when the $requireAuth promise is rejected
+    // and redirect the user back to the home page
+    if (error === "AUTH_REQUIRED") {
+      // console.log('Going to Home because authentication is required');
+      $state.go("login");
+    }
+  });
 
-    $ionicPlatform.ready(function () {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
-      }
-      if (window.StatusBar) {
-        // org.apache.cordova.statusbar required
-        StatusBar.styleDefault();
-      }
-    });
-  }])
+  $ionicPlatform.ready(function () {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+}])
 
 
   .service("CartItemData", function Item() {
@@ -80,21 +80,6 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
         }
       }
     })
-
-      // // register screen
-      // .state('register', {
-      //   url: '/register',
-      //   templateUrl: 'templates/register.html',
-      //   controller: 'RegisterBaker',
-      //   resolve: {
-      //     // controller will not be loaded until $waitForAuth resolves
-      //     // Auth refers to our $firebaseAuth wrapper in the example above
-      //     "currentAuth": ["Auth", function(Auth) {
-      //       // $waitForAuth returns a promise so the resolve waits for it to complete
-      //       return Auth.$waitForAuth();
-      //     }]
-      //   }
-      // })
 
       // Community detail
       .state('community', {
@@ -371,7 +356,7 @@ angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout'
         url: '/change',
         templateUrl: 'templates/change.html',
         controller: 'ChangeCtrl',
-        params:{'ItemData':null},
+        params: { 'ItemData': null },
         resolve: {
           // controller will not be loaded until $requireAuth resolves
           // Auth refers to our $firebaseAuth wrapper in the example above

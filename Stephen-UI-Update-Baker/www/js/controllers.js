@@ -29,7 +29,7 @@ var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebas
 
             }
         };
-    });;
+    });
 
 app.controller('MyController', function ($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('my-modal.html', {
