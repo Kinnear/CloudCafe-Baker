@@ -171,29 +171,29 @@ app.controller('CheckoutCtrl', function ($scope, $state) { });
 app.controller('ReviewsCtrl', function ($scope, $state) { });
 
 // Address controller
-app.controller('AddressCtrl', function ($scope, $state) {
-    function initialize() {
-        // set up begining position
-        var myLatlng = new google.maps.LatLng(21.0227358, 105.8194541);
+// app.controller('AddressCtrl', function ($scope, $state) {
+//     function initialize() {
+//         // set up begining position
+//         var myLatlng = new google.maps.LatLng(21.0227358, 105.8194541);
 
-        // set option for map
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // init map
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
+//         // set option for map
+//         var mapOptions = {
+//             center: myLatlng,
+//             zoom: 16,
+//             mapTypeId: google.maps.MapTypeId.ROADMAP
+//         };
+//         // init map
+//         var map = new google.maps.Map(document.getElementById("map"),
+//             mapOptions);
 
-        // assign to stop
-        $scope.map = map;
-    }
-    // load map when the ui is loaded
-    $scope.init = function () {
-        initialize();
-    }
-});
+//         // assign to stop
+//         $scope.map = map;
+//     }
+//     // load map when the ui is loaded
+//     $scope.init = function () {
+//         initialize();
+//     }
+// });
 
 // User controller
 app.controller('UserCtrl', function ($scope, $state) { })
@@ -201,15 +201,11 @@ app.controller('UserCtrl', function ($scope, $state) { })
 
 //empty controllers for new pages here
 
-//controller for settings.html
-app.controller('SettingsCtrl', function ($scope, $state) { })
 
 
 //controller for Support support.html
 app.controller('SupportCtrl', function ($scope, $state) { })
 
-//controller for location.html
-app.controller('LocationCtrl', function ($scope, $state) { })
 
 //controller for payment.html
 app.controller('PaymentCtrl', function ($scope, $state) { })
@@ -220,26 +216,11 @@ app.controller('CommunityCtrl', function ($scope, $state) { })
 //controller for post.html
 app.controller('PostCtrl', function ($scope, $state) { })
 
-//controller for firstpayment.html
-app.controller('FirstpaymentCtrl', function ($scope, $state) { })
 
-//controller for editshop.html
-app.controller('EditshopCtrl', function ($scope, $state) { })
 
 //controller for bio.html
 app.controller('BioCtrl', function ($scope, $state) { })
 
-//controller for invitation.html
-app.controller('InvitationCtrl', function ($scope, $state) { })
-
-//controller for signupthanks.html
-app.controller('SignupthanksCtrl', function ($scope, $state) { })
-
-//controller for whyrubaking.html
-app.controller('WhyrubakingCtrl', function ($scope, $state) { })
-
-//controller for editpayment.html
-app.controller('EditpaymentCtrl', function ($scope, $state) { })
 
 //controller for change.html
 app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
