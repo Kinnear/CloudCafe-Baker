@@ -192,21 +192,6 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
         }
       })
 
-      .state('address', {
-        url: '/address',
-        templateUrl: 'templates/address.html',
-        controller: 'AddressCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
       .state('user', {
         url: '/user',
         templateUrl: 'templates/user.html',
@@ -237,109 +222,13 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
         }
       })
 
-      //states for new pages
-
-      //state for firstpayment.html
-      .state('firstpayment', {
-        url: '/firstpayment',
-        templateUrl: 'templates/firstpayment.html',
-        controller: 'FirstpaymentCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
-      //state for editshop.html
-      .state('editshop', {
-        url: '/editshop',
-        templateUrl: 'templates/editshop.html',
-        controller: 'EditshopCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
+      //states for new page
 
       //state for bio.html
       .state('bio', {
         url: '/bio',
         templateUrl: 'templates/bio.html',
         controller: 'BioCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
-      //state for invitation.html
-      .state('invitation', {
-        url: '/invitation',
-        templateUrl: 'templates/invitation.html',
-        controller: 'InvitationCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
-      //state for signupthanks.html
-      .state('signupthanks', {
-        url: '/signupthanks',
-        templateUrl: 'templates/signupthanks.html',
-        controller: 'SignupthanksCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
-      //state for whyrubaking.html
-      .state('whyrubaking', {
-        url: '/whyrubaking',
-        templateUrl: 'templates/whyrubaking.html',
-        controller: 'WhyrubakingCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
-
-      //state for editpayment.html
-      .state('editpayment', {
-        url: '/editpayment',
-        templateUrl: 'templates/editpayment.html',
-        controller: 'EditpaymentCtrl',
         resolve: {
           // controller will not be loaded until $requireAuth resolves
           // Auth refers to our $firebaseAuth wrapper in the example above
@@ -368,21 +257,6 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
         }
       })
 
-      //state for settings.html
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'templates/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
 
       //state for photographer.html
       .state('photographer', {
@@ -433,21 +307,6 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
         }
       })
 
-      //state for location
-      .state('location', {
-        url: '/location',
-        templateUrl: 'templates/location.html',
-        controller: 'LocationCtrl',
-        resolve: {
-          // controller will not be loaded until $requireAuth resolves
-          // Auth refers to our $firebaseAuth wrapper in the example above
-          "currentAuth": ["Auth", function (Auth) {
-            // $requireAuth returns a promise so the resolve waits for it to complete
-            // If the promise is rejected, it will throw a $stateChangeError (see above)
-            return Auth.$requireAuth();
-          }]
-        }
-      })
 
       //state for post2
       .state('post2', {
