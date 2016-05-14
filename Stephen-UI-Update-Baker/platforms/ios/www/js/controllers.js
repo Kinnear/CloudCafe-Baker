@@ -29,7 +29,7 @@ var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebas
 
             }
         };
-    });;
+    });
 
 app.controller('MyController', function ($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -126,8 +126,6 @@ app.controller('FavoriteCtrl', function ($scope, $state, Items, CartItemData) {
         CartItemData.setItemData(index);
         first.item = CartItemData.getItemData();
     }
-
-
 });
 
 // Active controller
@@ -152,6 +150,17 @@ app.controller('ActiveCtrl', function ($scope, $state, Items, $ionicSideMenuDele
         $scope.products.items = Items.all();
     }
 
+    $scope.changeItem = function (item) {
+        $state.go('change', { ItemData: Items.get(item.id) });
+    }
+
+    $scope.alterQuantity = function (id, number) {
+        if (number < 0) {
+            number = 0;
+        }
+        Items.editFood(id, number)
+    }
+
     // disabled swipe menu
     $ionicSideMenuDelegate.canDragContent(false);
 });
@@ -162,29 +171,29 @@ app.controller('CheckoutCtrl', function ($scope, $state) { });
 app.controller('ReviewsCtrl', function ($scope, $state) { });
 
 // Address controller
-app.controller('AddressCtrl', function ($scope, $state) {
-    function initialize() {
-        // set up begining position
-        var myLatlng = new google.maps.LatLng(21.0227358, 105.8194541);
+// app.controller('AddressCtrl', function ($scope, $state) {
+//     function initialize() {
+//         // set up begining position
+//         var myLatlng = new google.maps.LatLng(21.0227358, 105.8194541);
 
-        // set option for map
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // init map
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
+//         // set option for map
+//         var mapOptions = {
+//             center: myLatlng,
+//             zoom: 16,
+//             mapTypeId: google.maps.MapTypeId.ROADMAP
+//         };
+//         // init map
+//         var map = new google.maps.Map(document.getElementById("map"),
+//             mapOptions);
 
-        // assign to stop
-        $scope.map = map;
-    }
-    // load map when the ui is loaded
-    $scope.init = function () {
-        initialize();
-    }
-});
+//         // assign to stop
+//         $scope.map = map;
+//     }
+//     // load map when the ui is loaded
+//     $scope.init = function () {
+//         initialize();
+//     }
+// });
 
 // User controller
 app.controller('UserCtrl', function ($scope, $state) { })
@@ -192,15 +201,11 @@ app.controller('UserCtrl', function ($scope, $state) { })
 
 //empty controllers for new pages here
 
-//controller for settings.html
-app.controller('SettingsCtrl', function ($scope, $state) { })
 
 
 //controller for Support support.html
 app.controller('SupportCtrl', function ($scope, $state) { })
 
-//controller for location.html
-app.controller('LocationCtrl', function ($scope, $state) { })
 
 //controller for payment.html
 app.controller('PaymentCtrl', function ($scope, $state) { })
@@ -211,29 +216,49 @@ app.controller('CommunityCtrl', function ($scope, $state) { })
 //controller for post.html
 app.controller('PostCtrl', function ($scope, $state) { })
 
-//controller for firstpayment.html
-app.controller('FirstpaymentCtrl', function ($scope, $state) { })
 
-//controller for editshop.html
-app.controller('EditshopCtrl', function ($scope, $state) { })
 
 //controller for bio.html
 app.controller('BioCtrl', function ($scope, $state) { })
 
-//controller for invitation.html
-app.controller('InvitationCtrl', function ($scope, $state) { })
-
-//controller for signupthanks.html
-app.controller('SignupthanksCtrl', function ($scope, $state) { })
-
-//controller for whyrubaking.html
-app.controller('WhyrubakingCtrl', function ($scope, $state) { })
-
-//controller for editpayment.html
-app.controller('EditpaymentCtrl', function ($scope, $state) { })
 
 //controller for change.html
-app.controller('ChangeCtrl', function ($scope, $state) { })
+app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
+    var productID = $stateParams.ItemData.id;
+    $scope.transactionData = [];
+
+    // Query for Data from firebase for by FoodID
+
+    var foodReference = new Firebase("https://burning-heat-7015.firebaseio.com/transactions");
+    foodReference.orderByChild("foodID").equalTo(productID).on("value", function (dataSnapshot) {
+
+        if (dataSnapshot == null) {
+            console.log("No Transaction Data for this product!");
+        }
+        else {
+            $scope.transactionData = [];
+
+            dataSnapshot.forEach(function (childSnapshot) {
+                $scope.transactionData.push(childSnapshot.val());
+            });
+
+            for (var i = 0; i < $scope.transactionData.length; i++) {
+
+                $scope.transactionData[i].pickupEpoch = new Date($scope.transactionData[i].pickupEpoch * 1000);
+
+                var userReference = new Firebase("https://burning-heat-7015.firebaseio.com/users");
+                userReference.orderByKey().equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
+                    for (var i = 0; i < $scope.transactionData.length; i++) {
+                        var data = userSnapshot.exportVal();
+                        var key = Object.keys(data)[0];
+
+                        $scope.transactionData[i].customerName = userSnapshot.child(key).val().username;
+                    }
+                });
+            }
+        }
+    });
+})
 
 //controller for photographer.html
 app.controller('PhotographerCtrl', function ($scope, $state) { })
@@ -368,6 +393,14 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
 
     $scope.AddFood = function () {
 
+        console.log($scope.newFood.description);
+
+        for (var i = 0; i < 4; i++) {
+            if (AddNewFoodService.GetFoodImg(i) == undefined) {
+                AddNewFoodService.SetFoodImg(i, null);
+            }
+        }
+
         $scope.firebaseAdd.$add({
             "categoryID": "",
             "description": $scope.newFood.description,
@@ -381,9 +414,20 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
             "price": $scope.newFood.pricePerServing,
             "stallID": "",
             "preparationTime": $scope.newFood.prepTime,
-            "maxQuantity": $scope.newFood.maxQuantity
+            "maxQuantity": $scope.newFood.maxQuantity,
         }).then(function (ref) {
             console.log("Added " + ref.key());
+
+            var addID = $firebaseObject(new Firebase("https://burning-heat-7015.firebaseio.com/food/" + ref.key()));
+
+            addID.$loaded().then(function (data) {
+                data.id = ref.key();
+
+                data.$save().then(function (saved) {
+                    console.log("saved ID");
+                });
+            });
+
             // Here, we update our login object.
             console.log(Auth.$getAuth());
 
@@ -647,7 +691,6 @@ app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
         // console.log($scope.userBakerProfile.bakeryImage);
     });
 });
-
 //Edits the profile for the baker
 app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImageGalleryService) {
 
@@ -670,4 +713,4 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
             console.log("Couldn't take a picture, there was an error");
         });;
     }
-})
+});
