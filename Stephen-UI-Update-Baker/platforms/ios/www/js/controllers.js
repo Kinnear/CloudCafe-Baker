@@ -528,9 +528,22 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
             $ionicLoading.hide();
 
             $ionicPopup.alert({
-                title: 'Registration failed!',
-                template: 'An Error has occured! : ' + error
-            });
+
+   title: 'Registration Failed', // String. The title of the popup.
+
+   cssClass: '', // String, The custom CSS class name
+
+   subTitle: error, // String (optional). The sub-title of the popup.
+
+   template: '', // String (optional). The html template to place in the popup body.
+
+   templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+
+   okText: 'Start over', // String (default: 'OK'). The text of the OK button.
+
+   okType: '', // String (default: 'button-positive'). The type of the OK button.
+
+});
             console.error("Error: ", error);
         });
     };
@@ -645,9 +658,22 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
             $ionicLoading.hide();
 
             $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
+
+   title: 'Login Failed', // String. The title of the popup.
+
+   cssClass: '', // String, The custom CSS class name
+
+   subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
+
+   template: '', // String (optional). The html template to place in the popup body.
+
+   templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+
+   okText: 'Retry', // String (default: 'OK'). The text of the OK button.
+
+   okType: '', // String (default: 'button-positive'). The type of the OK button.
+
+});
         });
     }
 });
