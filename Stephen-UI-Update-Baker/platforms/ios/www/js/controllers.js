@@ -1,35 +1,6 @@
 var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"])
 
-    .directive('flippy', function () {
-        return {
-            restrict: 'EA',
-            link: function ($scope, $elem, $attrs) {
-
-                var options = {
-                    flipDuration: ($attrs.flipDuration) ? $attrs.flipDuration : 400,
-                    timingFunction: 'ease-in-out',
-                };
-
-                // setting flip options
-                angular.forEach(['flippy-front', 'flippy-back'], function (name) {
-                    var el = $elem.find(name);
-                    if (el.length == 1) {
-                        angular.forEach(['', '-ms-', '-webkit-'], function (prefix) {
-                            angular.element(el[0]).css(prefix + 'transition', 'all ' + options.flipDuration / 1000 + 's ' + options.timingFunction);
-                        });
-                    }
-                });
-
-				/**
-				 * behaviour for flipping effect.
-				 */
-                $scope.flip = function () {
-                    $elem.toggleClass('flipped');
-                }
-
-            }
-        };
-    });
+    
 
 app.controller('MyController', function ($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -654,7 +625,7 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
         }).catch(function (error) {
             console.error("Authentication failed:", error);
 
-            $scope.wrongPasswordMessage = "The specified password is incorrect.";
+            $scope.wrongPasswordMessage = "Incorrect Password";
             $ionicLoading.hide();
 
             $ionicPopup.alert({
