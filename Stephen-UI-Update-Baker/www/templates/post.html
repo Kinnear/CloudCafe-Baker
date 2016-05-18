@@ -39,7 +39,8 @@
             </li>
 
             <label class="item item-input">
-                <input type="number" placeholder="Price" ng-model="newFood.pricePerServing" required>
+                <span class="input-label" style="width:50%; opacity:0.7;">Price ($)</span>
+                <input type="tel" ng-model="newFood.pricePerServing" required>
             </label>
 
         </div>
@@ -50,16 +51,15 @@
             <div class="item item-text-wrap" style="font-weight: bold;">
                 For Home Bakers
             </div>
+            
             <label class="item item-input">
-                  
-                  <input type="date"
-                
-                ng-model="newFood.endDate" placeholder="End Date" required style="padding-right:0%;">
+                  <span class="input-label" style="width:50%; opacity:0.7;">End Date</span>
+                  <input type="date" ng-model="newFood.endDate" required>
                  </label>
 
             <label class="item item-input">
-               
-                <input type="tel" ng-model="newFood.maxQuantity" placeholder="Maximum Quantity" required>
+                <span class="input-label" style="width:50%; opacity:0.7;">Max Quantity</span>
+                <input type="tel" ng-model="newFood.maxQuantity" required>
             </label>
 
         </div>
