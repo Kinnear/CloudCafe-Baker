@@ -1,18 +1,27 @@
 /* Empty. Add your own CSS if you like */
 
 /*general font*/
+
+.bar.bar-balanced {
+    border-color: #cb0a73;
+    background-color: #cb0a73;
+    
+    color: #fff; }
+    .bar.bar-balanced .title {
+      color: #fff; }
+      
 .balanced, a.balanced {
-  color: #B72C6C; }
+  color: #cb0a73; }
 
 .balanced-bg {
-  background-color: #B72C6C; }
+  background-color: #cb0a73; }
 
 .balanced-border {
-  border-color: #B72C6C; }
+  border-color: #cb0a73; }
   
 .tabs .tab-item .badge.badge-balanced,
 .badge.badge-balanced {
-  background-color: #B72C6C;
+  background-color: #cb0a73;
   color: #fff; }
 
 /* for index.html*/  
@@ -59,19 +68,19 @@
 /* Back this project button*/
 .button.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff;
     border-radius: 0px;}
     .button.button-balanced:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-balanced.active, .button.button-balanced.activated {
-      background-color: #B72C6C; }
+      background-color: #cb0a73; }
       
 /*      
       .button.button-footer.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff;
     border-radius: 0px;
     bottom: 49px;}*/
@@ -95,7 +104,8 @@
   overflow: hidden;
   margin: 10px 10px;
   border-radius: 2px;
-  background-color: #fff; }
+  background-color: #fff;
+  opacity: 0.85; }
   
   .list.card {
   overflow: hidden;
@@ -169,7 +179,7 @@
     
 .button.button-block.button-balanced {
     border-color: transparent;
-    background-color: #B72C6C;
+    background-color: #cb0a73;
     color: #fff; }
     .button.button-balanced:hover {
       color: #CC6B98;
@@ -196,15 +206,22 @@
   border: none;
   background-color: transparent; }
   
+  /*for login button that is solid*/
   .button.button-block.button-assertive {
     border-color: transparent;
     background-color: #cb0a73;
     color: #fff; }
-    .button.button-block.button-assertive:hover {
-      color: #fff;
-      text-decoration: none; }
     .button.button-block.button-assertive.active, .button.button-block.button-assertive.activated {
       background-color: #e30b81; }
+      
+ /*for login button that is outlined*/
+  .button.button-outline.button-block.button-assertive {
+    border-color: #cb0a73;
+    background-color: transparent;
+    color: #cb0a73; }
+    .button.button-outline.button-block.button-assertive.active, .button.button-outline.button-block.button-assertive.activated {
+      background-color: #cb0a73;
+      color: #fff; }
       
       .button.button-block.button-assertive.button-bottom {
     border-color: transparent;
@@ -212,26 +229,16 @@
     color: #fff;
     position: fixed;
     bottom:0; }
-    .button.button-block.button-assertive.button-bottom:hover {
-      color: #fff;
-      text-decoration: none;
-      position: fixed;
-    bottom:0;  }
     .button.button-block.button-assertive.button-bottom.active,
     .button.button-block.button-assertive.button-bottom.activated {
       background-color: #e30b81;
       position: fixed;
-    bottom:0;  }
+      bottom:0;  }
       
       .button.button-block{
       
     width: 96%;
     margin: 2%;
-  }
-  
-  
-  .login-bg{
-      background-image:url(../img/backgrounds/baker_login_screen.png);
   }
   
   .item.item-image.login-logo{
@@ -241,24 +248,25 @@
        border:none;
        padding: 20px;
        margin-left: 10%;
+       top:0;
     }
-    
-     .card.cardlogin {
-   opacity: 0.8;
-    position: relative;
-    -webkit-animation: mymove 1s;
-    animation: mymove 1s;
-    
-    animation-fill-mode: forwards;
+
+.errorMessage{
+  color: red;
+  font-family:inherit;
 }
 
-@-webkit-keyframes mymove {
-    from {bottom: -500px;}
-    to {bottom: 10px;}
+ .userPic{
+    margin-top:12%;
+    margin-bottom:8%;
+    padding: 0%;
 }
 
-@keyframes mymove {
-    from {bottom: -500px;}
-    to {bottom: 10px;}
+.userPanel{
+  padding-left:6%;
 }
 
+.display-image-thumbnail{
+  height:40%;
+  width:40%;
+}

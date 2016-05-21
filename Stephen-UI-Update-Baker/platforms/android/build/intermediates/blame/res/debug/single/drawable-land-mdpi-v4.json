@@ -1,6 +1,10 @@
 [
     {
-        "merged": "F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi-v4\\screen.png",
-        "source": "F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\drawable-land-mdpi\\screen.png"
+        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/res/merged/debug/drawable-land-mdpi-v4/screen.png",
+        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/res/drawable-land-mdpi/screen.png"
+    },
+    {
+        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi-v4\\screen.png",
+        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\drawable-land-mdpi\\screen.png"
     }
 ]

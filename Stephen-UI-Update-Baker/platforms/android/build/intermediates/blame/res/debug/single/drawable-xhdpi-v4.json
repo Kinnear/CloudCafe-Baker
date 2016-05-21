@@ -1,6 +1,10 @@
 [
     {
-        "merged": "F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon.png",
-        "source": "F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\drawable-xhdpi\\icon.png"
+        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\icon.png",
+        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\drawable-xhdpi\\icon.png"
+    },
+    {
+        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/res/merged/debug/drawable-xhdpi-v4/icon.png",
+        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/res/drawable-xhdpi/icon.png"
     }
 ]
