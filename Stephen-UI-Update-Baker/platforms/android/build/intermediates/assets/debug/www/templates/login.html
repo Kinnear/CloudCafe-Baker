@@ -1,0 +1,40 @@
+<ion-view view-title="Login" class="light-bg">
+  <ion-content class="login-bg">
+
+    <div class="login-content" ng-controller="LoginBaker">
+
+      <!-- Logo -->
+      <div class="item item-image login-logo">
+            <img src="img/backgrounds/logo_white.png">
+        </div>
+
+      <!-- Login form -->
+      <div class="card cardlogin">
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="email" placeholder="Email" ng-model="email" required>
+                </label>
+                <label class="item item-input item-floating-label">
+                <span class="input-label">Password</span>
+                <input type="password" placeholder="Password" ng-model="password" required>
+                </label>
+            </div>
+
+      <p class="text-right balanced">Forgot Password?</p>
+
+            <div>
+                <button class="button button-block button-assertive" ng-click="TryLogin()">
+                    SIGN IN
+                </button>
+            </div>
+      
+      <!-- Other links -->
+            <div class="text-center">
+                <a ui-sref="register" class="dark">New here? <span class="balanced">Register</span></a>
+            </div>
+        </div>        
+    </div>
+
+  </ion-content>
+</ion-view>

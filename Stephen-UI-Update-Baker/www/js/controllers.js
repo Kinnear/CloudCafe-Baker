@@ -218,7 +218,7 @@ app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
                 $scope.transactionData[i].pickupEpoch = new Date($scope.transactionData[i].pickupEpoch * 1000);
 
                 var userReference = new Firebase("https://burning-heat-7015.firebaseio.com/users");
-                userReference.orderByKey().equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
+                userReference.orderByChild("facebook").equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
                     for (var i = 0; i < $scope.transactionData.length; i++) {
                         var data = userSnapshot.exportVal();
                         var key = Object.keys(data)[0];

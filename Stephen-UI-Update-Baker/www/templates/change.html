@@ -1,33 +1,15 @@
 <ion-view view-title="Delivery Dashboard" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
     <ion-content>
-        <!--<div class="card">
-            <div class="item item-text-wrap">
-
-                <p>Order Code:</p>
-                <p>Customer:</p>
-                <p>Quantity:</p>
-                <p>Pick Up Date:</p>
-                <p>Pick Up Time: </p>
-                <p>Pick Up Location:</p>
-                </p>
-            </div>
-        </div>-->
-
-
-
         <div class="card" ng-repeat="SingleItem in transactionData">
             <div class="item item-text-wrap">
-                <p>Order Code: {{SingleItem.StripeID}}</p>
+                <p>Order Code: {{SingleItem.stripeTransactionID}}</p>
                 <p>Customer: {{SingleItem.customerName}}</p>
-                <p>Quantity: {{SingleItem.Quantity}}</p>
-                <p>Pick Up Date: {{SingleItem.pickupEpoch | date:'MM-dd-yyyy'}}</p>
-                <p>Pick Up Time: {{SingleItem.pickupEpoch | date:'HH:mm'}}</p>
+                <p>Quantity: {{SingleItem.quantity}}</p>
+                <p>Pick Up Date: {{SingleItem.pickuptimestamp | date:'MM-dd-yyyy'}}</p>
+                <p>Pick Up Time: {{SingleItem.pickuptimestamp | date:'HH:mm'}}</p>
                 <!--<p>Pick Up Location:</p>-->
                 </p>
             </div>
         </div>
-
     </ion-content>
-
-
 </ion-view>
