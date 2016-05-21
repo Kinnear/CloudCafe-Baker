@@ -7,17 +7,17 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.ionicframework.fooddelivery935160"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.fooddelivery935160"
-        },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.fooddelivery935160"
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.fooddelivery935160"
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
     "dependent_plugins": {}

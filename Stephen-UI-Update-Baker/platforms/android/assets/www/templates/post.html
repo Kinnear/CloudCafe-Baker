@@ -1,0 +1,81 @@
+<ion-view view-title="Post" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
+    <ion-content ng-controller="AddNewFood">
+
+        <div class="list list-inset">
+            <div class="item item-text-wrap" style="font-weight: bold;">
+                General Details
+            </div>
+            <label class="item item-input">
+                <input type="text" placeholder="Item Name" ng-model="newFood.foodName" required>
+            </label>
+
+            <label class="item item-input">
+                <input type="text" placeholder="Description" ng-model="newFood.description" required>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                <span style="opacity:0.7;">Preparation Time (days)</span>
+                </div>
+                <select ng-model="newFood.prepTime">
+                    <option>7</option>
+                    <option>6</option>
+                    <option>5</option>
+                    <option>4</option>
+                    <option selected>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                </select>
+            </label>
+
+            <li class="item item-toggle">
+                Halal
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="newFood.halal">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+
+            <label class="item item-input">
+                <span class="input-label" style="width:50%; opacity:0.7;">Price ($)</span>
+                <input type="tel" ng-model="newFood.pricePerServing" required>
+            </label>
+
+        </div>
+
+
+        <div class="list list-inset">
+            <!--{{newFood}}-->
+            <div class="item item-text-wrap" style="font-weight: bold;">
+                For Home Bakers
+            </div>
+            
+            <label class="item item-input">
+                  <span class="input-label" style="width:50%; opacity:0.7;">End Date</span>
+                  <input type="date" ng-model="newFood.endDate" required>
+                 </label>
+
+            <label class="item item-input">
+                <span class="input-label" style="width:50%; opacity:0.7;">Max Quantity</span>
+                <input type="tel" ng-model="newFood.maxQuantity" required>
+            </label>
+
+        </div>
+
+        <button class="button button-block button-assertive" ui-sref="post2">
+        Next
+        </button>
+        <!--<ion-view view-title="Post" >
+
+  <ion-content>
+      <p>You have no specialities currently added. Begin your baking journey and start selling something!
+      </p>
+       
+        <button class="button button-block button-assertive button-bottom" ui-sref="post2">
+        Add Speciality
+        </button>-->
+
+    </ion-content>
+</ion-view>

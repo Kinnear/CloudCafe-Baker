@@ -1,0 +1,64 @@
+    <form name="submitForm" ng-submit="AddFood()">   
+         
+         Adding Food
+         
+        <div class="list">
+            
+                 <!--Get the list of categories-->
+            <label class="item item-input">
+                <span class="input-label">Category : </span>
+                <!--<select ng-model="form.categoryID" ng-options="categories.categoryName for categories in allFoodCategories track by categories.$id" required>-->
+                <select ng-model="form.categoryID" ng-options="categories as categories.categoryName for categories in allFoodCategories track by categories.$id" required>
+                </select>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Description: </span>
+                <input type="text" ng-model="form.description" required>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Food Name: </span>
+                <input type="text" ng-model="form.foodName" required>
+            </label>
+            
+            <label class="item item-input item-select">
+                <div class="input-label">Halal</div>
+                <select ng-model="form.halal">
+                    <option value="true">Yes</option>
+                    <option value="false" selected>No</option>
+                </select>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Image1: </span>
+                <input type="text" ng-model="form.img1" required>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Image2: </span>
+                <input type="text" ng-model="form.img2" required>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Likes: </span>
+                <input type="text" ng-model="form.likes" required>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Price: </span>
+                <input type="text" ng-model="form.price" required>
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">StallID: </span>
+                <input type="text" ng-model="form.stallID" required>
+            </label>
+            
+        </div>
+        
+        <button class="button button-block button-positive" type="submit">
+        Submit
+        </button>
+        
+    </form>

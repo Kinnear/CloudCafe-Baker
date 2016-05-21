@@ -265,3 +265,8 @@
 .userPanel{
   padding-left:6%;
 }
+
+.display-image-thumbnail{
+  height:40%;
+  width:40%;
+}
