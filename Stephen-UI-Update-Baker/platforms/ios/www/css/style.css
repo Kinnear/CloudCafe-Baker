@@ -256,13 +256,12 @@
   font-family:inherit;
 }
 
-.userPic{
-    margin:5%;
+ .userPic{
+    margin-top:12%;
+    margin-bottom:8%;
     padding: 0%;
 }
 
 .userPanel{
-  padding-left:2%;
+  padding-left:6%;
 }
-
-
