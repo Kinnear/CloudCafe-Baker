@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="F:\Users\KeithPC\Desktop\CloudCafe\CloudCafe-Baker\Stephen-UI-Update-Baker\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0880be172c04a30cd887db2ca21175055b9ee5a4">
+        <dex dex="F:\Users\KeithPC\Desktop\CloudCafe\CloudCafe-Baker\Stephen-UI-Update-Baker\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-unspecified-debug_81276ec9853f458e76442c864046bb53c7b9adba.jar" />
+    </item>
+
+</items>
