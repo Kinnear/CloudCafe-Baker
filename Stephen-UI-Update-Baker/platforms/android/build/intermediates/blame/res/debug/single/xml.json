@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\config.xml",
-        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\xml\\config.xml"
-    },
-    {
         "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/res/merged/debug/xml/config.xml",
         "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/res/xml/config.xml"
     }

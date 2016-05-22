@@ -7,19 +7,22 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.telerik.plugins.nativepagetransitions": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.cloudcafe.baker"
-        },
-        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },

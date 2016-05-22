@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-port-ldpi-v4\\screen.png",
-        "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/F:\\Users\\KeithPC\\Desktop\\CloudCafe\\CloudCafe-Baker\\Stephen-UI-Update-Baker\\platforms\\android\\res\\drawable-port-ldpi\\screen.png"
-    },
-    {
         "merged": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/res/merged/debug/drawable-port-ldpi-v4/screen.png",
         "source": "/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/res/drawable-port-ldpi/screen.png"
     }

@@ -5,7 +5,7 @@
         jar="/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="fd7d9829379960e59e58dc4d74a7c0c9b33b501b">
+        sha1="168fad5491c4c8880d0ba44d7aa8cdefa0c0d4ff">
         <dex dex="/Users/Kinnear/CloudCafe-Baker/Stephen-UI-Update-Baker/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_f6083a57bac0a7ab2b3497b04e71a83a04ce84a2.jar" />
     </item>
 

@@ -9,7 +9,7 @@ var STRIPE_API_PUBLISHABLE_KEY = "pk_test_h57hQy5dRjVjlM7SoNVYG8Mn";
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova", 'ionic-native-transitions']);
 
-app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state, $ionicPlatform) {
+app.run(["$rootScope", "$state", "$ionicPlatform", "$timeout", function ($rootScope, $state, $ionicPlatform, $timeout) {
 
   $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
     // We can catch the error thrown when the $requireAuth promise is rejected
@@ -26,6 +26,11 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
+
+      $timeout(function () {
+        navigator.splashscreen.hide()
+      }, 500);
+      
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -34,24 +39,10 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
   });
 }])
 
-
-  .service("CartItemData", function Item() {
-    var item = this;
-    //item.message = "DefaultHello (Service)/";
-    this.setItemData = function (SetValue) {
-      console.log("Setting Values");
-      item = SetValue;
-    }
-
-    this.getItemData = function () {
-      return item;
-    }
-  })
-
   .config(function ($stateProvider, $urlRouterProvider, StripeCheckoutProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position('bottom');
-    
+
     // Enables Native Scrolling
     $ionicConfigProvider.scrolling.jsScrolling(false);
 

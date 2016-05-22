@@ -7,6 +7,19 @@ app.factory("Auth", ["$firebaseAuth", function ($firebaseAuth) {
 }
 ]);
 
+app.service("CartItemData", function Item() {
+    var item = this;
+    //item.message = "DefaultHello (Service)/";
+    this.setItemData = function (SetValue) {
+        console.log("Setting Values");
+        item = SetValue;
+    }
+
+    this.getItemData = function () {
+        return item;
+    }
+});
+
 app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoading, $ionicPopup, $timeout) {
     var products = { items: [] };
     var refFB = new Firebase("https://burning-heat-7015.firebaseio.com");

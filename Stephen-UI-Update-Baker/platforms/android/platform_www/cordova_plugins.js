@@ -1,6 +1,13 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+        "clobbers": [
+            "window.plugins.nativepagetransitions"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "id": "cordova-plugin-camera.Camera",
         "clobbers": [
@@ -44,29 +51,30 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
         "id": "ionic-plugin-keyboard.keyboard",
         "clobbers": [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
-    },
-    {
-        "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
-        "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
-        "clobbers": [
-            "window.plugins.nativepagetransitions"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.telerik.plugins.nativepagetransitions": "0.6.2",
     "cordova-plugin-camera": "2.1.1",
     "cordova-plugin-network-information": "1.2.0",
+    "cordova-plugin-splashscreen": "3.1.0",
     "cordova-plugin-whitelist": "1.2.2-dev",
-    "ionic-plugin-keyboard": "1.0.8",
-    "com.telerik.plugins.nativepagetransitions": "0.6.2"
+    "ionic-plugin-keyboard": "1.0.8"
 };
 // BOTTOM OF METADATA
 });

@@ -29,6 +29,8 @@
 		C08ABE2641274349AAC9722C /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F43B10B94258836D5C9F /* CDVJpegHeaderWriter.m */; };
 		37BD4A150EF3469E94AD3F0B /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55830FB0D496498586A03CD7 /* NativePageTransitions.m */; };
 		F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */; };
+		A1D4CF3FD8B74A35B0BFE0E6 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BAE5D5CCF0429E88981072 /* CDVSplashScreen.m */; };
+		9FA824A026ED492183C53AF7 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 96956FAD2A264DA5840FDACC /* CDVViewController+SplashScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,10 @@
 		092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.m"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		5AD83502464447F6A6C60BE5 /* NativePageTransitions.h */ = {isa = PBXFileReference; name = "NativePageTransitions.h"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		83FD6A59370D42E78F804A27 /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		27BAE5D5CCF0429E88981072 /* CDVSplashScreen.m */ = {isa = PBXFileReference; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		96956FAD2A264DA5840FDACC /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		76773CF9858743C7AD159E90 /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		54101C4E8E8C435CBEB139C9 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +229,10 @@
 				092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */,
 				5AD83502464447F6A6C60BE5 /* NativePageTransitions.h */,
 				83FD6A59370D42E78F804A27 /* AppDelegate+nativepagetransitions.h */,
+				27BAE5D5CCF0429E88981072 /* CDVSplashScreen.m */,
+				96956FAD2A264DA5840FDACC /* CDVViewController+SplashScreen.m */,
+				76773CF9858743C7AD159E90 /* CDVSplashScreen.h */,
+				54101C4E8E8C435CBEB139C9 /* CDVViewController+SplashScreen.h */,
 			);
 			name = Plugins;
 			path = "CloudCafe Baker/Plugins";
@@ -354,6 +364,8 @@
 				9629E77FD033499CA711B4A9 /* UIWebViewExtension.m in Sources */,
 				37BD4A150EF3469E94AD3F0B /* NativePageTransitions.m in Sources */,
 				F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */,
+				A1D4CF3FD8B74A35B0BFE0E6 /* CDVSplashScreen.m in Sources */,
+				9FA824A026ED492183C53AF7 /* CDVViewController+SplashScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

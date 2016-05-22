@@ -65,6 +65,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.nativepagetransitions"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -74,7 +82,8 @@ module.exports.metadata =
     "cordova-plugin-network-information": "1.2.0",
     "cordova-plugin-whitelist": "1.2.2-dev",
     "ionic-plugin-keyboard": "1.0.8",
-    "com.telerik.plugins.nativepagetransitions": "0.6.2"
+    "com.telerik.plugins.nativepagetransitions": "0.6.2",
+    "cordova-plugin-splashscreen": "3.1.0"
 }
 // BOTTOM OF METADATA
 });

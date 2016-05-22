@@ -21,6 +21,9 @@
         },
         "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
     "dependent_plugins": {}
