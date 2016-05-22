@@ -7,7 +7,7 @@ var STRIPE_API_PUBLISHABLE_KEY = "pk_test_h57hQy5dRjVjlM7SoNVYG8Mn";
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova"]);
+var app = angular.module('starter', ['ionic', "ngMessages", 'ui.router', 'stripe.checkout', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', "ngCordova", 'ionic-native-transitions']);
 
 app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state, $ionicPlatform) {
 
@@ -51,6 +51,9 @@ app.run(["$rootScope", "$state", "$ionicPlatform", function ($rootScope, $state,
   .config(function ($stateProvider, $urlRouterProvider, StripeCheckoutProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.position('bottom');
+    
+    // Enables Native Scrolling
+    $ionicConfigProvider.scrolling.jsScrolling(false);
 
     // Define your STRIPE_API_PUBLISHABLE_KEY
     StripeCheckoutProvider.defaults({ key: STRIPE_API_PUBLISHABLE_KEY });

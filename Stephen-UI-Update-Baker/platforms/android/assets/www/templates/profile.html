@@ -5,84 +5,41 @@
 
   <ion-content style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
 
-    <form name="modifyProfileForm" ng-submit="modifyProfile()">
-      <div class="card">
-        <div class="list">
-          <div class="text-center" style="padding:5%;">
-            <img style="height:40%; width:40%;" class="profile-picture circle" ng-src="{{bakerProfile.bakeryImage}}" ng-click="updateProfilePicture()">
-          </div>
+    <div class="card">
+      <div class="list">
+        <div class="text-center" style="padding:5%;">
+          <img style="height:40%; width:40%;" class="profile-picture circle" ng-src="{{bakerProfile.bakeryImage}}" ng-click="updateProfilePicture()">
+        </div>
 
-          <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Bakery Name</span>
           <input type="text" placeholder="Enter your bakery's name" ng-model="bakerProfile.bakeryName">
         </label>
 
-          <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Address</span>
           <input type="text" placeholder="Enter your address" ng-model="bakerProfile.bakeryAddress">
         </label>
 
-          <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Postal Code</span>
           <input type="text" placeholder="Enter your postal code" ng-model="bakerProfile.bakeryPostalCode">
         </label>
 
-          <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Bank Account Number</span>
           <textarea placeholder="Enter your bank account number" ng-model="bakerProfile.bankAccountNumber"></textarea>
         </label>
 
-          <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Description</span>
           <textarea placeholder="Enter your bakery's description" ng-model="bakerProfile.description"></textarea>
         </label>
 
-          <button class="button button-outline button-block button-assertive" type="submit">
-    Save Changes</button>
-        </div>
+        <button class="button button-outline button-block button-assertive" ng-click="modifyProfile()">
+        Save Changes</button>
       </div>
-    </form>
-
-    <!--previous listings-->
-    <!--<div class="row">
-         
-  <div class="col col-50">
-  <div class="list card" ui-sref="inactivate">
-  <div class="item item-image">
-    <img src="img/items/thumbs/fried_calamari.jpg">
-  </div>
-  </div>
-  </div>
-  
-  <div class="col col-50">
-  <div class="list card" ui-sref="inactivate">
-  <div class="item item-image">
-    <img src="img/items/thumbs/zuppa.jpg">
-  </div>
-  </div>
-  </div>
-  
-</div> 
-      
-<div class="row">
-         
-  <div class="col col-50">
-  <div class="list card" ui-sref="inactivate">
-  <div class="item item-image">
-    <img src="img/items/thumbs/brick_chicken.jpg">
-  </div>
-  </div>
-  </div>
-  
-  <div class="col col-50">
-  <div class="list card" ui-sref="inactivate">
-  <div class="item item-image">
-    <img src="img/items/thumbs/rib_eyes.jpg">
-  </div>
-  </div>
-  </div>
-  
-</div>-->
+    </div>
 
   </ion-content>
 </ion-view>

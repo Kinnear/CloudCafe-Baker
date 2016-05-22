@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NativePageTransitions\"><param name=\"ios-package\" value=\"NativePageTransitions\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +54,9 @@
             "PACKAGE_NAME": "com.cloudcafe.baker"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
@@ -112,12 +119,21 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "file": "plugins/com.telerik.plugins.nativepagetransitions/www/NativePageTransitions.js",
+            "id": "com.telerik.plugins.nativepagetransitions.NativePageTransitions",
+            "pluginId": "com.telerik.plugins.nativepagetransitions",
+            "clobbers": [
+                "window.plugins.nativepagetransitions"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-camera": "2.1.1",
         "cordova-plugin-network-information": "1.2.0",
         "cordova-plugin-whitelist": "1.2.2-dev",
-        "ionic-plugin-keyboard": "1.0.8"
+        "ionic-plugin-keyboard": "1.0.8",
+        "com.telerik.plugins.nativepagetransitions": "0.6.2"
     }
 }

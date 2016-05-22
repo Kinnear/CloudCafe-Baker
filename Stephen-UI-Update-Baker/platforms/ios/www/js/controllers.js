@@ -1,6 +1,6 @@
 var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"])
 
-    
+
 
 app.controller('MyController', function ($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -218,7 +218,7 @@ app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
                 $scope.transactionData[i].pickupEpoch = new Date($scope.transactionData[i].pickupEpoch * 1000);
 
                 var userReference = new Firebase("https://burning-heat-7015.firebaseio.com/users");
-                userReference.orderByKey().equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
+                userReference.orderByChild("facebook").equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
                     for (var i = 0; i < $scope.transactionData.length; i++) {
                         var data = userSnapshot.exportVal();
                         var key = Object.keys(data)[0];
@@ -237,7 +237,7 @@ app.controller('PhotographerCtrl', function ($scope, $state) { })
 //controller for listingconfirmation.html
 app.controller('ListingCtrl', function ($scope, $state) { })
 
-app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $cordovaCamera) {
+app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, CordovaImageGalleryService) {
 
     $scope.user = {
         invitationCode: "",
@@ -252,20 +252,9 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $
     };
 
     $scope.takePicture = function (scopeValue) {
-        var options = {
-            quality: 75,
-            destinationType: Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
-            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100, // height and width of the image
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
 
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-
+        var temp = CordovaImageGalleryService.ChoosePictureFromGallery().then(function (imageData) {
+            // $scope.bakerProfile.bakeryImage = "data:image/jpeg;base64," + imageData;
             // Get the model
             var model = $parse(scopeValue);
             // Assigns a value to it
@@ -274,6 +263,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $
             RegistrationDetails.SetBakeryImage($scope.user.bakeryImage);
 
             console.log("Picture taken.");
+
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
@@ -311,7 +301,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, $
     }
 });
 
-app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordovaCamera, $firebaseArray, $firebaseObject, Auth, $ionicHistory) {
+app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, CordovaImageGalleryService, $firebaseArray, $firebaseObject, Auth, $ionicHistory) {
 
     var newFood = {
         userID: "",
@@ -328,22 +318,8 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
     $scope.firebaseAdd = $firebaseArray(refFood);
 
     $scope.takePicture = function (index, scopeValue) {
-        var options = {
-            quality: 75,
-            destinationType: Camera.DestinationType.DATA_URL, // if camera "Camera.PictureSourceType.CAMERA,"
-            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100, // height and width of the image
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
 
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-
-            // This sets our data in the scope to show the image.
-            // In other words sets our 'scopeValue' parameter object to be the returned img 
+        var temp = CordovaImageGalleryService.ChoosePictureFromGallery().then(function (imageData) {
             var model = $parse(scopeValue);
             model.assign($scope, "data:image/jpeg;base64," + imageData);
 
@@ -352,10 +328,6 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, $cordo
 
             RegistrationDetails.SetBakeryImage("data:image/jpeg;base64," + $scope.user.bakeryImage);
 
-            // Apply it to the scope
-            // $scope.$apply();
-
-            console.log("Picture taken.");
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
@@ -500,21 +472,21 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
 
             $ionicPopup.alert({
 
-   title: 'Registration Failed', // String. The title of the popup.
+                title: 'Registration Failed', // String. The title of the popup.
 
-   cssClass: '', // String, The custom CSS class name
+                cssClass: '', // String, The custom CSS class name
 
-   subTitle: error, // String (optional). The sub-title of the popup.
+                subTitle: error, // String (optional). The sub-title of the popup.
 
-   template: '', // String (optional). The html template to place in the popup body.
+                template: '', // String (optional). The html template to place in the popup body.
 
-   templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+                templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
 
-   okText: 'Start over', // String (default: 'OK'). The text of the OK button.
+                okText: 'Start over', // String (default: 'OK'). The text of the OK button.
 
-   okType: '', // String (default: 'button-positive'). The type of the OK button.
+                okType: '', // String (default: 'button-positive'). The type of the OK button.
 
-});
+            });
             console.error("Error: ", error);
         });
     };
@@ -630,21 +602,21 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
 
             $ionicPopup.alert({
 
-   title: 'Login Failed', // String. The title of the popup.
+                title: 'Login Failed', // String. The title of the popup.
 
-   cssClass: '', // String, The custom CSS class name
+                cssClass: '', // String, The custom CSS class name
 
-   subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
+                subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
 
-   template: '', // String (optional). The html template to place in the popup body.
+                template: '', // String (optional). The html template to place in the popup body.
 
-   templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+                templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
 
-   okText: 'Retry', // String (default: 'OK'). The text of the OK button.
+                okText: 'Retry', // String (default: 'OK'). The text of the OK button.
 
-   okType: '', // String (default: 'button-positive'). The type of the OK button.
+                okType: '', // String (default: 'button-positive'). The type of the OK button.
 
-});
+            });
         });
     }
 });
@@ -708,6 +680,6 @@ app.controller('ProfileEditor', function ($scope, UserBakerProfile, CordovaImage
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
-        });;
+        });
     }
 });

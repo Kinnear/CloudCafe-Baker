@@ -18,6 +18,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "com.telerik.plugins.nativepagetransitions": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
     "dependent_plugins": {}

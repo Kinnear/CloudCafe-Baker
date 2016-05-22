@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		16967E2D20A7463AAA02E1FB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E9798BE0934E3ABC0A6499 /* CoreLocation.framework */; };
@@ -28,6 +27,8 @@
 		999EB85A8A174FE689D1B389 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D00F975E5B3A4AB49ACDFA70 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9B8FA2C54A85427088720E00 /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBEA5183784DDFB51DA7D8 /* UIImage+CropScaleOrientation.m */; };
 		C08ABE2641274349AAC9722C /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F43B10B94258836D5C9F /* CDVJpegHeaderWriter.m */; };
+		37BD4A150EF3469E94AD3F0B /* NativePageTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55830FB0D496498586A03CD7 /* NativePageTransitions.m */; };
+		F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,10 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "CloudCafe Baker/config.xml"; sourceTree = "<group>"; };
 		FF5F94894CEF42FBB24A9077 /* CoreTelephony.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		55830FB0D496498586A03CD7 /* NativePageTransitions.m */ = {isa = PBXFileReference; name = "NativePageTransitions.m"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.m"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		5AD83502464447F6A6C60BE5 /* NativePageTransitions.h */ = {isa = PBXFileReference; name = "NativePageTransitions.h"; path = "com.telerik.plugins.nativepagetransitions/NativePageTransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		83FD6A59370D42E78F804A27 /* AppDelegate+nativepagetransitions.h */ = {isa = PBXFileReference; name = "AppDelegate+nativepagetransitions.h"; path = "com.telerik.plugins.nativepagetransitions/AppDelegate+nativepagetransitions.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +219,10 @@
 				DD08D422599040AAB622517E /* UIWebViewExtension.m */,
 				4630D63A534E4C07A48665A1 /* IonicKeyboard.h */,
 				BCDD9088CF2647A992CD5877 /* UIWebViewExtension.h */,
+				55830FB0D496498586A03CD7 /* NativePageTransitions.m */,
+				092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */,
+				5AD83502464447F6A6C60BE5 /* NativePageTransitions.h */,
+				83FD6A59370D42E78F804A27 /* AppDelegate+nativepagetransitions.h */,
 			);
 			name = Plugins;
 			path = "CloudCafe Baker/Plugins";
@@ -343,6 +352,8 @@
 				80A191A712B64D49BE19752F /* CDVReachability.m in Sources */,
 				72D690D2619C449E9EF34D40 /* IonicKeyboard.m in Sources */,
 				9629E77FD033499CA711B4A9 /* UIWebViewExtension.m in Sources */,
+				37BD4A150EF3469E94AD3F0B /* NativePageTransitions.m in Sources */,
+				F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
