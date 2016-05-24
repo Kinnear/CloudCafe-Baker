@@ -1,22 +1,7 @@
 <ion-view view-title="Images of Food" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;"
   ng-controller="NavHistoryModifier">
   <ion-content>
-    <div class="text-center"  ng-controller="AddNewFood">
-      <!--{{newFood}}-->
-      
-      <img class="display-image-thumbnail" ng-show="img1URI !== undefined" ng-src="{{img1URI}}">
-      <img class="display-image-thumbnail" ng-show="img1URI === undefined" ng-src="http://placehold.it/512x512" ng-click="takePicture(0,'img1URI')">
-
-      <img class="display-image-thumbnail" ng-show="img2URI !== undefined" ng-src="{{img2URI}}">
-      <img class="display-image-thumbnail" ng-show="img2URI === undefined" ng-src="http://placehold.it/512x512" ng-click="takePicture(1,'img2URI')">
-
-      <img class="display-image-thumbnail" ng-show="img3URI !== undefined" ng-src="{{img3URI}}">
-      <img class="display-image-thumbnail" ng-show="img3URI === undefined" ng-src="http://placehold.it/512x512" ng-click="takePicture(2, 'img3URI')">
-
-      <img class="display-image-thumbnail" ng-show="img4URI !== undefined" ng-src="{{img4URI}}">
-      <img class="display-image-thumbnail" ng-show="img4URI === undefined" ng-src="http://placehold.it/512x512" ng-click="takePicture(3, 'img4URI')">
-
-    </div>
+    
 
 
     <button class="button button-block button-assertive" ui-sref="post3">
