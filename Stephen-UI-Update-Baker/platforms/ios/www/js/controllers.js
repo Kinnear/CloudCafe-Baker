@@ -194,12 +194,11 @@ app.controller('BioCtrl', function ($scope, $state) { })
 
 
 //controller for change.html
-app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
+app.controller('ChangeCtrl', function ($scope, $state, $stateParams, $timeout) {
     var productID = $stateParams.ItemData.id;
     $scope.transactionData = [];
 
     // Query for Data from firebase for by FoodID
-
     var foodReference = new Firebase("https://burning-heat-7015.firebaseio.com/transactions");
     foodReference.orderByChild("foodID").equalTo(productID).on("value", function (dataSnapshot) {
 
@@ -219,12 +218,15 @@ app.controller('ChangeCtrl', function ($scope, $state, $stateParams) {
 
                 var userReference = new Firebase("https://burning-heat-7015.firebaseio.com/users");
                 userReference.orderByChild("facebook").equalTo($scope.transactionData[i].customerID).on("value", function (userSnapshot) {
-                    for (var i = 0; i < $scope.transactionData.length; i++) {
-                        var data = userSnapshot.exportVal();
-                        var key = Object.keys(data)[0];
 
-                        $scope.transactionData[i].customerName = userSnapshot.child(key).val().username;
-                    }
+                    $timeout(function () {
+                        for (var i = 0; i < $scope.transactionData.length; i++) {
+                            var data = userSnapshot.exportVal();
+                            var key = Object.keys(data)[0];
+
+                            $scope.transactionData[i].customerName = userSnapshot.child(key).val().username;
+                        }
+                    });
                 });
             }
         }
