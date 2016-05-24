@@ -290,6 +290,12 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
         RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
     }
+    
+    $scope.SaveContactUI = function () {
+        console.log("3b");
+        // RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
+        // RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
+    }
 
     $scope.SaveFirstPaymentUI = function () {
         console.log("4");
@@ -505,6 +511,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.isInvitationVisible = false;
     $scope.isCheckemailVisible = false;
     $scope.isBakerybioVisible = false;
+    $scope.isBakerycontactVisible = false;
     $scope.isBakerylocationVisible = false;
     $scope.isBakeryaccountVisible = false;
     $scope.isBakeryreasonVisible = false;
@@ -514,6 +521,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.class3 = "class3";
     $scope.class4 = "class4";
     $scope.class5 = "class5";
+    $scope.class5b = "class5b";
     $scope.class6 = "class6";
     $scope.class7 = "class7";
     $scope.class8 = "class8";
@@ -545,6 +553,12 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
 
     $scope.changeClass5 = function () {
         $scope.class5 = "animated fadeOutLeft";
+        $scope.class5b = "animated fadeInRight";
+        $scope.isBakerycontactVisible = true;
+    }
+    
+    $scope.changeClass5b = function () {
+        $scope.class5b = "animated fadeOutLeft";
         $scope.class6 = "animated fadeInRight";
         $scope.isBakerylocationVisible = true;
     }
@@ -566,6 +580,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         $scope.isInvitationVisible = false;
         $scope.isCheckemailVisible = false;
         $scope.isBakerybioVisible = false;
+        $scope.isBakerycontactVisible = false;
         $scope.isBakerylocationVisible = false;
         $scope.isBakeryaccountVisible = false;
         $scope.isBakeryreasonVisible = false;

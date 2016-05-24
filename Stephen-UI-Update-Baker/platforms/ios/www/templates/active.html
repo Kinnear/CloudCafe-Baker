@@ -13,21 +13,18 @@
 
                 <h2>{{SingleItem.foodName}}</h2>
                 
-                <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity -10)">
-                    -10
-                </button>
-                <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity -1)">
+                <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity -1)">
                     -
                 </button>
 
-                <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity + 1)">
+                <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity + 1)">
                     +
                  </button>
-                 <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity + 10)">
-                    +10
+                 <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity - 999999)">
+                    Remove from menu
                  </button>
-                <!--can we switch this to number of orders pending?-->
-                <p>Number of servings: {{SingleItem.maxQuantity}}</p>
+                <br>
+                <p>Baking Capacity: {{SingleItem.maxQuantity}}</p>
                 <i class="icon ion-chevron-right" ng-click="changeItem(SingleItem)"></i>
             </a>
         </div>

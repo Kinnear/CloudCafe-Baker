@@ -145,9 +145,9 @@
                             </div>
                             </div>
                             <div class="text-center" style="margin-top:5%;">
-                                <img ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
-                                <img ng-show="user.bakeryImage === undefined" ng-src="http://placehold.it/100x100">
-                                <button class="button" ng-click="takePicture('user.bakeryImage')">Upload Photo</button>
+                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
+                                <img class="display-image-thumbnail" ng-show="user.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture('user.bakeryImage')">
+                                
                             </div>
 
                             <div class="list list-inset">
@@ -174,6 +174,39 @@
                         </form>
                     </div>
                 </div>
+                
+                
+                <div ng-class="class5b" ng-if="isBakerycontactVisible">
+                    <div class="card">
+                        <form name="signin" ng-submit="changeClass5b()">
+                            
+                            <div class="text-center">
+                            <div class="item item-text-wrap">
+                                
+                                CloudCafe needs your contact number<br>
+                                Customers will need to contact you
+                                
+                            </div>
+                            </div>
+                            
+                            <div class="list list-inset">
+                                
+                                <label class="item item-input item-floating-label">
+                                <span class="input-label">Contact Number</span>      
+                                <input type="tel" name="Contact Number" placeholder="Contact Number">
+                            
+                            </label>
+                            
+                            </div>
+
+                            <div class="padding-top">
+                                <button class="button button-block button-assertive" type="submit">
+                                Next
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
 
                 <div ng-class="class6" ng-if="isBakerylocationVisible">
@@ -183,8 +216,9 @@
                             <div class="text-center">
                             <div class="item item-text-wrap">
                                 
-                                Cloud Café delivers your products for you!<br>
-                                Input your location to get started
+                                CloudCafe has plans to launch a delivery service in the future<br>
+                                We need your location to deliver products for you
+                                
                             </div>
                             </div>
                             

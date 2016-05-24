@@ -1,4 +1,5 @@
-<ion-view view-title="Post" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
+<ion-view view-title="Post" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;"
+ng-controller="NavHistoryModifier">
     <ion-content ng-controller="AddNewFood">
 
         <div class="list list-inset">
@@ -72,10 +73,10 @@
         
         
 
-        <button ng-controller="NavHistoryModifier" 
+        <button  
         class="button button-block button-assertive"
         ui-sref="active"
-        ng-click="NextViewIsNavRoot(); AddFood()">
+        ng-click="AddFood(); NextViewIsNavRoot()">
         Confirm Listing
         </button>
         
