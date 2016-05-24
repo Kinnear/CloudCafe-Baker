@@ -50,36 +50,42 @@ ng-controller="NavHistoryModifier">
         <div class="list list-inset">
             <!--{{newFood}}-->
             <div class="item item-text-wrap" style="font-weight: bold;">
-                Upload Images
+                For Home Bakers
             </div>
             
-            <div class="text-center" >
-       
-                <img class="display-image-thumbnail" ng-show="img1URI !== undefined" ng-src="{{img1URI}}">
+            <div class="text-center">
+
+      
+                <img class="display-image-thumbnail" ng-show="img1URI !== undefined" ng-src="{{img1URI}}" ng-click="takePicture(0,'img1URI')">
                 <img class="display-image-thumbnail" ng-show="img1URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(0,'img1URI')">
 
-                <img class="display-image-thumbnail" ng-show="img2URI !== undefined" ng-src="{{img2URI}}">
+                <img class="display-image-thumbnail" ng-show="img2URI !== undefined" ng-src="{{img2URI}}" ng-click="takePicture(0,'img2URI')">
                 <img class="display-image-thumbnail" ng-show="img2URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(1,'img2URI')">
 
-                <img class="display-image-thumbnail" ng-show="img3URI !== undefined" ng-src="{{img3URI}}">
+                <img class="display-image-thumbnail" ng-show="img3URI !== undefined" ng-src="{{img3URI}}" ng-click="takePicture(0,'img3URI')">
                 <img class="display-image-thumbnail" ng-show="img3URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(2, 'img3URI')">
 
-                <img class="display-image-thumbnail" ng-show="img4URI !== undefined" ng-src="{{img4URI}}">
+                <img class="display-image-thumbnail" ng-show="img4URI !== undefined" ng-src="{{img4URI}}" ng-click="takePicture(0,'img4URI')">
                 <img class="display-image-thumbnail" ng-show="img4URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(3, 'img4URI')">
 
                 </div>
+            
+            <label class="item item-input">
+                  <span class="input-label" style="width:50%; opacity:0.7;">End Date</span>
+                  <input type="date" ng-model="newFood.endDate" required>
+                 </label>
+
+            <label class="item item-input">
+                <span class="input-label" style="width:50%; opacity:0.7;">Max Quantity</span>
+                <input type="tel" ng-model="newFood.maxQuantity" required>
+            </label>
 
         </div>
-        
-        
 
-        <button  
-        class="button button-block button-assertive"
-        ui-sref="active"
-        ng-click="AddFood(); NextViewIsNavRoot()">
+       <button class="button button-block button-assertive" ui-sref="active" ng-click="NextViewIsNavRoot(); AddFood()">
         Confirm Listing
         </button>
-        
+    
 
     </ion-content>
 </ion-view>
