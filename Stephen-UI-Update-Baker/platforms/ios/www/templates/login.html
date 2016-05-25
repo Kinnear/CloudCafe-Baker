@@ -145,7 +145,7 @@
                             </div>
                             </div>
                             <div class="text-center" style="margin-top:5%;">
-                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
+                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}" ng-click="takePicture('user.bakeryImage')">
                                 <img class="display-image-thumbnail" ng-show="user.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture('user.bakeryImage')">
                                 
                             </div>
@@ -193,8 +193,11 @@
                                 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Contact Number</span>      
-                                <input type="tel" name="Contact Number" placeholder="Contact Number">
-                            
+                                <input type="tel" name="Contact Number" placeholder="Contact Number" ng-model="user.bakeryContact" required>
+                                <div ng-messages="signin.contact.$error" role="alert" ng-if="signin.contact.$touched">
+                                        <div ng-message="required" class="errorMessage">Your bakery's contact is required</div>
+                                    </div>
+                                    
                             </label>
                             
                             </div>
@@ -272,6 +275,7 @@
                                 <span class="input-label">Bank Account Number</span>    
                                 <input type="tel" name="telephoneNumber" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
                             
+                            <!--telephoneNumber? not bank account number?-->
                                     <div ng-messages="signin.telephoneNumber.$error" role="alert" ng-if="signin.telephoneNumber.$touched">
                                         <div ng-message="required" class="errorMessage">Your account number is required</div>
                                     </div>

@@ -525,6 +525,12 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.class6 = "class6";
     $scope.class7 = "class7";
     $scope.class8 = "class8";
+    
+    $scope.errorClass = "errorClass";
+    
+    $scope.errorClass =  function(){
+        $scope.errorClass = "animated shake";
+    }
 
     $scope.changeClass = function () {
         $scope.class = "animated fadeOutLeft";
