@@ -9,7 +9,7 @@
 
             <div ng-controller="LoginBaker">
                 <div ng-class="class">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[loginForm.email.$touched]" ng-class="{true: 'animated shake', false: ''}[loginForm.password.$touched]">
                         <form name="loginForm" ng-submit="TryLogin()">
                             <div class="list list-inset">
                                 <label class="item item-input item-floating-label">
@@ -53,7 +53,10 @@
             <div ng-controller="RegisterBaker">
 
                 <div ng-class="class2" ng-if="isRegisterVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.invitationCode.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.email.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.password.$touched]">
+                    
                         <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
                             <div class="list list-inset">
                                 <label class="item item-input item-floating-label">
@@ -137,7 +140,7 @@
                 <!--registration route-->
 
                 <div ng-class="class5" ng-if="isBakerybioVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.bakeryName.$touched]">
                         <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
                             <div class="text-center">
                             <div class="item item-text-wrap">
@@ -177,7 +180,7 @@
                 
                 
                 <div ng-class="class5b" ng-if="isBakerycontactVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.???.$touched]">
                         <form name="signin" ng-submit="changeClass5b()">
                             
                             <div class="text-center">
@@ -210,7 +213,8 @@
 
 
                 <div ng-class="class6" ng-if="isBakerylocationVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.address.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.bakeryPostalCode.$touched]">
                         <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
                             
                             <div class="text-center">
@@ -259,7 +263,7 @@
                 </div>
 
                 <div ng-class="class7" ng-if="isBakeryaccountVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.telephoneNumber.$touched]">
                         <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
                             <div class="text-center">
                             <div class="item item-text-wrap">
@@ -292,7 +296,7 @@
 
                 <div ng-controller="FirebaseRegistration">
                     <div ng-class="class8" ng-if="isBakeryreasonVisible">
-                        <div class="card">
+                        <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.description.$touched]">
                             <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase();">
 
                                 <div class="text-center">

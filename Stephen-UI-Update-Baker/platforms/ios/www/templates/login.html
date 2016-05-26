@@ -9,7 +9,7 @@
 
             <div ng-controller="LoginBaker">
                 <div ng-class="class">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[loginForm.email.$touched]" ng-class="{true: 'animated shake', false: ''}[loginForm.password.$touched]">
                         <form name="loginForm" ng-submit="TryLogin()">
                             <div class="list list-inset">
                                 <label class="item item-input item-floating-label">
@@ -53,7 +53,10 @@
             <div ng-controller="RegisterBaker">
 
                 <div ng-class="class2" ng-if="isRegisterVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.invitationCode.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.email.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.password.$touched]">
+                    
                         <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
                             <div class="list list-inset">
                                 <label class="item item-input item-floating-label">
@@ -111,12 +114,6 @@
                                 <label class="item item-input item-floating-label">
                                     <span class="input-label">Email</span>
                                 <input type="text" placeholder="Email" required>
-                                <!--<input name="email" type="email" placeholder="Email" ng-model="user.email" required>
-                            
-                                    <div ng-messages="signin.email.$error" role="alert" ng-if="signin.email.$touched">
-                                        <div ng-message="required" class="errorMessage">The email field is required!</div>
-                                        <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
-                                    </div>-->
                             </label>
 
                             </div>
@@ -143,7 +140,7 @@
                 <!--registration route-->
 
                 <div ng-class="class5" ng-if="isBakerybioVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.bakeryName.$touched]">
                         <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
                             <div class="text-center">
                             <div class="item item-text-wrap">
@@ -151,7 +148,7 @@
                             </div>
                             </div>
                             <div class="text-center" style="margin-top:5%;">
-                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}" ng-click="takePicture('user.bakeryImage')">
+                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
                                 <img class="display-image-thumbnail" ng-show="user.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture('user.bakeryImage')">
                                 
                             </div>
@@ -183,7 +180,7 @@
                 
                 
                 <div ng-class="class5b" ng-if="isBakerycontactVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.???.$touched]">
                         <form name="signin" ng-submit="changeClass5b()">
                             
                             <div class="text-center">
@@ -199,11 +196,8 @@
                                 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Contact Number</span>      
-                                <input type="tel" name="Contact Number" placeholder="Contact Number" ng-model="user.bakeryContact" required>
-                                <div ng-messages="signin.bakeryContact.$error" role="alert" ng-if="signin.bakeryContact.$touched">
-                                        <div ng-message="required" class="errorMessage">Your bakery's contact is required</div>
-                                    </div>
-                                    
+                                <input type="tel" name="Contact Number" placeholder="Contact Number">
+                            
                             </label>
                             
                             </div>
@@ -219,7 +213,8 @@
 
 
                 <div ng-class="class6" ng-if="isBakerylocationVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.address.$touched]"
+                    ng-class="{true: 'animated shake', false: ''}[signin.bakeryPostalCode.$touched]">
                         <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
                             
                             <div class="text-center">
@@ -237,7 +232,7 @@
                                 <span class="input-label">Bakery Address</span>      
                                 <input type="text" name="address" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
                             
-                                    <div ng-messages="signin.bakeryAddress.$error" role="alert" ng-if="signin.bakeryAddress.$touched">
+                                    <div ng-messages="signin.address.$error" role="alert" ng-if="signin.address.$touched">
                                         <div ng-message="required" class="errorMessage">Your bakery's address is required</div>
                                     </div>
                             
@@ -268,7 +263,7 @@
                 </div>
 
                 <div ng-class="class7" ng-if="isBakeryaccountVisible">
-                    <div class="card">
+                    <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.telephoneNumber.$touched]">
                         <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
                             <div class="text-center">
                             <div class="item item-text-wrap">
@@ -279,9 +274,9 @@
 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Bank Account Number</span>    
-                                <input type="tel" name="blah" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
+                                <input type="tel" name="telephoneNumber" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
                             
-                                    <div ng-messages="signin.blah.$error" role="alert" ng-if="signin.blah.$touched">
+                                    <div ng-messages="signin.telephoneNumber.$error" role="alert" ng-if="signin.telephoneNumber.$touched">
                                         <div ng-message="required" class="errorMessage">Your account number is required</div>
                                     </div>
                             
@@ -301,7 +296,7 @@
 
                 <div ng-controller="FirebaseRegistration">
                     <div ng-class="class8" ng-if="isBakeryreasonVisible">
-                        <div class="card">
+                        <div class="card" ng-class="{true: 'animated shake', false: ''}[signin.description.$touched]">
                             <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase();">
 
                                 <div class="text-center">
