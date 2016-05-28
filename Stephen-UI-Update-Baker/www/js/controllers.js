@@ -526,6 +526,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.class7 = "class7";
     $scope.class8 = "class8";
     
+    $scope.status = "status";
 
     $scope.changeClass = function () {
         $scope.class = "animated fadeOutLeft";
@@ -593,9 +594,11 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
     $scope.email = "";
     $scope.password = "";
     $scope.wrongPasswordMessage = "";
+    $scope.clicky = false;
+    
 
     $scope.TryLogin = function () {
-
+       
         $ionicLoading.show({
             template: '<ion-spinner></ion-spinner>'
         });
@@ -614,27 +617,29 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
             $state.go("post");
         }).catch(function (error) {
             console.error("Authentication failed:", error);
+            
+            $scope.clicky = true;
 
-            $scope.wrongPasswordMessage = "Incorrect Password";
+            // $scope.wrongPasswordMessage = "Incorrect Password";
             $ionicLoading.hide();
 
-            $ionicPopup.alert({
+            // $ionicPopup.alert({
 
-                title: 'Login Failed', // String. The title of the popup.
+            //     title: 'Login Failed', // String. The title of the popup.
 
-                cssClass: '', // String, The custom CSS class name
+            //     cssClass: '', // String, The custom CSS class name
 
-                subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
+            //     subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
 
-                template: '', // String (optional). The html template to place in the popup body.
+            //     template: '', // String (optional). The html template to place in the popup body.
 
-                templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+            //     templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
 
-                okText: 'Retry', // String (default: 'OK'). The text of the OK button.
+            //     okText: 'Retry', // String (default: 'OK'). The text of the OK button.
 
-                okType: '', // String (default: 'button-positive'). The type of the OK button.
+            //     okType: '', // String (default: 'button-positive'). The type of the OK button.
 
-            });
+            // });
         });
     }
 });
