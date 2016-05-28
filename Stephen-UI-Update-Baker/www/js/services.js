@@ -223,6 +223,7 @@ app.factory('RegistrationDetails', function () {
         email: "",
         password: "",
         bakeryImage: "",
+        contactNumber: "",
         bakeryName: "",
         bakeryAddress: "",
         bakeryPostalCode: "",
@@ -252,6 +253,10 @@ app.factory('RegistrationDetails', function () {
         SetBakeryImage: function (value) { userData.bakeryImage = value; },
         GetBakeryImage: function () { return userData.bakeryImage; },
 
+        // contact number
+        SetContactNumber: function (value) { userData.contactNumber = value; },
+        GetContactNumber: function () { return userData.contactNumber; },
+
         // bakery Image
         SetBakeryName: function (value) { userData.bakeryName = value; },
         GetBakeryName: function () { return userData.bakeryName; },
@@ -279,6 +284,7 @@ app.factory('RegistrationDetails', function () {
                 email: "",
                 password: "",
                 bakeryImage: "",
+                contactNumber: "",
                 bakeryName: "",
                 bakeryAddress: "",
                 bakeryPostalCode: "",
