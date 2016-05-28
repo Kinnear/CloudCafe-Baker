@@ -151,8 +151,8 @@
                                     </div>
                                 </div>
                                 <div class="text-center" style="margin-top:5%;">
-                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
-                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png"
+                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage !== null" ng-src="{{user.bakeryImage}}">
+                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage === null" ng-src="img/backgrounds/ImageUploadIcon.png"
                                         ng-click="takePicture('user.bakeryImage')">
 
                                 </div>
@@ -199,7 +199,7 @@
 
                                     <label class="item item-input item-floating-label">
                                 <span class="input-label">Contact Number</span>      
-                                <input type="tel" name="contact" placeholder="Contact Number" ng-model="user.bakeryContact" required>
+                                <input type="tel" name="contact" placeholder="Contact Number" ng-model="user.bakeryContactNumber" required>
                                 
                                 <div ng-messages="signin.contact.$error" role="alert" ng-if="signin.contact.$touched">
                                         <div ng-message="required" class="errorMessage">Your bakery's contact is required</div>

@@ -245,7 +245,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         invitationCode: "",
         email: "",
         password: "",
-        bakeryImage: undefined,
+        bakeryImage: null,
         bakeryName: "",
         bakeryAddress: "",
         contactNumber: "",
@@ -465,6 +465,8 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
                 bankAccountNumber: RegistrationDetails.GetBankAccountNumber(),
                 description: RegistrationDetails.GetDescription()
             };
+            
+            console.log("contact number " + RegistrationDetails.GetContactNumber());
 
             //do processing to add login credentials to store in our database
             $scope.firebaseAdd.$add(userInfo).then(function (ref) {
