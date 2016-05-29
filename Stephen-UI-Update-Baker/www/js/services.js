@@ -386,7 +386,7 @@ app.factory('AddNewFoodService', function () {
         img: [],
         description: "",
         pricePerServing: "",
-        quantityCap: "",
+        quantityCap: 0,
     };
 
     return {

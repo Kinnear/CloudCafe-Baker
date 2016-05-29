@@ -325,7 +325,7 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, Cordov
         bakeryImage: "",
         description: "",
         pricePerServing: "",
-        quantityCap: "",
+        quantityCap: 0,
     };
 
     $scope.newFood = AddNewFoodService;
