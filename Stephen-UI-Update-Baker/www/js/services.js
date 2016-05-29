@@ -80,7 +80,19 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
             return null;
         },
         editFood: function (id, quantity) {
-            refFB.child("food").child(id).update({ maxQuantity: quantity });
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) {
+                
+                var intQuantityFromDatabase = parseInt(quantityFromDatabase);
+
+                if ((intQuantityFromDatabase + quantity) <= 0) {
+                    return 0;
+                } else {
+                    return intQuantityFromDatabase + quantity;
+                }
+            });
+        },
+        removeAllQuantity: function (id) {
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) { return 0; });
         }
     };
 });
@@ -386,7 +398,7 @@ app.factory('AddNewFoodService', function () {
         img: [],
         description: "",
         pricePerServing: "",
-        quantityCap: 0,
+        quantityCap: "",
     };
 
     return {
@@ -410,6 +422,8 @@ app.factory('AddNewFoodService', function () {
         // bakery Image
         SetFoodImg: function (index, value) { newFood.img[index] = value; },
         GetFoodImg: function (index) { return newFood.img[index]; },
+
+        GetAllPropertiesOfFood: function () { return newFood; },
 
         Debug: function () {
             //print out debug info

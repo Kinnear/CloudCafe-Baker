@@ -126,11 +126,12 @@ app.controller('ActiveCtrl', function ($scope, $state, Items, $ionicSideMenuDele
     }
 
     $scope.alterQuantity = function (id, number) {
-        if (number < 0) {
-            number = 0;
-        }
-        Items.editFood(id, number)
+        Items.editFood(id, number);
     }
+
+    $scope.removeQuantity = function (id) {
+        Items.removeAllQuantity(id);
+    };
 
     // disabled swipe menu
     $ionicSideMenuDelegate.canDragContent(false);
@@ -297,7 +298,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         // RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
         // RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
     }
-    
+
     $scope.SaveLocationUI = function () {
         console.log("4");
         RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
@@ -465,7 +466,7 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
                 bankAccountNumber: RegistrationDetails.GetBankAccountNumber(),
                 description: RegistrationDetails.GetDescription()
             };
-            
+
             console.log("contact number " + RegistrationDetails.GetContactNumber());
 
             //do processing to add login credentials to store in our database

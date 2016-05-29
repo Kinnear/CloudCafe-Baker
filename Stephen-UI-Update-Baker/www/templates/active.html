@@ -16,14 +16,14 @@
             Baking Capacity: {{SingleItem.maxQuantity}}
         </p>
 
-      <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity -1)">
+      <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id, -1)">
                     -
                 </button>
 
-                <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity + 1)">
+                <button class="button button-small button-calm" ng-click="alterQuantity(SingleItem.id, 1)">
                     +
                  </button>
-                 <button class="button button-small button-assertive" ng-click="alterQuantity(SingleItem.id,SingleItem.maxQuantity - 999999)">
+                 <button class="button button-small button-assertive" ng-click="removeQuantity(SingleItem.id)">
                     Remove from menu
                  </button>
 

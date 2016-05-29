@@ -232,7 +232,7 @@ app.config(function ($stateProvider, $urlRouterProvider, StripeCheckoutProvider,
     .state('change', {
       url: '/change',
       templateUrl: 'templates/change.html',
-      controller: 'ChangeCtrl as c',
+      controller: 'ChangeCtrl',
       params: { 'ItemData': null },
       resolve: {
         // controller will not be loaded until $requireAuth resolves

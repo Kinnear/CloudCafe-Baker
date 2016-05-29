@@ -80,7 +80,19 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
             return null;
         },
         editFood: function (id, quantity) {
-            refFB.child("food").child(id).update({ maxQuantity: quantity });
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) {
+                
+                var intQuantityFromDatabase = parseInt(quantityFromDatabase);
+
+                if ((intQuantityFromDatabase + quantity) <= 0) {
+                    return 0;
+                } else {
+                    return intQuantityFromDatabase + quantity;
+                }
+            });
+        },
+        removeAllQuantity: function (id) {
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) { return 0; });
         }
     };
 });
@@ -223,6 +235,7 @@ app.factory('RegistrationDetails', function () {
         email: "",
         password: "",
         bakeryImage: "",
+        contactNumber: "",
         bakeryName: "",
         bakeryAddress: "",
         bakeryPostalCode: "",
@@ -252,6 +265,10 @@ app.factory('RegistrationDetails', function () {
         SetBakeryImage: function (value) { userData.bakeryImage = value; },
         GetBakeryImage: function () { return userData.bakeryImage; },
 
+        // contact number
+        SetContactNumber: function (value) { userData.contactNumber = value; },
+        GetContactNumber: function () { return userData.contactNumber; },
+
         // bakery Image
         SetBakeryName: function (value) { userData.bakeryName = value; },
         GetBakeryName: function () { return userData.bakeryName; },
@@ -279,6 +296,7 @@ app.factory('RegistrationDetails', function () {
                 email: "",
                 password: "",
                 bakeryImage: "",
+                contactNumber: "",
                 bakeryName: "",
                 bakeryAddress: "",
                 bakeryPostalCode: "",
@@ -404,6 +422,8 @@ app.factory('AddNewFoodService', function () {
         // bakery Image
         SetFoodImg: function (index, value) { newFood.img[index] = value; },
         GetFoodImg: function (index) { return newFood.img[index]; },
+
+        GetAllPropertiesOfFood: function () { return newFood; },
 
         Debug: function () {
             //print out debug info

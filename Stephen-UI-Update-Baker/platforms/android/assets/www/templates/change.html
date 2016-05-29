@@ -1,6 +1,6 @@
 <ion-view view-title="Delivery Dashboard" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;">
     <ion-content>
-        <div ng-show="c.transactionData.length > 0" class="card" ng-repeat="SingleItem in c.transactionData">
+        <div class="card" ng-repeat="SingleItem in transactionData">
             <div class="item item-text-wrap">
                 <p>Order Code: {{SingleItem.stripeTransactionID}}</p>
                 <p>Customer: {{SingleItem.customerName}}</p>
@@ -12,7 +12,7 @@
             </div>
         </div>
         
-        <div ng-show="c.transactionData == null" class="card">
+        <div ng-show="transactionData.length == 0" class="card">
             <div class="item item-text-wrap">
                 You have no orders yet for this product!
             </div>
