@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"ios-package\" value=\"SocialSharing\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -64,6 +68,9 @@
             "PACKAGE_NAME": "com.cloudcafe.baker"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
@@ -142,6 +149,14 @@
             "clobbers": [
                 "navigator.splashscreen"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+            "id": "cordova-plugin-x-socialsharing.SocialSharing",
+            "pluginId": "cordova-plugin-x-socialsharing",
+            "clobbers": [
+                "window.plugins.socialsharing"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -150,6 +165,7 @@
         "cordova-plugin-whitelist": "1.2.2-dev",
         "ionic-plugin-keyboard": "1.0.8",
         "com.telerik.plugins.nativepagetransitions": "0.6.2",
-        "cordova-plugin-splashscreen": "3.1.0"
+        "cordova-plugin-splashscreen": "3.1.0",
+        "cordova-plugin-x-socialsharing": "5.1.1"
     }
 }

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		16967E2D20A7463AAA02E1FB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E9798BE0934E3ABC0A6499 /* CoreLocation.framework */; };
@@ -32,6 +31,10 @@
 		A1D4CF3FD8B74A35B0BFE0E6 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BAE5D5CCF0429E88981072 /* CDVSplashScreen.m */; };
 		C08ABE2641274349AAC9722C /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F43B10B94258836D5C9F /* CDVJpegHeaderWriter.m */; };
 		F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C226BB9CE47CA8B1DB9F7 /* AppDelegate+nativepagetransitions.m */; };
+		5CF7EFD3E9AD4BE7966A7B49 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3495690E7344C595FA09CD /* NSString+URLEncoding.m */; };
+		1EE9D64B0637451C8D31B917 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 0241BD2F39B24AAAA264350F /* SocialSharing.m */; };
+		5D420EFCC0624926BFB560EE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADAD55B594054E1883142326 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0239ABDEC1F54D5AA6193454 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7A730F472346BDBEB07F44 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,12 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "CloudCafe Baker/config.xml"; sourceTree = "<group>"; };
 		FF5F94894CEF42FBB24A9077 /* CoreTelephony.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5D3495690E7344C595FA09CD /* NSString+URLEncoding.m */ = {isa = PBXFileReference; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		0241BD2F39B24AAAA264350F /* SocialSharing.m */ = {isa = PBXFileReference; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		2585F3E9FF384EDC8EEFAF1C /* NSString+URLEncoding.h */ = {isa = PBXFileReference; name = "NSString+URLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		CDF2D0F4A467444CB89C7DA1 /* SocialSharing.h */ = {isa = PBXFileReference; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		ADAD55B594054E1883142326 /* Social.framework */ = {isa = PBXFileReference; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		9A7A730F472346BDBEB07F44 /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,8 @@
 				6BE1708E067F4878BEE1AD56 /* AVFoundation.framework in Frameworks */,
 				5F05482531B5415FA31A690D /* SystemConfiguration.framework in Frameworks */,
 				50ED891DB57441E386C1C01B /* CoreTelephony.framework in Frameworks */,
+				5D420EFCC0624926BFB560EE /* Social.framework in Frameworks */,
+				0239ABDEC1F54D5AA6193454 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +197,8 @@
 				0BEA1746535C4739ACDE66FF /* AVFoundation.framework */,
 				13B02EA7C07D4224AF56B54B /* SystemConfiguration.framework */,
 				FF5F94894CEF42FBB24A9077 /* CoreTelephony.framework */,
+				ADAD55B594054E1883142326 /* Social.framework */,
+				9A7A730F472346BDBEB07F44 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,6 +247,10 @@
 				96956FAD2A264DA5840FDACC /* CDVViewController+SplashScreen.m */,
 				76773CF9858743C7AD159E90 /* CDVSplashScreen.h */,
 				54101C4E8E8C435CBEB139C9 /* CDVViewController+SplashScreen.h */,
+				5D3495690E7344C595FA09CD /* NSString+URLEncoding.m */,
+				0241BD2F39B24AAAA264350F /* SocialSharing.m */,
+				2585F3E9FF384EDC8EEFAF1C /* NSString+URLEncoding.h */,
+				CDF2D0F4A467444CB89C7DA1 /* SocialSharing.h */,
 			);
 			name = Plugins;
 			path = "CloudCafe Baker/Plugins";
@@ -367,6 +384,8 @@
 				F72244A6B41943CEA4CA87BA /* AppDelegate+nativepagetransitions.m in Sources */,
 				A1D4CF3FD8B74A35B0BFE0E6 /* CDVSplashScreen.m in Sources */,
 				9FA824A026ED492183C53AF7 /* CDVViewController+SplashScreen.m in Sources */,
+				5CF7EFD3E9AD4BE7966A7B49 /* NSString+URLEncoding.m in Sources */,
+				1EE9D64B0637451C8D31B917 /* SocialSharing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

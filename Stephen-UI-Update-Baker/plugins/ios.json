@@ -24,6 +24,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.cloudcafe.baker"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.cloudcafe.baker"
         }
     },
     "dependent_plugins": {}

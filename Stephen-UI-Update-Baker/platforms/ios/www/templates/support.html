@@ -18,6 +18,11 @@
     
     </p>
     </div>
-
+    <div ng-controller="ExampleController">
+    <button class="button" ng-click="shareAnywhere()">Share Anywhere</button>
+    <button class="button" ng-click="shareViaWhatsapp('some message', null, 'https://www.thepolyglotdeveloper.com')">Share via Whatsapp</button>
+    <button class="button" ng-click="shareViaEmail()">Report a bug</button>
+    </div>
+    
 </ion-content>
 </ion-view>

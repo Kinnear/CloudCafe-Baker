@@ -1,6 +1,37 @@
 var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"])
 
+app.controller("ExampleController", function($scope, $cordovaSocialSharing) {
+ 
+    $scope.shareAnywhere = function() {
+        $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
+    }
+ 
+    $scope.shareViaTwitter = function(message, image, link) {
+        $cordovaSocialSharing.canShareVia("twitter", message, image, link)
+        .then(function(result) {
+            $cordovaSocialSharing.shareViaTwitter(message, image, link);
+        }, function(error) {
+            alert("Cannot share on Twitter");
+        });
+    }
+    
+    $scope.shareViaWhatsapp = function (message, image, link){
+        $cordovaSocialSharing.shareViaWhatsApp("whatsapp",message, image, link)
+    .then(function(result) {
+      $cordovaSocialSharing.shareViaWhatsapp(message, image, link);
+    }, function(err) {
+      alert("Cannot share on Whatsapp");
+    });
+    }
+    
+    $scope.shareViaEmail = function(){
+        $cordovaSocialSharing
+    .shareViaEmail("Bug Description:", "RE: Bug Report", "scwaterbear@gmail.com");
+    }
+    
 
+ 
+});
 
 app.controller('MyController', function ($scope, $ionicModal) {
     $ionicModal.fromTemplateUrl('my-modal.html', {

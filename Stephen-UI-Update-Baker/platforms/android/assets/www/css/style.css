@@ -271,3 +271,11 @@
   width:20%;
   margin:1.5%;
 }
+
+.endTag{
+  border: solid;
+  border-width: 0.05;
+  border-color: transparent;
+  margin-bottom: 2.5%;
+  margin-top: -5%;
+}
