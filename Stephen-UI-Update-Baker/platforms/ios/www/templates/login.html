@@ -9,7 +9,7 @@
 
             <div ng-controller="LoginBaker">
                 <div ng-class="class">
-                    
+
                     <div class="card" ng-class="{'animated shake' : clicky}">
                         <form name="loginForm" ng-submit="TryLogin()">
                             <div class="list list-inset">
@@ -22,7 +22,7 @@
                                             <div ng-message="email" class="errorMessage">Your email address is invalid!</div>
                                         </div>
                                 </label>
-                               
+
 
                                 <label class="item item-input item-floating-label">
                                 <span class="input-label">Password</span>    
@@ -39,25 +39,25 @@
                             <button class="button button-block button-assertive" type="submit">
                                 Sign In
                             </button>
-                        
+
                         </form>
-                        
-                        
+
+
                         <button class="button button-outline button-block button-assertive" ng-click="changeClass()">
                             Register here
                         </button>
                     </div>
-                    
-            </div>
 
-            <div ng-controller="RegisterBaker">
+                </div>
 
-                <div ng-class="class2" ng-if="isRegisterVisible">
-                    <div class="card" >
-                    
-                        <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
-                            <div class="list list-inset">
-                                <label class="item item-input item-floating-label">
+                <div ng-controller="RegisterBaker">
+
+                    <div ng-class="class2" ng-if="isRegisterVisible">
+                        <div class="card">
+
+                            <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
+                                <div class="list list-inset">
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Invitation Code</span>    
                                 <input name="invitationCode" type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
                             
@@ -66,8 +66,8 @@
                                     </div>
                             
                             </label>
-                            
-                                <label class="item item-input item-floating-label">
+
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Email</span>    
                                 <input name="useremail" type="email" placeholder="Email" ng-model="user.email" required>
                             
@@ -78,7 +78,7 @@
                             
                             </label>
 
-                                <label class="item item-input item-floating-label">
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Password</span>    
                                 <input name="userpassword" type="password" placeholder="Password" ng-model="user.password" required>
                             
@@ -88,28 +88,28 @@
                             
                             </label>
 
-                                
-                            </div>
-                            <button class="button button-block button-assertive" type="submit">
+
+                                </div>
+                                <button class="button button-block button-assertive" type="submit">
                             Register
                         </button>
-                        </form>
-                        
-                        <!--REMEMBER TO PUT LINK TO REQUEST INVITATION CODE HERE!-->
-                        <button class="button button-outline button-block button-assertive" ng-click="changeClass2()">
+                            </form>
+
+                            <!--REMEMBER TO PUT LINK TO REQUEST INVITATION CODE HERE!-->
+                            <button class="button button-outline button-block button-assertive" ng-click="changeClass2()">
                             Get Invited
                         </button>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!--invitation route-->
 
-                <div ng-class="class3" ng-if="isInvitationVisible">
-                    <div class="card"> 
-                        <form name="signin" ng-submit="TryLogin()">
-                            <div class="list list-inset">
-                                <label class="item item-input item-floating-label">
+
+                    <!--invitation route-->
+
+                    <div ng-class="class3" ng-if="isInvitationVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit="TryLogin()">
+                                <div class="list list-inset">
+                                    <label class="item item-input item-floating-label">
                                     <span class="input-label">Email</span>
                                 <input name="inviteemail" type="email" placeholder="Email" ng-model="user.email" required>
                                 
@@ -119,46 +119,46 @@
                                     </div>
                             </label>
 
-                            </div>
-                            <button class="button button-outline button-block button-assertive" type="submit" ng-click="changeClass3()">
+                                </div>
+                                <button class="button button-outline button-block button-assertive" type="submit" ng-click="changeClass3()">
                             Email me
                         </button>
 
-                        </form>
-                    </div>
-                </div>
-
-                <div ng-class="class4" ng-if="isCheckemailVisible">
-                    <div class="card">
-                        <div class="text-center">
-                            <br>
-                            <br> Please check your email for our invitation!
-                            <br>
-                            <br>
-                            <br>
+                            </form>
                         </div>
                     </div>
-                </div>
-            
-                <!--registration route-->
 
-                <div ng-class="class5" ng-if="isBakerybioVisible">
-                    <div class="card">
-                        <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
+                    <div ng-class="class4" ng-if="isCheckemailVisible">
+                        <div class="card">
                             <div class="text-center">
-                            <div class="item item-text-wrap">
-                                Welcome aboard. <br>Let's build your bakery.
+                                <br>
+                                <br> Please check your email for our invitation!
+                                <br>
+                                <br>
+                                <br>
                             </div>
-                            </div>
-                            <div class="text-center" style="margin-top:5%;">
-                                <img class="display-image-thumbnail" ng-show="user.bakeryImage !== undefined" ng-src="{{user.bakeryImage}}">
-                                <img class="display-image-thumbnail" ng-show="user.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture('user.bakeryImage')">
-                                
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="list list-inset">
+                    <!--registration route-->
 
-                                <label class="item item-input item-floating-label">
+                    <div ng-class="class5" ng-if="isBakerybioVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
+                                <div class="text-center">
+                                    <div class="item item-text-wrap">
+                                        Welcome aboard. <br>Let's build your bakery.
+                                    </div>
+                                </div>
+                                <div class="text-center" style="margin-top:5%;">
+                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage !== null" ng-src="{{user.bakeryImage}}">
+                                    <img class="display-image-thumbnail" ng-show="user.bakeryImage === null" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture('user.bakeryImage')">
+
+                                </div>
+
+                                <div class="list list-inset">
+
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Bakery Name</span>    
                                 <input name="bakeryName" type="text" placeholder="Bakery Name" ng-model="user.bakeryName" required>
                                 
@@ -167,74 +167,73 @@
                                         </div>
                                 
                                 </label>
-                                
 
-                            </div>
 
-                            <div class="padding-top">
-                                <button class="button button-block button-assertive" type="submit">
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" type="submit">
                                 Next
                             </button>
-                            </div>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                
-                
-                <div ng-class="class5b" ng-if="isBakerycontactVisible">
-                    <div class="card">
-                        <form name="signin" ng-submit="changeClass5b()">
-                            
-                            <div class="text-center">
-                            <div class="item item-text-wrap">
-                                
-                                CloudCafe needs your contact number<br>
-                                Customers will need to contact you
-                                
-                            </div>
-                            </div>
-                            
-                            <div class="list list-inset">
-                                
-                                <label class="item item-input item-floating-label">
+
+
+                    <div ng-class="class5b" ng-if="isBakerycontactVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit=" SaveContactUI(); changeClass5b()">
+
+                                <div class="text-center">
+                                    <div class="item item-text-wrap">
+
+                                        CloudCafe needs your contact number<br> Customers will need to contact you
+
+                                    </div>
+                                </div>
+
+                                <div class="list list-inset">
+
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Contact Number</span>      
-                                <input type="tel" name="contact" placeholder="Contact Number" ng-model="user.bakeryContact" required>
+                                <input type="tel" name="contact" placeholder="Contact Number" ng-model="user.bakeryContactNumber" required>
                                 
                                 <div ng-messages="signin.contact.$error" role="alert" ng-if="signin.contact.$touched">
                                         <div ng-message="required" class="errorMessage">Your bakery's contact is required</div>
                                     </div>
                                     
                             </label>
-                            
-                            </div>
 
-                            <div class="padding-top">
-                                <button class="button button-block button-assertive" type="submit">
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" type="submit">
                                 Next
                             </button>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
 
-                <div ng-class="class6" ng-if="isBakerylocationVisible">
-                    <div class="card">
-                        <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
-                            
-                            <div class="text-center">
-                            <div class="item item-text-wrap">
-                                
-                                CloudCafe has plans to launch a delivery service in the future<br>
-                                We need your location to deliver products for you
-                                
-                            </div>
-                            </div>
-                            
-                            <div class="list list-inset">
-                                
-                                <label class="item item-input item-floating-label">
+                    <div ng-class="class6" ng-if="isBakerylocationVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit="SaveLocationUI();changeClass6()">
+
+                                <div class="text-center">
+                                    <div class="item item-text-wrap">
+
+                                        CloudCafe has plans to launch a delivery service in the future<br> We need your location
+                                        to deliver products for you
+
+                                    </div>
+                                </div>
+
+                                <div class="list list-inset">
+
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Bakery Address</span>      
                                 <input type="text" name="bakeryAddress" placeholder="Bakery Address" ng-model="user.bakeryAddress" required>
                             
@@ -243,9 +242,9 @@
                                     </div>
                             
                             </label>
-                            
-                            
-                            <label class="item item-input item-floating-label">
+
+
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Postal Code</span>  
                                 <input type="tel" name="bakeryPostalCode" placeholder="Postal Code" ng-model="user.bakeryPostalCode" required>
                             
@@ -254,31 +253,31 @@
                                     </div>
                             
                             </label>
-                            
-                            
 
-                            </div>
 
-                            <div class="padding-top">
-                                <button class="button button-block button-assertive" type="submit">
+
+                                </div>
+
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" type="submit">
                                 Next
                             </button>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <div ng-class="class7" ng-if="isBakeryaccountVisible">
-                    <div class="card" >
-                        <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
-                            <div class="text-center">
-                            <div class="item item-text-wrap">
-                                Bakers can expect to receive earnings weekly via bank transfer
-                            </div>
-                            </div>
-                            <div class="list list-inset">
+                    <div ng-class="class7" ng-if="isBakeryaccountVisible">
+                        <div class="card">
+                            <form name="signin" ng-submit="SaveFirstPaymentUI();changeClass7()">
+                                <div class="text-center">
+                                    <div class="item item-text-wrap">
+                                        Bakers can expect to receive earnings weekly via bank transfer
+                                    </div>
+                                </div>
+                                <div class="list list-inset">
 
-                                <label class="item item-input item-floating-label">
+                                    <label class="item item-input item-floating-label">
                                 <span class="input-label">Bank Account Number</span>    
                                 <input type="tel" name="telephoneNumber" placeholder="Bank Account Number" ng-model="user.bankAccountNumber" required>
                             
@@ -287,34 +286,34 @@
                                     </div>
                             
                             </label>
-                               
-                            </div>
 
-                            <div class="padding-top">
-                                <button class="button button-block button-assertive" type="submit">
-                                Next
-                            </button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-                <div ng-controller="FirebaseRegistration">
-                    <div ng-class="class8" ng-if="isBakeryreasonVisible">
-                        <div class="card" >
-                            <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase();">
-
-                                <div class="text-center">
-                                    <br>
-                                    <br> Tell us how your bakery started!
-                                    <br>
-                                    <br>
                                 </div>
 
-                                <div class="list list-inset">
+                                <div class="padding-top">
+                                    <button class="button button-block button-assertive" type="submit">
+                                Next
+                            </button>
+                                </div>
 
-                                    <label class="item item-input item-floating-label">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div ng-controller="FirebaseRegistration">
+                        <div ng-class="class8" ng-if="isBakeryreasonVisible">
+                            <div class="card">
+                                <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase();">
+
+                                    <div class="text-center">
+                                        <br>
+                                        <br> Tell us how your bakery started!
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                    <div class="list list-inset">
+
+                                        <label class="item item-input item-floating-label">
                                     <span class="input-label">Bakery Bio</span>     
                                     <input type="text" name="description" placeholder="Bakery Bio" ng-model="user.description" required>
                                 
@@ -323,85 +322,136 @@
                                         </div>
                                 
                                 </label>
-                                
-                                
-                                </div>
 
-                                <!--at this point redirect to post.html-->
 
-                                <div class="padding-top" ng-controller="MyController">
-                                    <button class="button button-block button-assertive" type="submit" ng-click="openModal(class)">
+                                    </div>
+
+                                    <!--at this point redirect to post.html-->
+
+                                    <div class="padding-top" ng-controller="MyController">
+                                        <button class="button button-block button-assertive" type="submit" ng-click="openModal(class)">
                                 Start Baking
                             </button>
-                            
-      <script id = "my-modal.html" type = "text/ng-template">
-    <ion-modal-view>
-        
-        <ion-header-bar class="bar bar-header bar-balanced">
-            <div class="text-center">
-                <h4 class="title">T & Cs</h4>
-            </div>
-            <button class = "button button-icon icon-left" ng-click = "closeModal()">Close</button>
-            <button class = "button button-icon" ng-click = "closeModal()">Accept</button>
-        </ion-header-bar>
-            
-        <ion-content class="stable-bg" style="text-align: justify; padding: 2%;">
-            Terms and Conditions<br>
-            <br>
-By accessing and using this service, you accept and agree to be bound by the terms and provision of this agreement. In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services. Any participation in this service will constitute acceptance of this agreement. If you do not agree to abide by the above, please do not use this service.
-<br><br>
-Notification Provision<br>
-Cloud Cafe reserves the right to change these conditions from time to time as it sees fit and your continued use of the app and related services will signify your acceptance of any adjustment to these terms. If there are any changes to our privacy policy, we will announce that these changes have been made on our in-app support page. Any changes to our privacy policy will be posted on our site 7 days prior to these changes taking place. You are therefore advised to re-read this statement on a regular basis.
-<br><br>
-Information Accuracy<br>
-Bakers are responsible or liable for the accuracy, usefulness or availability of any information transmitted or made available via the app, and shall be responsible or liable for any error or omissions in that information. Therefore, Cloud Cafe requires that bakers provide as accurate information as possible. We discourage the use of image-editing software such as Photoshop to in any way alter the appearance of products that do not reflect the actual product.
-<br><br>
-Hygiene<br>
-Although Cloud Cafe is fundamentally a transaction tool, bakers are strongly advised to maintain a high standard of hygiene. Environmental hygiene refers to bakers’ workspace and kitchen. The workspaces should be clean and free of germ carrying pests, equipment and tools washed thoroughly before usage, and avoid preparing food near rubbish bins and toilets. Personal hygiene includes, but is not limited to, washing hands before preparing food, avoid preparing food when ill and using clean tasting spoons when tasting is required. Cloud Cafe reserves the right to discharge and terminate services to bakers who are found to be unhygienic to prevent any further cases of food poisoning. This protects the reputation of fellow bakers on the Cloud Cafe platform.
-<br><br>
-Pricing<br>
-Bakers will have control over the price of their products. Every registered Baker may choose any price (known henceforth as 'Base Price') for various sizes of their products. Cloud Cafe automatically adds 3% + $0.50 to the Base Price to cover credit card processing fees from Stripe, our credit card service provider. The price visible to the customer on Cloud Cafe app will be rounded to the nearest whole number (i.e. both $34.40 and $34.60 will be rounded to $35 each).
-<br><br>
-Selection<br>
-Bakers may sell anything that is of interest to them as long as it is not obscene, racist, rude or unpalatable.
-<br><br>
-Quality<br>
-Quality control checks and completely paid for by the Cloud Cafe team. Our quality control checks are random. In the event that the Cloud Cafe team finds a dessert unsatisfactory, the baker is to temporarily put that specific item on hold on Cloud Cafe app until further arrangements have been discussed and agreed to by the Cloud Cafe team.
-<br><br>
-Payment<br>
-Bakers will be paid the Base Price of their products sold. A calendar week starts on Monday 0000hrs and ends on Sunday 2359hrs. Baker’s earnings will be transferred to the bank account number they have provided on a weekly basis. For instance, Anna has sold 2x $52 cakes over the past calendar week. After deducting credit card payment processing fees, her base price is $50 per cake. Therefore, her total earnings for that calendar week is $100. Payment will be made by bank transfer by Wednesday night of the following calendar week.
-<br><br>
-Authenticity<br>
-Bakers may only sell desserts produced and crafted by them, the registered baker. This rule excludes brick-and-mortar bakeries whereby owners are not necessarily hand-baking the products themselves. What is reasonable: chocolate cake that incorporates melted Hershey bars or ground Oreo bits. What is unreasonable(but not limited to): selling melted and/or recasted off-the-shelf chocolate bars or repackaging macarons. Legal action may be taken and your account may be terminated. 
-<br><br>
-Customer Rejection<br>
-Certain customers may reject the product due to “discrepancies” between promised and actual product. Cloud Cafe requires immediate photographic evidence from customers in order to make such claims. If upon investigation customers have valid reasons to reject the product, bakers receive up to 50% of their original base price while the rest is refunded to the customer.
-<br><br>
-Customer Complaints<br>
-Cloud Cafe facilitates transactions that would otherwise have been conducted through bank transfers. In the event of customers falling ill from baker’s product, the baker will be held accountable to customers for any lapse in their hygiene. Cloud Cafe will pay out the amount transacted to the baker as scheduled.
-<br><br>
-Intellectual Property Provision<br>
-Cloud Cafe does not own the image(s) bakers upload nor the description(s) bakers write for their product(s). Only photographs taken by Cloud Cafe official photographers are owned by Cloud Cafe.
-<br><br>
-Trademark and usage<br>
-Cloud Cafe: the artisanal taste trademark is owned by Cloud Cafe. The trademark may not be used in any form, printed or otherwise, on any type of media without prior written permission by Cloud Cafe. Unauthorized use of the trademark may result in legal action against you and your account may be terminated. 
-<br><br>
-Cloud Cafe reserves the right to terminate accounts without prior notice.
-<br>
 
-           
-        </ion-content>
-        
-    </ion-modal-view>
-    </script>
-                            </form>
+                                        <script id="my-modal.html" type="text/ng-template">
+                                            <ion-modal-view>
+
+                                                <ion-header-bar class="bar bar-header bar-balanced">
+                                                    <div class="text-center">
+                                                        <h4 class="title">T & Cs</h4>
+                                                    </div>
+                                                    <button class="button button-icon icon-left" ng-click="closeModal()">Close</button>
+                                                    <button class="button button-icon" ng-click="closeModal()">Accept</button>
+                                                </ion-header-bar>
+
+                                                <ion-content class="stable-bg" style="text-align: justify; padding: 2%;">
+                                                    Terms and Conditions<br>
+                                                    <br> By accessing and using this service, you accept and agree to be
+                                                    bound by the terms and provision of this agreement. In addition, when
+                                                    using these particular services, you shall be subject to any posted guidelines
+                                                    or rules applicable to such services. Any participation in this service
+                                                    will constitute acceptance of this agreement. If you do not agree to
+                                                    abide by the above, please do not use this service.
+                                                    <br><br> Notification Provision<br> Cloud Cafe reserves the right to
+                                                    change these conditions from time to time as it sees fit and your continued
+                                                    use of the app and related services will signify your acceptance of any
+                                                    adjustment to these terms. If there are any changes to our privacy policy,
+                                                    we will announce that these changes have been made on our in-app support
+                                                    page. Any changes to our privacy policy will be posted on our site 7
+                                                    days prior to these changes taking place. You are therefore advised to
+                                                    re-read this statement on a regular basis.
+                                                    <br><br> Information Accuracy<br> Bakers are responsible or liable for
+                                                    the accuracy, usefulness or availability of any information transmitted
+                                                    or made available via the app, and shall be responsible or liable for
+                                                    any error or omissions in that information. Therefore, Cloud Cafe requires
+                                                    that bakers provide as accurate information as possible. We discourage
+                                                    the use of image-editing software such as Photoshop to in any way alter
+                                                    the appearance of products that do not reflect the actual product.
+                                                    <br><br> Hygiene
+                                                    <br> Although Cloud Cafe is fundamentally a transaction tool, bakers
+                                                    are strongly advised to maintain a high standard of hygiene. Environmental
+                                                    hygiene refers to bakers’ workspace and kitchen. The workspaces should
+                                                    be clean and free of germ carrying pests, equipment and tools washed
+                                                    thoroughly before usage, and avoid preparing food near rubbish bins and
+                                                    toilets. Personal hygiene includes, but is not limited to, washing hands
+                                                    before preparing food, avoid preparing food when ill and using clean
+                                                    tasting spoons when tasting is required. Cloud Cafe reserves the right
+                                                    to discharge and terminate services to bakers who are found to be unhygienic
+                                                    to prevent any further cases of food poisoning. This protects the reputation
+                                                    of fellow bakers on the Cloud Cafe platform.
+                                                    <br><br> Pricing
+                                                    <br> Bakers will have control over the price of their products. Every
+                                                    registered Baker may choose any price (known henceforth as 'Base Price')
+                                                    for various sizes of their products. Cloud Cafe automatically adds 3%
+                                                    + $0.50 to the Base Price to cover credit card processing fees from Stripe,
+                                                    our credit card service provider. The price visible to the customer on
+                                                    Cloud Cafe app will be rounded to the nearest whole number (i.e. both
+                                                    $34.40 and $34.60 will be rounded to $35 each).
+                                                    <br><br> Selection
+                                                    <br> Bakers may sell anything that is of interest to them as long as
+                                                    it is not obscene, racist, rude or unpalatable.
+                                                    <br><br> Quality
+                                                    <br> Quality control checks and completely paid for by the Cloud Cafe
+                                                    team. Our quality control checks are random. In the event that the Cloud
+                                                    Cafe team finds a dessert unsatisfactory, the baker is to temporarily
+                                                    put that specific item on hold on Cloud Cafe app until further arrangements
+                                                    have been discussed and agreed to by the Cloud Cafe team.
+                                                    <br><br> Payment
+                                                    <br> Bakers will be paid the Base Price of their products sold. A calendar
+                                                    week starts on Monday 0000hrs and ends on Sunday 2359hrs. Baker’s earnings
+                                                    will be transferred to the bank account number they have provided on
+                                                    a weekly basis. For instance, Anna has sold 2x $52 cakes over the past
+                                                    calendar week. After deducting credit card payment processing fees, her
+                                                    base price is $50 per cake. Therefore, her total earnings for that calendar
+                                                    week is $100. Payment will be made by bank transfer by Wednesday night
+                                                    of the following calendar week.
+                                                    <br><br> Authenticity
+                                                    <br> Bakers may only sell desserts produced and crafted by them, the
+                                                    registered baker. This rule excludes brick-and-mortar bakeries whereby
+                                                    owners are not necessarily hand-baking the products themselves. What
+                                                    is reasonable: chocolate cake that incorporates melted Hershey bars or
+                                                    ground Oreo bits. What is unreasonable(but not limited to): selling melted
+                                                    and/or recasted off-the-shelf chocolate bars or repackaging macarons.
+                                                    Legal action may be taken and your account may be terminated.
+                                                    <br><br> Customer Rejection<br> Certain customers may reject the product
+                                                    due to “discrepancies” between promised and actual product. Cloud Cafe
+                                                    requires immediate photographic evidence from customers in order to make
+                                                    such claims. If upon investigation customers have valid reasons to reject
+                                                    the product, bakers receive up to 50% of their original base price while
+                                                    the rest is refunded to the customer.
+                                                    <br><br> Customer Complaints<br> Cloud Cafe facilitates transactions
+                                                    that would otherwise have been conducted through bank transfers. In the
+                                                    event of customers falling ill from baker’s product, the baker will be
+                                                    held accountable to customers for any lapse in their hygiene. Cloud Cafe
+                                                    will pay out the amount transacted to the baker as scheduled.
+                                                    <br><br> Intellectual Property Provision<br> Cloud Cafe does not own
+                                                    the image(s) bakers upload nor the description(s) bakers write for their
+                                                    product(s). Only photographs taken by Cloud Cafe official photographers
+                                                    are owned by Cloud Cafe.
+                                                    <br><br> Trademark and usage<br> Cloud Cafe: the artisanal taste trademark
+                                                    is owned by Cloud Cafe. The trademark may not be used in any form, printed
+                                                    or otherwise, on any type of media without prior written permission by
+                                                    Cloud Cafe. Unauthorized use of the trademark may result in legal action
+                                                    against you and your account may be terminated.
+                                                    <br><br> Cloud Cafe reserves the right to terminate accounts without
+                                                    prior notice.
+                                                    <br>
+
+
+                                                </ion-content>
+
+                                            </ion-modal-view>
+                                        </script>
+                                </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-</div>
-                
 
-        </div>
-      
+
+                </div>
+            </div>
+
+
     </ion-content>
 </ion-view>

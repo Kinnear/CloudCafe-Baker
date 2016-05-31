@@ -23,6 +23,7 @@ app.service("CartItemData", function Item() {
 app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoading, $ionicPopup, $timeout) {
     var products = { items: [] };
     var refFB = new Firebase("https://burning-heat-7015.firebaseio.com");
+    
     var refUsers = refFB.child("stalls");
     $ionicLoading.show({
         template: '<ion-spinner></ion-spinner>'
@@ -35,6 +36,7 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
 
         firebaseProducts.on("value", function (snapshot) {
 
+            // Empty the array and repull our data 
             products.items = [];
 
             for (i = 0; i < snapshot.numChildren(); i++) {
@@ -49,11 +51,33 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
                     // Add any new products updated on the database
                     for (var a = 0; a < products.items.length; a++) {
                         if (products.items[a].id == newpost2.id) {
-                            products.items[a] = newpost2;
+                            // if we have a previous match, update our already downloaded product and also the transaction count with new information.
+                            refFB.child("transactions").orderByChild("foodID").equalTo(newpost2.id).on("value", function (dataSnapshot) {
+
+                                if (dataSnapshot.exists()) {
+                                    newpost2.numberOfTransactions = dataSnapshot.numChildren();
+                                }
+                                else {
+                                    newpost2.numberOfTransactions = 0;
+                                }
+                                products.items[a] = newpost2;
+                            });
                             return;
                         }
                     }
-                    products.items.push(newpost2);
+
+                    // obtains the number of transactions for each product 
+                    refFB.child("transactions").orderByChild("foodID").equalTo(newpost2.id).on("value", function (dataSnapshot) {
+
+                        if (dataSnapshot.exists()) {
+                            newpost2.numberOfTransactions = dataSnapshot.numChildren();
+                        }
+                        else {
+                            newpost2.numberOfTransactions = 0;
+                        }
+
+                        products.items.push(newpost2);
+                    });
                 });
             }
             $ionicLoading.hide();
@@ -65,7 +89,6 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
 
     return {
         all: function () {
-
             return products.items;
         },
         remove: function (item) {
@@ -80,7 +103,19 @@ app.factory('Items', function ($firebaseArray, $firebaseObject, Auth, $ionicLoad
             return null;
         },
         editFood: function (id, quantity) {
-            refFB.child("food").child(id).update({ maxQuantity: quantity });
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) {
+
+                var intQuantityFromDatabase = parseInt(quantityFromDatabase);
+
+                if ((intQuantityFromDatabase + quantity) <= 0) {
+                    return 0;
+                } else {
+                    return intQuantityFromDatabase + quantity;
+                }
+            });
+        },
+        removeAllQuantity: function (id) {
+            refFB.child("food").child(id).child("maxQuantity").transaction(function (quantityFromDatabase) { return 0; });
         }
     };
 });
@@ -223,6 +258,7 @@ app.factory('RegistrationDetails', function () {
         email: "",
         password: "",
         bakeryImage: "",
+        contactNumber: "",
         bakeryName: "",
         bakeryAddress: "",
         bakeryPostalCode: "",
@@ -252,6 +288,10 @@ app.factory('RegistrationDetails', function () {
         SetBakeryImage: function (value) { userData.bakeryImage = value; },
         GetBakeryImage: function () { return userData.bakeryImage; },
 
+        // contact number
+        SetContactNumber: function (value) { userData.contactNumber = value; },
+        GetContactNumber: function () { return userData.contactNumber; },
+
         // bakery Image
         SetBakeryName: function (value) { userData.bakeryName = value; },
         GetBakeryName: function () { return userData.bakeryName; },
@@ -279,6 +319,7 @@ app.factory('RegistrationDetails', function () {
                 email: "",
                 password: "",
                 bakeryImage: "",
+                contactNumber: "",
                 bakeryName: "",
                 bakeryAddress: "",
                 bakeryPostalCode: "",
@@ -404,6 +445,8 @@ app.factory('AddNewFoodService', function () {
         // bakery Image
         SetFoodImg: function (index, value) { newFood.img[index] = value; },
         GetFoodImg: function (index) { return newFood.img[index]; },
+
+        GetAllPropertiesOfFood: function () { return newFood; },
 
         Debug: function () {
             //print out debug info

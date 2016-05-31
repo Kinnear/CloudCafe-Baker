@@ -126,11 +126,12 @@ app.controller('ActiveCtrl', function ($scope, $state, Items, $ionicSideMenuDele
     }
 
     $scope.alterQuantity = function (id, number) {
-        if (number < 0) {
-            number = 0;
-        }
-        Items.editFood(id, number)
+        Items.editFood(id, number);
     }
+
+    $scope.removeQuantity = function (id) {
+        Items.removeAllQuantity(id);
+    };
 
     // disabled swipe menu
     $ionicSideMenuDelegate.canDragContent(false);
@@ -245,18 +246,24 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         invitationCode: "",
         email: "",
         password: "",
-        bakeryImage: undefined,
+        bakeryImage: null,
         bakeryName: "",
         bakeryAddress: "",
+        contactNumber: "",
         bakeryPostalCode: "",
         bankAccountNumber: null,
         description: ""
     };
 
+    $scope.hell = function () {
+        console.log("test");
+    }
+
     $scope.takePicture = function (scopeValue) {
 
+        console.log("print out when clicked");
+
         var temp = CordovaImageGalleryService.ChoosePictureFromGallery().then(function (imageData) {
-            // $scope.bakerProfile.bakeryImage = "data:image/jpeg;base64," + imageData;
             // Get the model
             var model = $parse(scopeValue);
             // Assigns a value to it
@@ -285,28 +292,30 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         RegistrationDetails.SetBakeryName($scope.user.bakeryName);
     }
 
-    $scope.SaveLocationUI = function () {
-        console.log("3");
-        RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
-        RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
-    }
-    
     $scope.SaveContactUI = function () {
-        console.log("3b");
+        console.log("3");
+        RegistrationDetails.SetContactNumber($scope.user.bakeryContactNumber);
         // RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
         // RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
     }
 
-    $scope.SaveFirstPaymentUI = function () {
+    $scope.SaveLocationUI = function () {
         console.log("4");
+        RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
+        RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
+    }
+
+    $scope.SaveFirstPaymentUI = function () {
+        console.log("5");
         RegistrationDetails.SetBankAccountNumber($scope.user.bankAccountNumber);
     }
 
     $scope.SaveWhyrubakingUI = function () {
-        console.log("5");
+        console.log("6");
         RegistrationDetails.SetDescription($scope.user.description);
         RegistrationDetails.Debug();
     }
+
 });
 
 app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, CordovaImageGalleryService, $firebaseArray, $firebaseObject, Auth, $ionicHistory) {
@@ -317,7 +326,7 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, Cordov
         bakeryImage: "",
         description: "",
         pricePerServing: "",
-        quantityCap: "",
+        quantityCap: 0,
     };
 
     $scope.newFood = AddNewFoodService;
@@ -451,11 +460,14 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
                 userID: RegistrationDetails.GetUserID(),
                 bakeryImage: RegistrationDetails.GetBakeryImage(),
                 bakeryName: RegistrationDetails.GetBakeryName(),
+                bakeryContactNumber: RegistrationDetails.GetContactNumber(),
                 bakeryAddress: RegistrationDetails.GetBakeryAddress(),
                 bakeryPostalCode: RegistrationDetails.GetBakeryPostalCode(),
                 bankAccountNumber: RegistrationDetails.GetBankAccountNumber(),
                 description: RegistrationDetails.GetDescription()
             };
+
+            console.log("contact number " + RegistrationDetails.GetContactNumber());
 
             //do processing to add login credentials to store in our database
             $scope.firebaseAdd.$add(userInfo).then(function (ref) {
@@ -525,7 +537,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.class6 = "class6";
     $scope.class7 = "class7";
     $scope.class8 = "class8";
-    
+
     $scope.status = "status";
 
     $scope.changeClass = function () {
@@ -558,7 +570,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         $scope.class5b = "animated fadeInRight";
         $scope.isBakerycontactVisible = true;
     }
-    
+
     $scope.changeClass5b = function () {
         $scope.class5b = "animated fadeOutLeft";
         $scope.class6 = "animated fadeInRight";
@@ -595,9 +607,10 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
     $scope.password = "";
     $scope.wrongPasswordMessage = "";
     $scope.clicky = false;
-    
 
     $scope.TryLogin = function () {
+
+        $scope.clicky = false;
 
         $ionicLoading.show({
             template: '<ion-spinner></ion-spinner>'
@@ -617,30 +630,9 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
             $state.go("post");
         }).catch(function (error) {
             console.error("Authentication failed:", error);
-            
+
             $scope.clicky = true;
-            
-
-            // $scope.wrongPasswordMessage = "Incorrect Password";
             $ionicLoading.hide();
-
-            // $ionicPopup.alert({
-
-            //     title: 'Login Failed', // String. The title of the popup.
-
-            //     cssClass: '', // String, The custom CSS class name
-
-            //     subTitle: 'Please check your credentials', // String (optional). The sub-title of the popup.
-
-            //     template: '', // String (optional). The html template to place in the popup body.
-
-            //     templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
-
-            //     okText: 'Retry', // String (default: 'OK'). The text of the OK button.
-
-            //     okType: '', // String (default: 'button-positive'). The type of the OK button.
-
-            // });
         });
     }
 });
