@@ -12,10 +12,21 @@
             </div>
         </div>
         
-        <div ng-show="transactionData.length == 0" class="card">
-            <div class="item item-text-wrap">
-                You have no orders yet for this product!
-            </div>
+        <div class="endTag" style="color:white;" ng-show="transactionData.length == 0">
+                    <div class="text-center">
+                        <p>
+                            <br> No pending orders for this product <br>
+                        </p>
+                    </div>
         </div>
+        
+        <div class="endTag" style="color:white;" ng-show="transactionData.length > 0">
+                    <div class="text-center">
+                        <p>
+                            <br> All items displayed<br>
+                        </p>
+                    </div>
+        </div>
+    
     </ion-content>
 </ion-view>

@@ -1,31 +1,31 @@
 var app = angular.module('starter.controllers', ["ionic", "ngMessages", "firebase", "ngCordova"])
 
-app.controller("ExampleController", function($scope, $cordovaSocialSharing) {
- 
-    $scope.shareAnywhere = function() {
+app.controller("ExampleController", function ($scope, $cordovaSocialSharing) {
+
+    $scope.shareAnywhere = function () {
         $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
     }
- 
-    $scope.shareViaTwitter = function(message, image, link) {
+
+    $scope.shareViaTwitter = function (message, image, link) {
         $cordovaSocialSharing.canShareVia("twitter", message, image, link)
-        .then(function(result) {
-            $cordovaSocialSharing.shareViaTwitter(message, image, link);
-        }, function(error) {
-            alert("Cannot share on Twitter");
-        });
+            .then(function (result) {
+                $cordovaSocialSharing.shareViaTwitter(message, image, link);
+            }, function (error) {
+                alert("Cannot share on Twitter");
+            });
     }
-    
-    $scope.shareViaWhatsapp = function (message, image, link){
+
+    $scope.shareViaWhatsapp = function (message, image, link) {
         $cordovaSocialSharing.shareViaWhatsApp(message, image, link);
     }
-    
-    $scope.shareViaEmail = function(){
-        $cordovaSocialSharing
-    .shareViaEmail("Bug Description:", "RE: Bug Report", "scwaterbear@gmail.com");
-    }
-    
 
- 
+    $scope.shareViaEmail = function () {
+        $cordovaSocialSharing
+            .shareViaEmail("Bug Description:", "RE: Bug Report", "scwaterbear@gmail.com");
+    }
+
+
+
 });
 
 app.controller('MyController', function ($scope, $ionicModal) {
@@ -281,10 +281,6 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
         description: ""
     };
 
-    $scope.hell = function () {
-        console.log("test");
-    }
-
     $scope.takePicture = function (scopeValue) {
 
         console.log("print out when clicked");
@@ -321,8 +317,6 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
     $scope.SaveContactUI = function () {
         console.log("3");
         RegistrationDetails.SetContactNumber($scope.user.bakeryContactNumber);
-        // RegistrationDetails.SetBakeryAddress($scope.user.bakeryAddress);
-        // RegistrationDetails.SetBakeryPostalCode($scope.user.bakeryPostalCode);
     }
 
     $scope.SaveLocationUI = function () {
@@ -344,7 +338,7 @@ app.controller('RegisterBaker', function ($scope, $parse, RegistrationDetails, C
 
 });
 
-app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, CordovaImageGalleryService, $firebaseArray, $firebaseObject, Auth, $ionicHistory) {
+app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, CordovaImageGalleryService, $firebaseArray, $firebaseObject, Auth, $ionicHistory, $state) {
 
     var newFood = {
         userID: "",
@@ -354,6 +348,8 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, Cordov
         pricePerServing: "",
         quantityCap: 0,
     };
+
+    $scope.remindMinimumOnePictureMessage = false;
 
     $scope.newFood = AddNewFoodService;
     var FBref = new Firebase("https://burning-heat-7015.firebaseio.com");
@@ -367,10 +363,8 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, Cordov
             model.assign($scope, "data:image/jpeg;base64," + imageData);
 
             // Save our image to the service 
+            console.log("index " + index);
             AddNewFoodService.SetFoodImg(index, "data:image/jpeg;base64," + imageData);
-
-            RegistrationDetails.SetBakeryImage("data:image/jpeg;base64," + $scope.user.bakeryImage);
-
         }, function (err) {
             // An error occured. Show a message to the user
             console.log("Couldn't take a picture, there was an error");
@@ -379,82 +373,99 @@ app.controller('AddNewFood', function ($scope, $parse, AddNewFoodService, Cordov
 
     $scope.AddFood = function () {
 
-        console.log($scope.newFood.description);
+        // check if we have the first picture's data. if its still null. dont allow the user to upload
+        if (AddNewFoodService.GetFoodImg(0) != undefined) {
 
-        for (var i = 0; i < 4; i++) {
-            if (AddNewFoodService.GetFoodImg(i) == undefined) {
-                AddNewFoodService.SetFoodImg(i, null);
-            }
+            $scope.remindMinimumOnePictureMessage = true;
         }
 
-        $scope.firebaseAdd.$add({
-            "categoryID": "",
-            "description": $scope.newFood.description,
-            "foodName": $scope.newFood.foodName,
-            "halal": $scope.newFood.halal,
-            "img1": AddNewFoodService.GetFoodImg(0),
-            "img2": AddNewFoodService.GetFoodImg(1),
-            "img3": AddNewFoodService.GetFoodImg(2),
-            "img4": AddNewFoodService.GetFoodImg(3),
-            "likes": 0,
-            "price": $scope.newFood.pricePerServing,
-            "stallID": "",
-            "preparationTime": $scope.newFood.prepTime,
-            "maxQuantity": $scope.newFood.maxQuantity,
-        }).then(function (ref) {
-            console.log("Added " + ref.key());
+        if ($scope.remindMinimumOnePictureMessage) {
 
-            var addID = $firebaseObject(new Firebase("https://burning-heat-7015.firebaseio.com/food/" + ref.key()));
+            $scope.remindMinimumOnePictureMessage = false;
 
-            addID.$loaded().then(function (data) {
-                data.id = ref.key();
+            for (var i = 0; i < 4; i++) {
+                if (AddNewFoodService.GetFoodImg(i) == undefined) {
+                    AddNewFoodService.SetFoodImg(i, null);
+                }
+            }
 
-                data.$save().then(function (saved) {
-                    console.log("saved ID");
+            $scope.firebaseAdd.$add({
+                "categoryID": "",
+                "description": $scope.newFood.description,
+                "foodName": $scope.newFood.foodName,
+                "halal": $scope.newFood.halal,
+                "img1": AddNewFoodService.GetFoodImg(0),
+                "img2": AddNewFoodService.GetFoodImg(1),
+                "img3": AddNewFoodService.GetFoodImg(2),
+                "img4": AddNewFoodService.GetFoodImg(3),
+                "likes": 0,
+                "price": $scope.newFood.pricePerServing,
+                "stallID": "",
+                "preparationTime": $scope.newFood.prepTime,
+                "maxQuantity": 0
+                // "maxQuantity": $scope.newFood.maxQuantity,
+            }).then(function (ref) {
+                console.log("Added " + ref.key());
+
+                var addID = $firebaseObject(new Firebase("https://burning-heat-7015.firebaseio.com/food/" + ref.key()));
+
+                addID.$loaded().then(function (data) {
+                    data.id = ref.key();
+
+                    data.$save().then(function (saved) {
+                        console.log("saved ID");
+                    });
+                });
+
+                // Here, we update our login object.
+                console.log(Auth.$getAuth());
+
+                var refUsers = FBref.child("stalls");
+                var refUsersCollection = $firebaseArray(refUsers);
+
+                refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
+                    var series = dataSnapshot.val();
+                    var data = dataSnapshot.exportVal();
+
+                    if (series) {
+                        // This prints the current object in the array of products under their user id
+                        console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
+
+                        // This is their user ID
+                        console.log(Object.keys(data)[0]);
+                        var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
+                        var obj = $firebaseObject(firebaseProducts);
+                        obj.$bindTo($scope, "data").then(function () {
+                            console.log($scope.data);
+                            if ($scope.data.hasOwnProperty("products")) {
+
+                                var key = ref.key();
+                                var json = {};
+                                json[key] = true;
+                                console.log(json);
+
+                                firebaseProducts.child("products").update(json);
+                            }
+                            else {
+                                var key = ref.key();
+                                var products = {};
+                                products[key] = true;
+                                console.log(products);
+
+                                firebaseProducts.child("products").update(products);
+                            }
+                            // remove your nav router history
+                            $ionicHistory.nextViewOptions({
+                                disableBack: false,
+                                historyRoot: true
+                            });
+
+                            $state.go("active");
+                        })
+                    }
                 });
             });
-
-            // Here, we update our login object.
-            console.log(Auth.$getAuth());
-
-            var refUsers = FBref.child("stalls");
-            var refUsersCollection = $firebaseArray(refUsers);
-
-            refUsersCollection.$ref().orderByChild("userID").equalTo(Auth.$getAuth().uid).once("value", function (dataSnapshot) {
-                var series = dataSnapshot.val();
-                var data = dataSnapshot.exportVal();
-
-                if (series) {
-                    // This prints the current object in the array of products under their user id
-                    console.log(dataSnapshot.child(Object.keys(data)[0]).child("products").val());
-
-                    // This is their user ID
-                    console.log(Object.keys(data)[0]);
-                    var firebaseProducts = new Firebase("https://burning-heat-7015.firebaseio.com/stalls/" + Object.keys(data)[0].toString());
-                    var obj = $firebaseObject(firebaseProducts);
-                    obj.$bindTo($scope, "data").then(function () {
-                        console.log($scope.data);
-                        if ($scope.data.hasOwnProperty("products")) {
-
-                            var key = ref.key();
-                            var json = {};
-                            json[key] = true;
-                            console.log(json);
-
-                            firebaseProducts.child("products").update(json);
-                        }
-                        else {
-                            var key = ref.key();
-                            var products = {};
-                            products[key] = true;
-                            console.log(products);
-
-                            firebaseProducts.child("products").update(products);
-                        }
-                    })
-                }
-            });
-        });
+        }
     }
 });
 
@@ -538,7 +549,9 @@ app.controller('FirebaseRegistration', function ($scope, $state, $firebaseAuth, 
     };
 });
 
-app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $ionicHistory) {
+app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails) {
+
+    $scope.remindBakeryImage = false;
 
     // hide back button in next view
     $ionicHistory.nextViewOptions({
@@ -595,10 +608,18 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     }
     
     $scope.changeClass5 = function () {
-        $scope.isBakerybioVisible = false;
-        // $scope.class5 = "animated fadeOutLeft";
-        // $scope.class5b = "animated fadeInRight";
-        $scope.isBakerycontactVisible = true;
+
+        // we have uploaded an image. so we can now proceed.
+        if (RegistrationDetails.GetBakeryImage() != null) {
+            $scope.remindBakeryImage = true;
+        }
+
+        if ($scope.remindBakeryImage) {
+            $scope.class5 = "animated fadeOutLeft";
+            $scope.class5b = "animated fadeInRight";
+            $scope.isBakerycontactVisible = true;
+            $scope.remindBakeryImage = false;
+        }
     }
 
     $scope.changeClass5b = function () {
@@ -763,7 +784,6 @@ app.controller("DisplayUserBakeryImage", function ($scope, UserBakerProfile) {
     $scope.$on('bakeryUser:updated', function (event, data) {
         // you could inspect the data to see if what you care about changed, or just update your own scope
         $scope.userBakerProfile = UserBakerProfile.GetProfile();
-        // console.log($scope.userBakerProfile.bakeryImage);
     });
 });
 //Edits the profile for the baker
