@@ -544,7 +544,8 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $ionicHistory.nextViewOptions({
         disableBack: true
     });
-
+    
+    $scope.isLoginVisible = true;
     $scope.isRegisterVisible = false;
     $scope.isInvitationVisible = false;
     $scope.isCheckemailVisible = false;
@@ -564,55 +565,118 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $scope.class7 = "class7";
     $scope.class8 = "class8";
 
-    $scope.status = "status";
-
     $scope.changeClass = function () {
-        $scope.class = "animated fadeOutLeft";
-        $scope.class2 = "animated fadeInRight";
+        $scope.isLoginVisible = false;
+        // $scope.class = "animated fadeOutLeft";
+        // $scope.class2 = "animated fadeInRight";
         $scope.isRegisterVisible = true;
     }
 
     $scope.changeClass2 = function () {
-        $scope.class2 = "animated fadeOutLeft";
-        $scope.class3 = "animated fadeInRight";
+        // $scope.class2 = "animated fadeOutLeft";
+        $scope.isRegisterVisible = false;
+        // $scope.class3 = "animated fadeInRight";
         $scope.isInvitationVisible = true;
         console.log($scope.class3);
     }
 
     $scope.changeClass3 = function () {
-        $scope.class3 = "animated fadeOutLeft";
-        $scope.class4 = "animated fadeInRight";
+        $scope.isInvitationVisible = false;
+        // $scope.class3 = "animated fadeOutLeft";
+        // $scope.class4 = "animated fadeInRight";
         $scope.isCheckemailVisible = true;
     }
 
     $scope.changeClass4 = function () {
-        $scope.class2 = "animated fadeOutLeft";
-        $scope.class5 = "animated fadeInRight";
+        $scope.isRegisterVisible = false;
+        // $scope.class2 = "animated fadeOutLeft";
+        // $scope.class5 = "animated fadeInRight";
         $scope.isBakerybioVisible = true;
     }
-
+    
     $scope.changeClass5 = function () {
-        $scope.class5 = "animated fadeOutLeft";
-        $scope.class5b = "animated fadeInRight";
+        $scope.isBakerybioVisible = false;
+        // $scope.class5 = "animated fadeOutLeft";
+        // $scope.class5b = "animated fadeInRight";
         $scope.isBakerycontactVisible = true;
     }
 
     $scope.changeClass5b = function () {
-        $scope.class5b = "animated fadeOutLeft";
-        $scope.class6 = "animated fadeInRight";
+        $scope.isBakerycontactVisible = false;
+        // $scope.class5b = "animated fadeOutLeft";
+        // $scope.class6 = "animated fadeInRight";
         $scope.isBakerylocationVisible = true;
     }
 
     $scope.changeClass6 = function () {
-        $scope.class6 = "animated fadeOutLeft";
-        $scope.class7 = "animated fadeInRight";
+        $scope.isBakerylocationVisible = false;
+        // $scope.class6 = "animated fadeOutLeft";
+        // $scope.class7 = "animated fadeInRight";
         $scope.isBakeryaccountVisible = true;
     }
 
     $scope.changeClass7 = function () {
-        $scope.class7 = "animated fadeOutLeft";
-        $scope.class8 = "animated fadeInRight";
+        $scope.isBakeryaccountVisible = false;
+        // $scope.class7 = "animated fadeOutLeft";
+        // $scope.class8 = "animated fadeInRight";
         $scope.isBakeryreasonVisible = true;
+    }
+    
+    $scope.RchangeClass = function () {
+        $scope.isLoginVisible = true;
+        // $scope.class = "animated fadeOutLeft";
+        // $scope.class2 = "animated fadeInRight";
+        $scope.isRegisterVisible = false;
+    }
+
+    $scope.RchangeClass2 = function () {
+        // $scope.class2 = "animated fadeOutLeft";
+        $scope.isRegisterVisible = true;
+        // $scope.class3 = "animated fadeInRight";
+        $scope.isInvitationVisible = false;
+        console.log($scope.class3);
+    }
+
+    $scope.RchangeClass3 = function () {
+        $scope.isInvitationVisible = true;
+        // $scope.class3 = "animated fadeOutLeft";
+        // $scope.class4 = "animated fadeInRight";
+        $scope.isCheckemailVisible = false;
+    }
+
+    $scope.RchangeClass4 = function () {
+        $scope.isRegisterVisible = true;
+        // $scope.class2 = "animated fadeOutLeft";
+        // $scope.class5 = "animated fadeInRight";
+        $scope.isBakerybioVisible = false;
+    }
+    
+    $scope.RchangeClass5 = function () {
+        $scope.isBakerybioVisible = true;
+        // $scope.class5 = "animated fadeOutLeft";
+        // $scope.class5b = "animated fadeInRight";
+        $scope.isBakerycontactVisible = false;
+    }
+
+    $scope.RchangeClass5b = function () {
+        $scope.isBakerycontactVisible = true;
+        // $scope.class5b = "animated fadeOutLeft";
+        // $scope.class6 = "animated fadeInRight";
+        $scope.isBakerylocationVisible = false;
+    }
+
+    $scope.RchangeClass6 = function () {
+        $scope.isBakerylocationVisible = true;
+        // $scope.class6 = "animated fadeOutLeft";
+        // $scope.class7 = "animated fadeInRight";
+        $scope.isBakeryaccountVisible = false;
+    }
+
+    $scope.RchangeClass7 = function () {
+        $scope.isBakeryaccountVisible = true;
+        // $scope.class7 = "animated fadeOutLeft";
+        // $scope.class8 = "animated fadeInRight";
+        $scope.isBakeryreasonVisible = false;
     }
 
     $scope.ResetAnimatedCardVariables = function () {

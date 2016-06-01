@@ -8,7 +8,7 @@
             </div>
 
             <div ng-controller="LoginBaker">
-                <div ng-class="class">
+                <div ng-class="class" ng-if="isLoginVisible">
 
                     <div class="card" ng-class="{'animated shake' : clicky}">
                         <form name="loginForm" ng-submit="TryLogin()">
@@ -57,6 +57,9 @@
 
                             <form name="signin" ng-submit="changeClass4(); SaveRegisterUI();">
                                 <div class="list list-inset">
+                                    
+                                    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass()"></a>
+                                    
                                     <label class="item item-input item-floating-label">
                                 <span class="input-label">Invitation Code</span>    
                                 <input name="invitationCode" type="text" placeholder="Invitation Code" ng-model="user.invitationCode" required>
@@ -109,6 +112,8 @@
                         <div class="card">
                             <form name="signin" ng-submit="TryLogin()">
                                 <div class="list list-inset">
+                                    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass2()"></a>
+                                    
                                     <label class="item item-input item-floating-label">
                                     <span class="input-label">Email</span>
                                 <input name="inviteemail" type="email" placeholder="Email" ng-model="user.email" required>
@@ -131,6 +136,7 @@
                     <div ng-class="class4" ng-if="isCheckemailVisible">
                         <div class="card">
                             <div class="text-center">
+                                <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass3()"></a>
                                 <br>
                                 <br> Please check your email for our invitation!
                                 <br>
@@ -146,8 +152,11 @@
                         <div class="card">
                             <form name="signin" ng-submit="SaveBioUI(); changeClass5()">
                                 <div class="text-center">
+                     
                                     <div class="item item-text-wrap">
+                                        
                                         Welcome aboard. <br>Let's build your bakery.
+                                        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass4()"></a>
                                     </div>
                                 </div>
                                 <div class="text-center" style="margin-top:5%;">
@@ -190,7 +199,7 @@
                                     <div class="item item-text-wrap">
 
                                         CloudCafe needs your contact number<br> Customers will need to contact you
-
+                                        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass5()"></a>
                                     </div>
                                 </div>
 
@@ -227,7 +236,7 @@
 
                                         CloudCafe has plans to launch a delivery service in the future<br> We need your location
                                         to deliver products for you
-
+                                        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass5b()"></a>
                                     </div>
                                 </div>
 
@@ -273,6 +282,7 @@
                                 <div class="text-center">
                                     <div class="item item-text-wrap">
                                         Bakers can expect to receive earnings weekly via bank transfer
+                                        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass6()"></a>
                                     </div>
                                 </div>
                                 <div class="list list-inset">
@@ -305,10 +315,12 @@
                                 <form name="signin" ng-submit="SaveWhyrubakingUI(); RegisterToFirebase();">
 
                                     <div class="text-center">
+                                        <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="RchangeClass7()"></a>
                                         <br>
                                         <br> Tell us how your bakery started!
                                         <br>
                                         <br>
+                                       
                                     </div>
 
                                     <div class="list list-inset">
