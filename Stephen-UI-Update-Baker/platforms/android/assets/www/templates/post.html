@@ -1,5 +1,4 @@
-<ion-view view-title="Post" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;"
-ng-controller="NavHistoryModifier">
+<ion-view view-title="Post" style="background-image:url(img/backgrounds/baker_login_screen.png); background-size:100%;" ng-controller="NavHistoryModifier">
     <ion-content ng-controller="AddNewFood">
 
         <div class="list list-inset">
@@ -52,10 +51,9 @@ ng-controller="NavHistoryModifier">
             <div class="item item-text-wrap" style="font-weight: bold;">
                 For Home Bakers
             </div>
-            
+
             <div class="text-center">
 
-      
                 <img class="display-image-thumbnail" ng-show="img1URI !== undefined" ng-src="{{img1URI}}" ng-click="takePicture(0,'img1URI')">
                 <img class="display-image-thumbnail" ng-show="img1URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(0,'img1URI')">
 
@@ -68,8 +66,12 @@ ng-controller="NavHistoryModifier">
                 <img class="display-image-thumbnail" ng-show="img4URI !== undefined" ng-src="{{img4URI}}" ng-click="takePicture(0,'img4URI')">
                 <img class="display-image-thumbnail" ng-show="img4URI === undefined" ng-src="img/backgrounds/ImageUploadIcon.png" ng-click="takePicture(3, 'img4URI')">
 
+                <div ng-if="!remindMinimumOnePictureMessage">
+                    Please ensure you have a minimum of one picture to upload
                 </div>
-            
+
+            </div>
+
             <label class="item item-input">
                   <span class="input-label" style="width:50%; opacity:0.7;">End Date</span>
                   <input type="date" ng-model="newFood.endDate" required>
@@ -82,10 +84,10 @@ ng-controller="NavHistoryModifier">
 
         </div>
 
-       <button class="button button-block button-assertive" ui-sref="active" ng-click="NextViewIsNavRoot(); AddFood()">
+        <button class="button button-block button-assertive" ng-click="AddFood()">
         Confirm Listing
         </button>
-    
+
 
     </ion-content>
 </ion-view>
