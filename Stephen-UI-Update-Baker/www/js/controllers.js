@@ -620,6 +620,9 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
             $scope.isBakerycontactVisible = true;
             $scope.remindBakeryImage = false;
         }
+        $scope.isBakerybioVisible = false;
+        $scope.isBakerycontactVisible = true;
+        
     }
 
     $scope.changeClass5b = function () {
