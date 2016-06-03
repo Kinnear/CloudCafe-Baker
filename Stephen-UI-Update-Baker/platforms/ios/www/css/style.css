@@ -256,15 +256,25 @@
   font-family:inherit;
 }
 
- .userPic{
-    margin-top:12%;
-    margin-bottom:8%;
-    padding: 0%;
+.userPic{
+    padding-top:10%;
+    padding-bottom:7%;
+   
+   
 }
+
 
 .userPanel{
   padding-left:6%;
+  padding-top: 5%;
 }
+
+.half{
+  width:50%;
+  border-color: none;
+  border-width: none;
+  text-align:center;}
+
 
 .display-image-thumbnail{
   height:20%;

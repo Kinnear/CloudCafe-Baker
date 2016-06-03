@@ -84,14 +84,14 @@
       <ion-content class="stable-bg">
 
         <!-- User profile -->
-        <div class="userPic"  style="text-align:center;" ng-controller="DisplayUserBakeryImage">
+        <div class="userPic"  style="background-image:url(img/backgrounds/SideMenu.png); background-size:100%; background-repeat:none; text-align:center;" ng-controller="DisplayUserBakeryImage">
           
-          <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage !== undefined" ng-src="{{userBakerProfile.bakeryImage}}">
-          <img class="profile-picture circle" menu-close="" ng-show="userBakerProfile.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png">
+          <img class="profile-picture circle" style="border: solid;" menu-close="" ng-show="userBakerProfile.bakeryImage !== undefined" ng-src="{{userBakerProfile.bakeryImage}}">
+          <img class="profile-picture circle" style="border: solid;" menu-close="" ng-show="userBakerProfile.bakeryImage === undefined" ng-src="img/backgrounds/ImageUploadIcon.png">
             
           <!--<img class="profile-picture circle" menu-close="" src="img/people/adam.jpg">-->
-          <span class="dark"><h4>{{userBakerProfile.bakeryName}}</h4>
-              <p style="width:50%; margin-left:25%;">{{userBakerProfile.bakeryAddress}}</p></span>
+          <h4><span class="light">{{userBakerProfile.bakeryName}}</span></h4>
+              <p style="width:50%; margin-left:25%;">{{userBakerProfile.bakeryAddress}}</p>
         </div>
         
         <div class="userPanel">

@@ -8,7 +8,7 @@
       <div class="item item-image login-logo" style="position:relative;">
                 <img src="img/backgrounds/logo_white.png">
             </div>
-    <div class="card">  
+    <div class="card" ng-controller="ExampleController">  
     <p class="text-center">
     <br>
     Version Alpha 1.0<br><br>
@@ -16,12 +16,10 @@
     CloudCafé Photography Service<br>
     Is completely Free for a limited time!<br><br>
     
-    </p>
-    </div>
-    <div ng-controller="ExampleController">
-    <button class="button" ng-click="shareAnywhere()">Share Anywhere</button>
-    <button class="button" ng-click="shareViaWhatsapp('some message', null, 'https://www.thepolyglotdeveloper.com')">Share via Whatsapp</button>
-    <button class="button" ng-click="shareViaEmail()">Report a bug</button>
+    
+    
+    
+    <span class="balanced" ng-click="shareViaEmail()">Report a bug here</span></p>
     </div>
     
 </ion-content>
