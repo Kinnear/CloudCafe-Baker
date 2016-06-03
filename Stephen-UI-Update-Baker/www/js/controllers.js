@@ -557,7 +557,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
     $ionicHistory.nextViewOptions({
         disableBack: true
     });
-    
+
     $scope.isLoginVisible = true;
     $scope.isRegisterVisible = false;
     $scope.isInvitationVisible = false;
@@ -606,7 +606,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         // $scope.class5 = "animated fadeInRight";
         $scope.isBakerybioVisible = true;
     }
-    
+
     $scope.changeClass5 = function () {
 
         // we have uploaded an image. so we can now proceed.
@@ -621,7 +621,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
             $scope.isBakerycontactVisible = true;
             $scope.remindBakeryImage = false;
         }
-        
+
     }
 
     $scope.changeClass5b = function () {
@@ -644,7 +644,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         // $scope.class8 = "animated fadeInRight";
         $scope.isBakeryreasonVisible = true;
     }
-    
+
     $scope.RchangeClass = function () {
         $scope.isLoginVisible = true;
         // $scope.class = "animated fadeOutLeft";
@@ -673,7 +673,7 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
         // $scope.class5 = "animated fadeInRight";
         $scope.isBakerybioVisible = false;
     }
-    
+
     $scope.RchangeClass5 = function () {
         $scope.isBakerybioVisible = true;
         // $scope.class5 = "animated fadeOutLeft";
@@ -716,9 +716,20 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
 
 app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHistory, RegistrationDetails, Auth, $ionicLoading, $ionicPopup) {
 
-    $scope.email = "";
-    $scope.password = "";
-    $scope.wrongPasswordMessage = "";
+    $scope.user = {
+        email: "",
+        password: "",
+        wrongPasswordMessage: ""
+    };
+
+    function ResetVariables() {
+        $scope.user = {
+            email: "",
+            password: "",
+            wrongPasswordMessage: ""
+        };
+    }
+
     $scope.clicky = false;
 
     $scope.TryLogin = function () {
@@ -729,15 +740,16 @@ app.controller('LoginBaker', function ($scope, $state, $firebaseAuth, $ionicHist
             template: '<ion-spinner></ion-spinner>'
         });
 
+        console.log($scope.user.email);
+        console.log($scope.user.password);
+
         Auth.$authWithPassword({
-            email: $scope.email,
-            password: $scope.password
+            email: $scope.user.email,
+            password: $scope.user.password
         }).then(function (authData) {
             console.log("Logged in as:", authData.uid);
 
-            $scope.email = "";
-            $scope.password = "";
-            $scope.wrongPasswordMessage = "";
+           ResetVariables();
 
             $ionicLoading.hide();
             $state.go("post");
