@@ -580,30 +580,29 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
 
     $scope.changeClass = function () {
         $scope.isLoginVisible = false;
-        // $scope.class = "animated fadeOutLeft";
-        // $scope.class2 = "animated fadeInRight";
+        // $scope.class = "animated fadeOut";
+        // $scope.class2 = "animated fadeIn";
         $scope.isRegisterVisible = true;
     }
 
     $scope.changeClass2 = function () {
-        // $scope.class2 = "animated fadeOutLeft";
         $scope.isRegisterVisible = false;
-        // $scope.class3 = "animated fadeInRight";
+        // $scope.class2 = "animated fadeOut";
+        // $scope.class3 = "animated fadeIn";
         $scope.isInvitationVisible = true;
-        console.log($scope.class3);
     }
 
     $scope.changeClass3 = function () {
         $scope.isInvitationVisible = false;
-        // $scope.class3 = "animated fadeOutLeft";
-        // $scope.class4 = "animated fadeInRight";
+        // $scope.class3 = "animated fadeOut";
+        // $scope.class4 = "animated fadeIn";
         $scope.isCheckemailVisible = true;
     }
 
     $scope.changeClass4 = function () {
         $scope.isRegisterVisible = false;
-        // $scope.class2 = "animated fadeOutLeft";
-        // $scope.class5 = "animated fadeInRight";
+        // $scope.class2 = "animated fadeOut";
+        // $scope.class5 = "animated fadeIn";
         $scope.isBakerybioVisible = true;
     }
 
@@ -616,8 +615,8 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
 
         if ($scope.remindBakeryImage) {
             $scope.isBakerybioVisible = false;
-            // $scope.class5 = "animated fadeOutLeft";
-            // $scope.class5b = "animated fadeInRight";
+            // $scope.class5 = "animated fadeOut";
+            // $scope.class5b = "animated fadeIn";
             $scope.isBakerycontactVisible = true;
             $scope.remindBakeryImage = false;
         }
@@ -626,80 +625,88 @@ app.controller('AnimatedLoginCards', function ($scope, $state, $firebaseAuth, $i
 
     $scope.changeClass5b = function () {
         $scope.isBakerycontactVisible = false;
-        // $scope.class5b = "animated fadeOutLeft";
-        // $scope.class6 = "animated fadeInRight";
+        // $scope.class5b = "animated fadeOut";
+        // $scope.class6 = "animated fadeIn";
         $scope.isBakerylocationVisible = true;
     }
 
     $scope.changeClass6 = function () {
         $scope.isBakerylocationVisible = false;
-        // $scope.class6 = "animated fadeOutLeft";
-        // $scope.class7 = "animated fadeInRight";
+        // $scope.class6 = "animated fadeOut";
+        // $scope.class7 = "animated fadeIn";
         $scope.isBakeryaccountVisible = true;
     }
 
     $scope.changeClass7 = function () {
         $scope.isBakeryaccountVisible = false;
-        // $scope.class7 = "animated fadeOutLeft";
-        // $scope.class8 = "animated fadeInRight";
+        // $scope.class7 = "animated fadeOut";
+        // $scope.class8 = "animated fadeIn";
         $scope.isBakeryreasonVisible = true;
     }
 
     $scope.RchangeClass = function () {
-        $scope.isLoginVisible = true;
-        // $scope.class = "animated fadeOutLeft";
-        // $scope.class2 = "animated fadeInRight";
         $scope.isRegisterVisible = false;
+        // $scope.class2 = "animated fadeOut";
+        // $scope.class = "animated fadeIn";
+        $scope.isLoginVisible = true;
+        
+        
     }
 
     $scope.RchangeClass2 = function () {
-        // $scope.class2 = "animated fadeOutLeft";
-        $scope.isRegisterVisible = true;
-        // $scope.class3 = "animated fadeInRight";
         $scope.isInvitationVisible = false;
-        console.log($scope.class3);
+        $scope.isRegisterVisible = true;
+        // $scope.class2 = "animated fadeIn";
+        // $scope.class3 = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass3 = function () {
-        $scope.isInvitationVisible = true;
-        // $scope.class3 = "animated fadeOutLeft";
-        // $scope.class4 = "animated fadeInRight";
         $scope.isCheckemailVisible = false;
+        $scope.isInvitationVisible = true;
+        // $scope.class3 = "animated fadeIn";
+        // $scope.class4 = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass4 = function () {
-        $scope.isRegisterVisible = true;
-        // $scope.class2 = "animated fadeOutLeft";
-        // $scope.class5 = "animated fadeInRight";
         $scope.isBakerybioVisible = false;
+        $scope.isRegisterVisible = true;
+        // $scope.class2 = "animated fadeIn";
+        // $scope.class5 = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass5 = function () {
-        $scope.isBakerybioVisible = true;
-        // $scope.class5 = "animated fadeOutLeft";
-        // $scope.class5b = "animated fadeInRight";
         $scope.isBakerycontactVisible = false;
+        $scope.isBakerybioVisible = true;
+        // $scope.class5 = "animated fadeIn";
+        // $scope.class5b = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass5b = function () {
-        $scope.isBakerycontactVisible = true;
-        // $scope.class5b = "animated fadeOutLeft";
-        // $scope.class6 = "animated fadeInRight";
         $scope.isBakerylocationVisible = false;
+        $scope.isBakerycontactVisible = true;
+        // $scope.class5b = "animated fadeIn";
+        // $scope.class6 = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass6 = function () {
-        $scope.isBakerylocationVisible = true;
-        // $scope.class6 = "animated fadeOutLeft";
-        // $scope.class7 = "animated fadeInRight";
         $scope.isBakeryaccountVisible = false;
+        $scope.isBakerylocationVisible = true;
+        // $scope.class6 = "animated fadeIn";
+        // $scope.class7 = "animated fadeOut";
+        
     }
 
     $scope.RchangeClass7 = function () {
-        $scope.isBakeryaccountVisible = true;
-        // $scope.class7 = "animated fadeOutLeft";
-        // $scope.class8 = "animated fadeInRight";
         $scope.isBakeryreasonVisible = false;
+        $scope.isBakeryaccountVisible = true;
+        // $scope.class7 = "animated fadeIn";
+        // $scope.class8 = "animated fadeOut";
+        
     }
 
     $scope.ResetAnimatedCardVariables = function () {
